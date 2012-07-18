@@ -1,4 +1,4 @@
-Synthesizable-PDP-8
+Synthesizable Harry Porter Relay Computer
 ===================
 
 Group project by Maisee Brown, Brian Ledger, and Jenner Hanni for Professor Mark Faust's ECE510 System Verilog class at Portland State University in Summer 2012.
