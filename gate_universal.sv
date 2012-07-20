@@ -5,11 +5,10 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module GateBlock (input b, c, output NOT, OR, AND, XOR);
+module UniversalGateBlock (input b, c, output NOT, OR, AND, XOR);
 
   wire g, h, f, V;
   reg AND_var, OR_var, XOR_var, NOT_var;
-
 
   Relay relay1 (.control(b),
                 .in_1(V),

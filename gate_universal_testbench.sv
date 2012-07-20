@@ -7,7 +7,7 @@
 
 module UniversalGateTestBench;
 
-  UniversalGate GateBlock( b, c, NOT, OR, AND, XOR );
+  UniversalGateBlock GateBlock( b, c, NOT, OR, AND, XOR );
  
   reg Clock, Clear, b_var, c_var;
 
