@@ -36,16 +36,15 @@ module UniversalGateTestBench;
     repeat (2) @(negedge Clock);
     Clear = 0;
 
-    $display("b   c    NOT   OR    AND    XOR");
+    $display("b   c    AND   OR    XOR    NOT");
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b00;
-    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
-    repeat (1) @(negedge Clock); {b_var,c_var} = 2'b01;
-    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
-    repeat (1) @(negedge Clock); {b_var,c_var} = 2'b10;
-    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
+    $display("%b   %b     %b     %b     %b     %b",b,c,AND,OR,XOR,NOT);
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b11;
-    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
-    repeat (1) @(negedge Clock); 
+    $display("%b   %b     %b     %b     %b     %b",b,c,AND,OR,XOR,NOT);
+    repeat (1) @(negedge Clock); {b_var,c_var} = 2'b01;
+    $display("%b   %b     %b     %b     %b     %b",b,c,AND,OR,XOR,NOT);
+    repeat (1) @(negedge Clock); {b_var,c_var} = 2'b10;
+    $display("%b   %b     %b     %b     %b     %b",b,c,AND,OR,XOR,NOT);
   end
 
 endmodule
