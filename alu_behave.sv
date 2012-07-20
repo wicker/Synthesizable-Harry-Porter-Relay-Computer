@@ -4,9 +4,9 @@
  * License: MIT http://opensource.org/licenses/MIT
  */
  
- module alu_behave (  input logic [7:0] b, 
+ module Alu_Behave (  input logic [7:0] b, 
                       input logic [7:0] c,
-                      input logic [2:0] function_code
+                      input logic [2:0] function_code,
                       output logic [7:0] result,
                       output logic sign,
                       output logic carry,
@@ -31,23 +31,34 @@
       XOR: result = b ^ c;
       NOT: result = ~b;
       SHL: result = {b[6:0],b[7]};
-      NOP: // do nothing
+      NOP: ; // do nothing
     endcase
   
   set_flags(b, c, result);
   end
   
-  task setflags(input [7:0] b, c, result);
+  task set_flags(input [7:0] b, c, result);
   
-    if(b[7] == c[7] && result[7] != b[7]) // carry out has occured
-      carry = 1;
+    // set carry bit
+    if(function_code == ADD)
+      // carry out in add when operands have same sign and result has a different sign
+     if(b[7] == c[7] && result[7] != b[7]) 
+        carry = 1;
+      else
+        carry = 0;
+        // carry out in inc when highest possible possitive number increments to -1 
+    else if(function_code == INC)
+      if(b[7] == 0 && result[7] == 1)
+        carry = 1;
+    else
+        carry = 0;
     else
       carry = 0;
     
-    if(b == 0)
-      zero == 1;
+    if(result == 0)
+      zero = 1;
     else
-      zero == 0;
+      zero = 0;
       
     sign = result[7];
   

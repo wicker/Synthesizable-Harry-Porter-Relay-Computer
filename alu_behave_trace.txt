@@ -1,0 +1,83 @@
+run -all
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                    0   000                   00000000     00000000     00000000          0           1             0  
+# Testing ADD function with no carry, no zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                   20   000                   00000001     00000001     00000010          0           0             0  
+# Testing ADD function with carry, no zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                   60   000                   01111111     00000001     10000000          1           0             1  
+# Testing ADD function no carry, zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  100   000                   00000000     00000000     00000000          0           1             0  
+# Testing ADD function -1 + 2 no carry, not zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  140   000                   11111111     00000010     00000001          0           0             0  
+# Testing ADD function 1 + (-2) no carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  180   000                   00000001     11111110     11111111          0           0             1  
+# Testing ADD function 2 + (-2) no carry, zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  220   000                   00000010     11111110     00000000          0           1             0  
+# Testing INC function 2 -> 3 no carry, not zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  260   001                   00000010     00000010     00000011          0           0             0  
+# Testing INC function -2 -> -1 no carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  300   001                   11111110     00000010     11111111          0           0             1  
+# Testing INC function -1 -> 0 no carry, zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  340   001                   11111111     11111110     00000000          0           1             0  
+# Testing INC function 011111111 -> -1  carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  380   001                   01111111     11111110     10000000          1           0             1  
+# Testing AND function 00001111 & 10101010 = 00001010  no carry, not zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  420   010                   00001111     10101010     00001010          0           0             0  
+# Testing AND function 11111111 & 10101010 = 10101010  no carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  460   010                   11111111     10101010     10101010          0           0             1  
+# Testing AND function 11111111 & 00000000 = 00000000  no carry, zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  500   010                   11111111     00000000     00000000          0           1             0  
+# Testing OR function 11111111 & 00000000 = 11111111  no carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  540   011                   11111111     00000000     11111111          0           0             1  
+# Testing OR function 00000000 & 00000000 = 00000000  no carry, zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  580   011                   00000000     00000000     00000000          0           1             0  
+# Testing OR function 01111111 & 00000000 = 01111111  no carry, not zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  620   011                   01111111     00000000     01111111          0           0             0  
+# Testing XOR function 00001111 & 00000000 = 00001111  no carry, not zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  660   100                   00001111     00000000     00001111          0           0             0  
+# Testing XOR function 11110000 & 00001111 = 11111111  no carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  700   100                   11110000     00001111     11111111          0           0             1  
+# Testing XOR function 11110000 & 11110000 = 00000000  no carry, zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+# Testing NOT function 00000000 -> 11111111 no carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  780   101                   00000000     11111110     11111111          0           0             1  
+# Testing NOT function 11111111 -> 00000000 no carry, zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  820   101                   11111111     11111110     00000000          0           1             0  
+# Testing NOT function 11111110 -> 00000001 no carry, not zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  860   101                   11111110     11111110     00000001          0           0             0  
+# Testing SHL function 00000001 -> 00000010 no carry, not zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  900   110                   00000001     00000001     00000010          0           0             0  
+# Testing SHL function 11000000 -> 10000001 no carry, not zero, negative sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  940   110                   11000000     00000001     10000001          0           0             1  
+# Testing SHL function 00000000 -> 00000000 no carry, zero, positive sign
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                  980   110                   00000000     00000001     00000000          0           1             0  
+# Testing NOP function nothing should change except function_code
+# 	    time    function_code   b                  c                    result             carry       zero       sign
+#                 1020   111                   00000001     00000001     00000000          0           1             0  
+# Break at N:/ECE 410/Final Project/alu_behave/alu_testbench_behave.sv line 251
+
+
