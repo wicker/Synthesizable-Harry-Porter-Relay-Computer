@@ -11,18 +11,6 @@ module UniversalGateTestBench;
  
   reg Clock, Clear, b_var, c_var;
 
-  //
-  // set up monitor
-  // 
-
-  initial begin
-    $display("b   c    NOT   OR    AND    XOR");
-    forever @(posedge Clock) begin
-      #1
-      $display("%b %b %b %b %b %bi",b,c,NOT,OR,AND,XOR);
-    end
-  end
-
   // 
   // Create free running clock
   // 
@@ -48,11 +36,16 @@ module UniversalGateTestBench;
     repeat (2) @(negedge Clock);
     Clear = 0;
 
+    $display("b   c    NOT   OR    AND    XOR");
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b00;
+    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b01;
+    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b10;
+    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b11;
-   
+    $display("%b   %b     %b     %b     %b     %b",b,c,NOT,OR,AND,XOR);
+    repeat (1) @(negedge Clock); 
   end
 
 endmodule

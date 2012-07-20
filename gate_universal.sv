@@ -21,9 +21,9 @@ module UniversalGateBlock (input b, c, output NOT, OR, AND, XOR);
                 .out_lo_3(f) );
 
   Relay relay2 (.control(c),
-                .in_1(AND),
-                .in_2(V),
-                .in_3(XOR),
+                .in_0(AND),
+                .in_1(V),
+                .in_2(XOR),
                 .out_hi_2(h),
                 .out_lo_0(f),
                 .out_lo_1(OR),
