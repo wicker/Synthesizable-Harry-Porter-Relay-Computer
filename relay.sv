@@ -1,5 +1,6 @@
 /* Author: Brian Ledger
- * Project: Harry Porter Relay Computer 
+ * Project: Harry Porter Relay Computer
+ * File: Basic relay unit 
  * License: MIT http://opensource.org/licenses/MIT
 */
 
