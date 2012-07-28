@@ -5,13 +5,24 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module ALU (input [7:0] b, c, output [7:0] result);
+module ALU (input logic [7:0] b, c, output logic [7:0] result);
 
-  wire AND, OR, XOR, NOT;
-  reg AND_var, OR_var, XOR_var, NOT_var;
+ThreeToEightDecoder three_to_eight ();
 
-  // 
-  // 3-to-8 Function Decoder
-  // 
- 
+EightBitAdderUnit adder (input b, c, output op);
+
+EightBitLogicUnit logic (input b, c, output op);
+
+Enable enable_add ();
+Enable enable_inc ();
+Enable enable_and ();
+Enable enable_or ();
+Enable enable_xor ();
+Enable enable_not ();
+Enable enable_shl ();
+
+ResultBus result_bus (output result);
+
+ZeroDetect zero_detector ();
+
 endmodule

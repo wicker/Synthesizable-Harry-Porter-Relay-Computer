@@ -28,34 +28,38 @@ module ThreeToEightDecoder (input logic [2:0] fctn_code, output op);
 
   Relay relay1 (.control(f1),
                 .in_3(V),
-                .out_hi_3(f),
-                .out_lo_3(g));
+                .out_lo_3(f),
+                .out_hi_3(g));
 
   Relay relay2 (.control(f2),
                 .in_2(f),
                 .in_3(g),
-                .out_hi_2(h),
-                .out_hi_3(i),
-                .out_lo_2(j),
-                .out_lo_3(k) );
+                .out_lo_2(h),
+                .out_lo_3(i),
+                .out_hi_2(j),
+                .out_hi_3(k) );
 
   Relay relay3 (.control(f3),
                 .in_0(h),
                 .in_1(i),
                 .in_2(j),
                 .in_3(k),
-                .out_hi_0(ADD_pin),
-                .out_hi_1(INC_pin),
-                .out_hi_2(AND_pin),
-                .out_hi_3(OR_pin),
-                .out_lo_0(XOR_pin),
-                .out_lo_1(NOT_pin),
-                .out_lo_2(SHIFTL_pin),
-                .out_lo_3(NULL_pin) );
+                .out_lo_0(ADD_pin),
+                .out_lo_1(INC_pin),
+                .out_lo_2(AND_pin),
+                .out_lo_3(OR_pin),
+                .out_hi_0(XOR_pin),
+                .out_hi_1(NOT_pin),
+                .out_hi_2(SHIFTL_pin),
+                .out_hi_3(NULL_pin) );
+
+  logic [7:0] thing;
 
   always_comb begin
     V_var = 1;
-
+    thing = {ADD_pin, INC_pin, AND_pin, OR_pin, XOR_pin, 
+                         NOT_pin, SHIFTL_pin, NULL_pin};
+    fctn = thing;
    end
 
 endmodule
