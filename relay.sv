@@ -18,16 +18,16 @@ module Relay(input control,
              inout out_lo_2,
              inout out_lo_3);
 
-   tranif0(in_0, out_lo_0, control);
-   tranif1(in_0, out_hi_0, control);
+   tranif0(in_0, out_hi_0, control);
+   tranif1(in_0, out_lo_0, control);
 
-   tranif0(in_1, out_lo_1, control);
-   tranif1(in_1, out_hi_1, control);
+   tranif0(in_1, out_hi_1, control);
+   tranif1(in_1, out_lo_1, control);
 
-   tranif0(in_2, out_lo_2, control);
-   tranif1(in_2, out_hi_2, control);
+   tranif0(in_2, out_hi_2, control);
+   tranif1(in_2, out_lo_2, control);
 
-   tranif0(in_3, out_lo_3, control);
-   tranif1(in_3, out_hi_3, control);
+   tranif0(in_3, out_hi_3, control);
+   tranif1(in_3, out_lo_3, control);
 
 endmodule

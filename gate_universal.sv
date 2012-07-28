@@ -29,6 +29,10 @@ module UniversalGateBlock (input b, c, output NOT, OR, AND, XOR);
                 .out_lo_1(OR),
                 .out_lo_2(g) );
 
+
+//  b[i] = control(b);
+//  c[i] = control(c);
+
   assign AND = AND_var;
   assign OR = OR_var;
   assign XOR = XOR_var;

@@ -44,7 +44,9 @@ module UniversalGateTestBench;
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b01;
     $display("%b   %b     %b     %b     %b     %b",b,c,AND,OR,XOR,NOT);
     repeat (1) @(negedge Clock); {b_var,c_var} = 2'b10;
+    repeat (4) @(negedge Clock);
     $display("%b   %b     %b     %b     %b     %b",b,c,AND,OR,XOR,NOT);
+
   end
 
 endmodule
