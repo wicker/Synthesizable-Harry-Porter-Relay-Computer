@@ -11,7 +11,7 @@ module ALU (input logic [7:0] b, c,
             output logic sign, carry, zero);
 
   logic [7:0] result, // result is for the internal result bus
-              add, inc, and, or, xor, not, shl;  // 8-bit operation results
+              adder_out, logic_out;  // 8-bit operation results
 
   enum logic [7:0] {ADD_op = 8'b10000000,
                     INC_op = 8'b01000000,
@@ -24,9 +24,9 @@ module ALU (input logic [7:0] b, c,
 
   ThreeToEightDecoder op_decoder (fctn_code, op);
 
-  EightBitAdderUnit adder (b, c, add, inc, carry);
+  EightBitAdderUnit adder (b, c, adder_out, carry);
 
-  EightBitLogicUnit logic (b, c, and, or, xor, not);
+  EightBitLogicUnit logic (b, c, logic_out);
 
   ShiftLeft shift_left (b, shl);
 

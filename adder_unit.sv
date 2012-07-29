@@ -5,7 +5,7 @@
 */
 
 module EightBitAdderUnit (input logic [7:0] b, c, 
-                          output logic [7:0] sum,
+                          output logic [7:0] adder_out
                           output logic carry);
 
   logic carry_out, carry_out_n,
