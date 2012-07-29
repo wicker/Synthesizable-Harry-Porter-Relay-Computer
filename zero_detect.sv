@@ -1,42 +1,45 @@
 /* Author: Jenner Hanni
  * Project: Harry Porter Relay Computer
  * File: Zero Detect Function in the ALU
+ *       This module detects when the result is all zeros.
  * License: MIT http://opensource.org/licenses/MIT
 */
 
 module ZeroDetect (input logic [7:0] result, output logic zero);
 
+  logic f,g,h,i,j,k,l,m;
+  logic V = 1;
 
-  Relay relay1 (.control(f1),
+  Relay relay0 (.control(r[0]),
                 .in_3(V),
-                .out_hi_3(f),
+                .out_lo_3(f));
+
+  Relay relay1 (.control(r[1]),
+                .in_3(f),
                 .out_lo_3(g));
 
-  Relay relay2 (.control(f2),
-                .in_2(f),
+  Relay relay2 (.control(r[2]),
                 .in_3(g),
-                .out_hi_2(h),
-                .out_hi_3(i),
-                .out_lo_2(j),
-                .out_lo_3(k) );
+                .out_lo_3(h));
 
-  Relay relay3 (.control(f3),
-                .in_0(h),
-                .in_1(i),
-                .in_2(j),
+  Relay relay3 (.control(r[3]),
+                .in_3(h),
+                .out_lo_3(i));
+
+  Relay relay4 (.control(r[4]),
+                .in_3(i),
+                .out_lo_3(k));
+
+  Relay relay5 (.control(r[5]),
                 .in_3(k),
-                .out_hi_0(ADD_pin),
-                .out_hi_1(INC_pin),
-                .out_hi_2(AND_pin),
-                .out_hi_3(OR_pin),
-                .out_lo_0(XOR_pin),
-                .out_lo_1(NOT_pin),
-                .out_lo_2(SHIFTL_pin),
-                .out_lo_3(NULL_pin) );
+                .out_lo_3(l));
 
-  always_comb begin
-    V_var = 1;
-    logic [7:0] = {ADD_pin, INC_pin, 
-   end
+  Relay relay6 (.control(r[6]),
+                .in_3(l),
+                .out_lo_3(m));
+
+  Relay relay7 (.control(r[7]),
+                .in_3(m),
+                .out_lo_3(zero) );
 
 endmodule
