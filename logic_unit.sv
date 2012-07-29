@@ -5,38 +5,40 @@
 */
 
 module EightBigLogicUnit (input logic [7:0] b, c,
-                          output logic [7:0] and, or, xor, not);
+                          output logic [7:0] logic_out);
 
-  Relay relay1 (.control(f1),
+  logic f,g,h,AND_out,OR_out,XOR_out,NOT_out;
+
+  logic [7:0] b_in = b;
+  logic [7:0] c_in = c;
+
+  Relay relay1 (.control(b_in),
+                .in_1(V),
+                .in_2(V),
                 .in_3(V),
-                .out_hi_3(f),
-                .out_lo_3(g));
+                .out_hi_1(g),
+                .out_hi_2(OR_out),
+                .out_hi_3(h),
+                .out_lo_1(f),
+                .out_lo_3(NOT_out));
 
-  Relay relay2 (.control(f2),
-                .in_2(f),
-                .in_3(g),
-                .out_hi_2(h),
-                .out_hi_3(i),
-                .out_lo_2(j),
-                .out_lo_3(k) );
-
-  Relay relay3 (.control(f3),
-                .in_0(h),
-                .in_1(i),
-                .in_2(j),
-                .in_3(k),
-                .out_hi_0(ADD_pin),
-                .out_hi_1(INC_pin),
-                .out_hi_2(AND_pin),
-                .out_hi_3(OR_pin),
-                .out_lo_0(XOR_pin),
-                .out_lo_1(NOT_pin),
-                .out_lo_2(SHIFTL_pin),
-                .out_lo_3(NULL_pin) );
+  Relay relay2 (.control(c_in),
+                .in_0(AND_out),
+                .in_1(V),
+                .in_2(XOR_out),
+                .out_hi_0(h),
+                .out_hi_1(OR_out),
+                .out_hi_2(f),
+                .out_lo_2(g));
 
   always_comb begin
-    V_var = 1;
-    logic [7:0] = {ADD_pin, INC_pin, 
-   end
+    for (int z = 0; z < 8; z++) begin
+        b_in = b[z];
+        c_in = c[z];
+    end
+        carry = carry_out;
+        $display("end.");
+  end
+
 
 endmodule
