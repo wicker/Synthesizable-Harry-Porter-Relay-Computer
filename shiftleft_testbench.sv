@@ -14,8 +14,12 @@ module ShiftLeftTestBench ();
 
   initial begin
     en_shl = 1;
+    $monitor("b: %b, shl: %b",b,shl);
+
     b = 8'b01000000;
-    $display("b: %b, shl: %b",b,shl);
+    b = 8'b00100000;
+    b = 8'b00010000;
+
     $finish;
   end
 

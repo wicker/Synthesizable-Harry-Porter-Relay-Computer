@@ -9,7 +9,7 @@ module ShiftLeftCircular (input logic [7:0] b, input logic en_shl,
 
   wire r0,r1,r2,r3,r4,r5,r6,r7;
 
-  wire [7:0] b_var;
+  logic [7:0] b_var;
 
   Relay relay1 (.control(en_shl),   // b0-b3
                 .in_0(b_var[0]),
@@ -32,6 +32,7 @@ module ShiftLeftCircular (input logic [7:0] b, input logic en_shl,
                 .out_lo_3(r7));
 
   always_comb begin
+    b_var = b;
     shl = {r7,r6,r5,r4,r3,r2,r1,r0};
   end
 
