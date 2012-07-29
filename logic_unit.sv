@@ -4,8 +4,8 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module ShiftLeftCircular (input logic [7:0] b, output result);
-
+module EightBigLogicUnit (input logic [7:0] b, c,
+                          output logic [7:0] and, or, xor, not);
 
   Relay relay1 (.control(f1),
                 .in_3(V),

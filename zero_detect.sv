@@ -4,7 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module ShiftLeftCircular (input logic [7:0] b, output result);
+module ZeroDetect (input logic [7:0] result, output logic zero);
 
 
   Relay relay1 (.control(f1),

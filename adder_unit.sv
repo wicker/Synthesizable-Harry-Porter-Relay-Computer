@@ -4,8 +4,9 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module ShiftLeftCircular (input logic [7:0] b, output result);
-
+module EightBitAdderUnit (input logic [7:0] b, c, 
+                          output logic [7:0] add, inc,
+                          output logic carry);
 
   Relay relay1 (.control(f1),
                 .in_3(V),

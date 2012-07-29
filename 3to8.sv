@@ -4,7 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module ThreeToEightDecoder (input logic [2:0] fctn_code, output op);
+module ThreeToEightDecoder (input logic [2:0] fctn_code, output [7:0] op);
 
   logic f1 = fctn_code[2];
   logic f2 = fctn_code[1];

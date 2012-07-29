@@ -5,41 +5,33 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module ALU (input logic [7:0] b, c, output logic [7:0] alu_result, 
-                                    output logic sign, carry, zero);
+module ALU (input logic [7:0] b, c, 
+            input logic [2:0] fctn_code,
+            output logic [7:0] alu_result, 
+            output logic sign, carry, zero);
 
-  ThreeToEightDecoder op_decoder (input logic [2:0] fctn_code, 
-                                  output logic [7:0] op);
+  logic [7:0] op, result, // result is for the internal result bus
+              add, inc, and, or, xor, not, shl;  // 8-bit operation results
 
-  EightBitAdderUnit adder (input logic [7:0] b, c, 
-                           output logic [7:0] add, inc, 
-                           output logic carry);
 
-  EightBitLogicUnit logic (input logic [7:0] b, c, 
-                           output logic [7:0] and, or, xor, not);
+  ThreeToEightDecoder op_decoder (fctn_code, op);
 
-  ShiftLeft shift_left (input logic [7:0] b, c, 
-                        output logic [7:0] shl);
+  EightBitAdderUnit adder (b, c, add, inc, carry);
 
-  Enable enable_add (input logic en_add, input logic [7:0] add, 
-                     output [7:0] result);
-  Enable enable_inc (input logic en_inc, input logic [7:0] inc,
-                     output [7:0] result);
-  Enable enable_and (input logic en_and, input logic [7:0] and, 
-                     output [7:0] result);
-  Enable enable_or (input logic en_or, input logic [7:0] or, 
-                     output [7:0] result);
-  Enable enable_xor (input logic en_xor, input logic [7:0] xor, 
-                     output [7:0] result);
-  Enable enable_not (input logic en_not, input logic [7:0] not, 
-                     output [7:0] result);
-  Enable enable_shl (input logic en_shl, input logic [7:0] shl, 
-                     output [7:0] result);
+  EightBitLogicUnit logic (b, c, and, or, xor, not);
 
-  ResultBus result_bus (input logic [7:0] result,
-                        output logic [7:0] alu_result);
+  ShiftLeft shift_left (b, shl);
 
-  ZeroDetect zero_detector (input logic [7:0] result,
-                            output logic zero);
+  Enable enable_add (control, line, bus);
+  Enable enable_inc (control, line, bus);
+  Enable enable_and (control, line, bus);
+  Enable enable_or  (control, line, bus);
+  Enable enable_xor (control, line, bus); 
+  Enable enable_not (control, line, bus); 
+  Enable enable_shl (control, line, bus); 
+
+  ResultBus result_bus (result, alu_result);
+
+  ZeroDetect zero_detector (iresult, zero);
 
 endmodule
