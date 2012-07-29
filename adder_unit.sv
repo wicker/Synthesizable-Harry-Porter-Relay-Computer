@@ -5,39 +5,48 @@
 */
 
 module EightBitAdderUnit (input logic [7:0] b, c, 
-                          output logic [7:0] add, inc,
+                          output logic [7:0] sum,
                           output logic carry);
 
-  Relay relay1 (.control(f1),
-                .in_3(V),
-                .out_hi_3(f),
-                .out_lo_3(g));
+  logic carry_out, carry_out_n,
+        carry_in, carry_in_n;
 
-  Relay relay2 (.control(f2),
-                .in_2(f),
-                .in_3(g),
+  Relay relay1 (.control(b_in),
+                .in_0(carry_out),
+                .in_1(carry_in),
+                .in_2(carry_in_n),
+                .in_3(carry_out_n),
+                .out_hi_0(g),
+                .out_hi_1(i),
                 .out_hi_2(h),
-                .out_hi_3(i),
-                .out_lo_2(j),
-                .out_lo_3(k) );
+                .out_hi_3(k),
+                .out_lo_0(f));
+                .out_lo_1(h));
+                .out_lo_2(i));
+                .out_lo_3(j));
 
-  Relay relay3 (.control(f3),
-                .in_0(h),
-                .in_1(i),
-                .in_2(j),
-                .in_3(k),
-                .out_hi_0(ADD_pin),
-                .out_hi_1(INC_pin),
-                .out_hi_2(AND_pin),
-                .out_hi_3(OR_pin),
-                .out_lo_0(XOR_pin),
-                .out_lo_1(NOT_pin),
-                .out_lo_2(SHIFTL_pin),
-                .out_lo_3(NULL_pin) );
+  Relay relay1 (.control(c_in),
+                .in_0(carry_in),
+                .in_1(V),
+                .in_2(sum_out),
+                .in_3(carry_in_n),
+                .out_hi_0(f),
+                .out_hi_1(g),
+                .out_hi_2(i),
+                .out_hi_3(j),
+                .out_lo_0(g));
+                .out_lo_1(j));
+                .out_lo_2(h));
+                .out_lo_3(k));
 
   always_comb begin
-    V_var = 1;
-    logic [7:0] = {ADD_pin, INC_pin, 
-   end
+    for (b = 0; b < 8; b++) begin
+        b_in = b[i];
+        c_in = c[i];
+        sum[i] = sum_out;
+    end
+        carry = carry_out;
+        $display("end.");
+  end
 
 endmodule
