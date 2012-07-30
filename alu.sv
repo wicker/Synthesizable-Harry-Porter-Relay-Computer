@@ -5,6 +5,8 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
+// ONLY STRUCTURE, NOT READY YET
+
 module ALU (input logic [7:0] b, c, 
             input logic [2:0] fctn_code,
             output logic [7:0] alu_result, 
