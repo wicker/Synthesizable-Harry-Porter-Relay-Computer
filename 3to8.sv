@@ -57,8 +57,11 @@ module ThreeToEightDecoder (input logic [2:0] fctn_code, output logic [7:0] op);
     
   initial begin
     V_var = 1;
-    op = {ADD_pin, INC_pin, AND_pin, OR_pin, XOR_pin,
-         NOT_pin, SHIFTL_pin, NULL_pin};
    end
+
+  always_ff @(f0 || f1 || f2) begin
+    op = {ADD_pin, INC_pin, AND_pin, OR_pin, XOR_pin,
+    NOT_pin, SHIFTL_pin, NULL_pin};
+  end
 
 endmodule

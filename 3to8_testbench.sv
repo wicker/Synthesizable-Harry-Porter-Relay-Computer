@@ -2,6 +2,12 @@
  * Project: Harry Porter Relay Computer
  * File: 3-8 bit fctn decoder testbench
  * License: MIT http://opensource.org/licenses/MIT
+ * Example output of a 000 input, should get 10000000 ADD_op out
+ * # code: 000
+ * # f0 = 0, f1 = 0, f2 = 0
+ * # e = 1 g = z | h = 1 i = z j = z k = z
+ * # op = 1zzzzzzz
+ * 
 */
 
 `define ADD_op    = 8'b10000000
@@ -24,11 +30,14 @@ module ThreeToEightDecoderTestBench ();
 
   initial begin
     for (fctn_code_reg = 0; fctn_code_reg < 8; fctn_code_reg++) begin
+        #1
         $display("code: %b",fctn_code_reg);  
         $display("f0 = %b, f1 = %b, f2 = %b",decoder.f0,decoder.f1,decoder.f2);
-        $display("e = %b, g = %b",decoder.e,decoder.g);
+        $display("e = %b g = %b | h = %b i = %b j = %b k = %b\n",
+                  decoder.e,decoder.g,decoder.h,decoder.i,decoder.j,decoder.k);
+        $display("op = %b",op);
     end
-    $finish;
+    $stop;
   end
 
 endmodule
