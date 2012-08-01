@@ -36,9 +36,47 @@ module EightBigLogicUnit (input logic [7:0] b, c,
         b_in = b[z];
         c_in = c[z];
     end
-        carry = carry_out;
         $display("end.");
   end
 
+endmodule // EightBigLogicUnit
 
-endmodule
+
+/*
+ * Jenner: This is my implementation of the one bit logic block.
+ * I recommend you investigate both of our implementations, as I have not
+ * checked this for errors, but I have taken the time to re-transpose the
+ * circuit diagram from the schematic without referring to yours.
+ * I'm convinced my module has the correct input/output signature and,
+ * when wired correctly, understand there will be no need for a behavioral
+ * always_comb block.
+ * 
+ * Let me know if this helps,
+ * 
+ * - Brian
+**/
+
+module OneBitLogicBlock(input b, c, output out_not, out_and, out_or, out_xor);
+
+   wire bridge1, bridge2, bridge3, bridgeV;
+   
+   Relay x(.control(b),
+	   .in_1(bridgeV),
+	   .in_2(bridgeV),
+	   .in_3(bridgeV),
+	   .out_lo_1(bridge1),
+	   .out_hi_1(bridge2),
+	   .out_hi_2(out_or),
+	   .out_lo_3(out_not),
+	   .out_hi_3(bridge3));
+   
+   Relay y(.control(c),
+	   .in_0(out_and),
+	   .in_1(bridgeV),
+	   .in_2(out_xor),
+	   .out_hi_0(bridge3),
+	   .out_hi_1(out_or),
+	   .out_lo_2(bridge2),
+	   .out_hi_2(bridge1));
+   
+endmodule // OneBitLogicBlock
