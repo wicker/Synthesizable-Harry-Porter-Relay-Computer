@@ -8,57 +8,36 @@ module EightBitAdderUnit (input logic [7:0] b, c,
                           output logic [7:0] adder_out,
                           output logic carry);
 
-  wire carry_out, carry_out_n,
-        carry_in, carry_in_n,
-        adder_out_pin,
-        f,g,h,i,j,k;
+  AdderBlock adderblock0 (.b_bit(b[0]), .c_bit(c[0]), .carry_in(c_in0), .carry_in_n(c_in_n0),
+                          .sum_bit(sum0), .carry_out(c_out0), .carry_out_n(c_out_n0));
 
-  logic b_in, c_in, V_var;
-  wire b_in_pin, c_in_pin;
+  AdderBlock adderblock1 (.b_bit(b[1]), .c_bit(c[1]), .carry_in(c_out0), .carry_in_n(c_out_n0),
+                          .sum_bit(sum1), .carry_out(c_out1), .carry_out_n(c_out_n1));
 
-  assign b_in_pin = b_in;
-  assign c_in_pin = c_in;
-  assign V = V_var;
+  AdderBlock adderblock2 (.b_bit(b[2]), .c_bit(c[2]), .carry_in(c_out1), .carry_in_n(c_out_n1),
+                          .sum_bit(sum2), .carry_out(c_out2), .carry_out_n(c_out_n2));
 
-  Relay relay1 (.control(b_in_pin),
-                .in_0(carry_out),
-                .in_1(carry_in),
-                .in_2(carry_in_n),
-                .in_3(carry_out_n),
-                .out_lo_0(g),
-                .out_lo_1(i),
-                .out_lo_2(h),
-                .out_lo_3(k),
-                .out_hi_0(f),
-                .out_hi_1(h),
-                .out_hi_2(i),
-                .out_hi_3(j));
+  AdderBlock adderblock3 (.b_bit(b[3]), .c_bit(c[3]), .carry_in(c_out2), .carry_in_n(c_out_n2),
+                          .sum_bit(sum3), .carry_out(c_out3), .carry_out_n(c_out_n3));
 
-  Relay relay2 (.control(c_in_pin),
-                .in_0(carry_in),
-                .in_1(V),
-                .in_2(adder_out_pin),
-                .in_3(carry_in_n),
-                .out_lo_0(f),
-                .out_lo_1(g),
-                .out_lo_2(i),
-                .out_lo_3(j),
-                .out_hi_0(g),
-                .out_hi_1(j),
-                .out_hi_2(h),
-                .out_hi_3(k));
+  AdderBlock adderblock4 (.b_bit(b[4]), .c_bit(c[4]), .carry_in(c_out3), .carry_in_n(c_out_n3),
+                          .sum_bit(sum4), .carry_out(c_out4), .carry_out_n(c_out_n4));
+
+  AdderBlock adderblock5 (.b_bit(b[5]), .c_bit(c[5]), .carry_in(c_out4), .carry_in_n(c_out_n4),
+                          .sum_bit(sum5), .carry_out(c_out5), .carry_out_n(c_out_n5));
+
+  AdderBlock adderblock6 (.b_bit(b[6]), .c_bit(c[6]), .carry_in(c_out5), .carry_in_n(c_out_n5),
+                          .sum_bit(sum6), .carry_out(c_out6), .carry_out_n(c_out_n6));
+
+  AdderBlock adderblock7 (.b_bit(b[7]), .c_bit(c[7]), .carry_in(c_out6), .carry_in_n(c_out_n6),
+                          .sum_bit(sum7), .carry_out(c_out7), .carry_out_n(c_out_n7));
 
   always @(b || c) begin
-    V_var = 1;
-    $display("working.");
-    for (int a = 0; a < 8; a++) begin
-        b_in = b[a];$display("b[a]: %b, b_in: %b",b[a],b_in); 
-        c_in = c[a];$display("c[a]: %b, c_in: %b",c[a],c_in); 
-        #1
-        adder_out[a] = adder_out_pin; #1 $display("sum: %b\n",adder_out[a]);
-    end
-    carry = carry_out;
-    $display("end.");
+    #1
+    adder_out = {sum7,sum6,sum5,sum4,sum3,sum2,sum1,sum0};
+    carry = c_out7;
   end
-
+    
 endmodule
+
+ 
