@@ -21,11 +21,10 @@ module EightBitLogicUnit (input logic [7:0] b, c,
   OneBitLogicBlock onebitlogic7;
   OneBitLogicBlock onebitlogic8;
   
-
 endmodule
 
-module OneBitLogicBlock (input bit b, c, 
-                         output logic
+module OneBitLogicBlock (input logic b, c, 
+                         output logic result);
  
   Relay relay1 (.control(b_in),
                 .in_1(V),
