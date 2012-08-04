@@ -7,9 +7,14 @@
 module AdderUnitTestBench ();
 
   logic [7:0] b, c, adder_out;
-  logic carry;
+  logic carry, clock;
 
-  EightBitAdderUnit adder (b, c, adder_out, carry);
+  initial begin
+    clock = 0;
+    forever #2ns clock = ~clock;
+  end
+
+  EightBitAdderUnit adder (clock, b, c, adder_out, carry);
 
   initial begin
     b = 8'b0;

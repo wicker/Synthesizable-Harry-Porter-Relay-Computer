@@ -4,7 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module EightBitAdderUnit (input logic [7:0] b, c, 
+module EightBitAdderUnit (input logic clock,logic [7:0] b, c, 
                           output logic [7:0] adder_out,
                           output logic carry);
 
@@ -72,7 +72,7 @@ module EightBitAdderUnit (input logic [7:0] b, c,
   AdderBlock adderblock7 (.b_bit(b7), .c_bit(c7), .carry_in(c_out6), .carry_in_n(c_out_n6),
                           .sum_bit(sum7), .carry_out(c_out7), .carry_out_n(c_out_n7));
 
-  always @(b || c) begin
+  always @(clock) begin
     #1
     $display("b: %b, c: %b",b,c);
     $display("sum0: %b",sum0_var);
