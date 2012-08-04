@@ -4,14 +4,29 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module EightBigLogicUnit (input logic [7:0] b, c,
+module EightBitLogicUnit (input logic [7:0] b, c,
                           output logic [7:0] logic_out);
 
-  logic f,g,h,AND_out,OR_out,XOR_out,NOT_out;
+  wire f,g,h,AND_out,OR_out,XOR_out,NOT_out;
 
   logic [7:0] b_in = b;
   logic [7:0] c_in = c;
 
+  OneBitLogicBlock onebitlogic1;
+  OneBitLogicBlock onebitlogic2;
+  OneBitLogicBlock onebitlogic3;
+  OneBitLogicBlock onebitlogic4;
+  OneBitLogicBlock onebitlogic5;
+  OneBitLogicBlock onebitlogic6;
+  OneBitLogicBlock onebitlogic7;
+  OneBitLogicBlock onebitlogic8;
+  
+
+endmodule
+
+module OneBitLogicBlock (input bit b, c, 
+                         output logic
+ 
   Relay relay1 (.control(b_in),
                 .in_1(V),
                 .in_2(V),
