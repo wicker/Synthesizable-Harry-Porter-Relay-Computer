@@ -68,7 +68,9 @@ module ClockCircuit (input logic .power(power_var), .run_stop(run_stop_var),
     D_var = !B_var && C_var; #1
     $display("A: %b, B: %b, C: %b, D: %b",A_var,B_var,C_var,D_var);
 
-    // instruction execution commences. 
+    // clock = C xor D
+    // in reality, clock width is determined by size of capacitor
+    // here we should just assume a timescale and call it good. 10ns?  
   end
 
 endmodule
