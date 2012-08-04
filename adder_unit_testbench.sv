@@ -12,8 +12,8 @@ module AdderUnitTestBench ();
   EightBitAdderUnit adder (b, c, adder_out, carry);
 
   initial begin
-    b = 8'b00000000;
-    c = 8'b00000001;
+    b = 8'b0;
+    c = 8'b1;
     #20
     $display("sum: %b, carry: %b",adder_out,carry);
   end
