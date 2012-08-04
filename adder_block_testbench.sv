@@ -10,17 +10,27 @@ module AdderBlockTestBench ();
   logic sum_bit, carry_out, carry_out_n;
 
   AdderBlock adderblock (b_bit, c_bit, carry_in, carry_in_n,
-                         sum_bit_wire, carry_out_wire, carry_out_n_wire);
-
-  assign sum_bit = sum_bit_wire;
+                         sum_bit, carry_out, carry_out_n);
 
   initial begin
-    b_bit = 1'b0;
-    c_bit = 1'b1;
     carry_in = 1'b0;
     carry_in_n = 1'b1;
-    #5
-    $display("sum_bit: %b, carry: %b",sum_bit,carry_out);
+
+    b_bit = 1'b0;
+    c_bit = 1'b1;
+    #2
+    $display("sum_bit: %b, carry_out: %b",sum_bit,carry_out);
+    b_bit = 1'b0;
+    c_bit = 1'b0;
+    #2
+    $display("sum_bit: %b, carry_out: %b",sum_bit,carry_out);
+    b_bit = 1'b1;
+    c_bit = 1'b1;
+    #1
+   
+    $finish;
+
   end
 
 endmodule
+

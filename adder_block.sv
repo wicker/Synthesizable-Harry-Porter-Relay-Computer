@@ -7,17 +7,16 @@
 module AdderBlock (input logic b_bit, c_bit, carry_in, carry_in_n,
                    output logic sum_bit, carry_out, carry_out_n);
 
-  wire f, g, h, i, j, k;
+  wire f, g, h, i, j, k, carry_in_pin;
   wire b_in_pin, c_in_pin, carry_out_pin, sum_bit_pin;
 
   logic V_var;
 
+  assign carry_in_pin = carry_in;
+  assign carry_in_n_pin = ~carry_in;
   assign b_in_pin = b_bit;
   assign c_in_pin = c_bit;
   assign V_pin = V_var;
-
-  assign carry_out = carry_out_pin;
-  assign sum_bit = sum_bit_pin;
 
   initial begin
     V_var = 1;
@@ -51,7 +50,13 @@ module AdderBlock (input logic b_bit, c_bit, carry_in, carry_in_n,
                 .out_lo_3(k),
                 .out_hi_3(j));
 
-  
+  always @(b_bit || c_bit) begin
+    #1
+    carry_out = carry_out_pin;
+    sum_bit = sum_bit_pin;
+    #2
+    $display("Hey."); 
+  end
 
 endmodule
  
