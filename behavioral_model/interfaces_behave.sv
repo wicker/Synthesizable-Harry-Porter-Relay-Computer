@@ -4,9 +4,8 @@
  * License: MIT http://opensource.org/licenses/MIT
  */
  
- interface registersInterface();
-	modport RegisterUnitRegisters{
-		output wire [7:0] 	Apins,
+ interface registersInterface;
+ wire [7:0]   Apins,
 							Bpins,
 							Cpins,
 							Dpins,
@@ -14,25 +13,52 @@
 							M2pins,
 							Xpins,
 							Ypins;
-		input logic [7:0]	A,
+	wire [7:0]  J1pins,
+							J2pins,
+							Instpins,
+							PCpins;
+	wire [15:0]	Incpins;
+	logic [7:0]	A,
 							B,
 							C,
 							D,
 							M1,
 							M2,
 							X,
-							Y;}
-	modport ProgramControlUnitRegisters{
-		output wire [7:0]	J1pins,
-							J2pins,
-							Instpins,
-							PCpins;
-		output wire [15:0]	Incpins;
-		input logic [7:0]	J1,
+							Y;
+	logic [7:0]	J1,
 							J2,
 							Inst,
 							PC;
-		input logic [15:0]	Inc;}
+	logic [15:0]	Inc;
+	modport RegisterUnitRegister(
+		output    Apins,
+							Bpins,
+							Cpins,
+							Dpins,
+							M1pins,
+							M2pins,
+							Xpins,
+							Ypins,
+		input     A,
+							B,
+							C,
+							D,
+							M1,
+							M2,
+							X,
+							Y);
+	modport ProgramControlUnitRegisters(
+		output    J1pins,
+							J2pins,
+							Instpins,
+							PCpins,
+		          Incpins,
+		input     J1,
+							J2,
+							Inst,
+							PC,
+		          Inc);
 		
 	assign Apins = A;
 	assign Bpins = B;
@@ -49,22 +75,22 @@
  endinterface
  
  interface dataBus (input clock, interface controlSignals);
-	input logic [7:0] dataBus;
-	output wire [7:0] dataBusPins;
+	logic [7:0] dataBus;
+	wire [7:0] dataBusPins;
 	
 	assign dataBusPins = dataBus;
  endinterface
  
  interface addressBus(input clock, interface controlSignals);
-	input logic [15:0] addressBus;
-	output wire [15:0] addressBusPins;
+	logic [15:0] addressBus;
+	wire [15:0] addressBusPins;
 	
 	assign addressBusPins = addressBus;
  
  endinterface
  
- interface controlSignals();
-	input logic 	LdA,
+ interface controlSignals;
+	logic   LdA,
 					LdB,
 					LdC,
 					LdD,
@@ -91,9 +117,9 @@
 					SelJ,
 					SelPC,
 					SelINC;
-	input logic [2:0] AluFunctionCode;
+	logic [2:0] AluFunctionCode;
 	
-	output 	LdApin,
+	wire 	LdApin,
 			LdBpin,
 			LdCpin,
 			LdDpin,
@@ -120,7 +146,7 @@
 			SelJpin,
 			SelPCpin,
 			SelINCpin;
-	output wire [2:0] AluFunctionCodePins;
+	wire [2:0] AluFunctionCodePins;
 	assign 	LdApin = LdA;
 	assign 	LdBpin = LdB;
 	assign 	LdCpin = LdC;
