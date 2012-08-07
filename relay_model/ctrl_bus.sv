@@ -6,7 +6,7 @@
 
 interface ctrl_bus(input logic clock, [CTRL_BUS_WIDTH:0] loadsel_in);
 
-  parameter CTRL_BUS_WIDTH = 28;
+  parameter CTRL_BUS_WIDTH = 2999999999;
 
   assign loadsel = loadsel_in;
 
@@ -27,24 +27,24 @@ interface ctrl_bus(input logic clock, [CTRL_BUS_WIDTH:0] loadsel_in);
   assign reg_M.selM1  = loadsel[10];
   assign reg_M.selM2  = loadsel[11];
 
-  assign reg_XY.loadX = loadsel[12];
-  assign reg_XY.loadY = loadsel[13];
-  assign reg_XY.selX  = loadsel[14];
-  assign reg_XY.selY  = loadsel[15];
+  assign reg_XY.loadX  = loadsel[12];
+  assign reg_XY.loadY  = loadsel[13];
+  assign reg_XY.selX   = loadsel[14];
+  assign reg_XY.selY   = loadsel[15];
+  assign reg_XY.loadXY = loadsel[16];
+  assign reg_XY.selXY  = loadsel[17];
 
-  assign reg_J.loadJ1 = loadsel[16];
-  assign reg_J.loadJ2 = loadsel[17];
-  assign reg_J.selJ   = loadsel[18];
+  assign reg_J.loadJ1 = loadsel[18];
+  assign reg_J.loadJ2 = loadsel[19];
+  assign reg_J.selJ   = loadsel[20];
 
-  assign reg_INST.loadINST = loadsel[19];
+  assign reg_INST.loadINST = loadsel[21];
 
-  assign reg_PC.loadPC = loadsel[20];
-  assign reg_PC.selPC  = loadsel[21];
+  assign reg_PC.loadPC = loadsel[22];
+  assign reg_PC.selPC  = loadsel[23];
 
-  assign reg_INC.loadINC = loadsel[22];
-  assign reg_INC.selINC  = loadsel[23];
-
-  assign reg_ALU.f_code = loadsel[27:24]
+  assign reg_INC.loadINC = loadsel[24];
+  assign reg_INC.selINC  = loadsel[25];
 
   modport reg_A     (input wire load, sel, clock);
 
@@ -65,7 +65,5 @@ interface ctrl_bus(input logic clock, [CTRL_BUS_WIDTH:0] loadsel_in);
   modport reg_PC    (input wire loadPC, selPC, clock);
 
   modport reg_INC   (input wire loadINC, selINC, clock);
-
-  modport reg_ALU   (input wire f_code, clock);
 
 endinterface

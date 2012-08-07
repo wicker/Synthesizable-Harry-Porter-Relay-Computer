@@ -30,8 +30,6 @@ interface data_bus(input logic clock, inout wire logic [DATA_BUS_WIDTH-1:0] data
 
   modport reg_INST  (input data_wire, input clock);
 
-  modport reg_ALU   (output data_wire, input clock);
-
   modport mem       (inout data_wire, input clock);
 
 endinterface
