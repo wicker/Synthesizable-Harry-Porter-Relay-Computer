@@ -3,63 +3,31 @@
  * File: interfaces_behave.sv
  * License: MIT http://opensource.org/licenses/MIT
  */
- 
- interface registersInterface;
- wire [7:0]   Apins,
-							Bpins,
-							Cpins,
-							Dpins,
-							M1pins,
-							M2pins,
-							Xpins,
-							Ypins;
-	wire [7:0]  J1pins,
-							J2pins,
-							Instpins,
-							PCpins;
-	wire [15:0]	Incpins;
+
+ // Interface to hold all of the registers and the data bus in Harry Porter's Relay Computer
+ interface registerUnit (input clock, interface controlSignals);
+	logic [7:0] dataBus;
+	wire [7:0] dataBusPins;
+	
+	wire [7:0]  Apins,
+				Bpins,
+				Cpins,
+				Dpins,
+				M1pins,
+				M2pins,
+				Xpins,
+				Ypins;
+	
 	logic [7:0]	A,
-							B,
-							C,
-							D,
-							M1,
-							M2,
-							X,
-							Y;
-	logic [7:0]	J1,
-							J2,
-							Inst,
-							PC;
-	logic [15:0]	Inc;
-	modport RegisterUnitRegister(
-		output    Apins,
-							Bpins,
-							Cpins,
-							Dpins,
-							M1pins,
-							M2pins,
-							Xpins,
-							Ypins,
-		input     A,
-							B,
-							C,
-							D,
-							M1,
-							M2,
-							X,
-							Y);
-	modport ProgramControlUnitRegisters(
-		output    J1pins,
-							J2pins,
-							Instpins,
-							PCpins,
-		          Incpins,
-		input     J1,
-							J2,
-							Inst,
-							PC,
-		          Inc);
-		
+				B,
+				C,
+				D,
+				M1,
+				M2,
+				X,
+				Y;
+	
+	assign dataBusPins = dataBus;
 	assign Apins = A;
 	assign Bpins = B;
 	assign Cpins = C;
@@ -68,24 +36,30 @@
 	assign M2pins = M2;
 	assign Xpins = X;
 	assign Ypins = Y;
-	assign J1pins = J1;
-	assign J2pins = J2;
-	assign Instpins = Inst;
-	assign Incpins = Inc;
  endinterface
  
- interface dataBus (input clock, interface controlSignals);
-	logic [7:0] dataBus;
-	wire [7:0] dataBusPins;
-	
-	assign dataBusPins = dataBus;
- endinterface
- 
- interface addressBus(input clock, interface controlSignals);
+ // Interface to hold all of the registers and the address bus in Harry Porter's Relay Computer
+ interface programControlUnit(input clock, interface controlSignals);
 	logic [15:0] addressBus;
 	wire [15:0] addressBusPins;
 	
+	wire [7:0]  	J1pins,
+					J2pins,
+					Instpins;
+	wire [15:0]		Incpins,
+					PCpins;
+	logic [7:0]		J1,
+					J2,
+					Inst;			
+	logic [15:0]	Inc,
+					PC;
+	
 	assign addressBusPins = addressBus;
+	assign J1pins = J1;
+	assign J2pins = J2;
+	assign Instpins = Inst;
+	assign Incpins = Inc + 1; // Implements the increment unit
+	assign PCpins = PC;
  
  endinterface
  
@@ -118,6 +92,7 @@
 					SelPC,
 					SelINC;
 	logic [2:0] AluFunctionCode;
+	logic [3:0] fsmInput;
 	
 	wire 	LdApin,
 			LdBpin,
@@ -147,6 +122,7 @@
 			SelPCpin,
 			SelINCpin;
 	wire [2:0] AluFunctionCodePins;
+	wire [3:0] fsmInputPins;
 	assign 	LdApin = LdA;
 	assign 	LdBpin = LdB;
 	assign 	LdCpin = LdC;
@@ -172,5 +148,6 @@
 	assign 	SelJpin = SelJ;
 	assign 	SelPCpin = SelPC;
 	assign 	SelINCpin = SelINC;
-	assign	AluFunctionCode = AluFunctionCodePins;	
+	assign	AluFunctionCodePins = AluFunctionCode;
+	assign fsmInputPins = fsmInput;
  endinterface	
