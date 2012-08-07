@@ -1,18 +1,47 @@
-module RegisterUnit(input ldA, ldB, ldC, ldD, ldM1, ldM2, ldX, ldY, ldXY
-		    selA, selB, selC, selD, selM1, selM2, selX, selY, selM, selXY
-		    AddressBus address, DataBus data);
-  
-   Register a(ldA, selA, data.data);
-   Register b(ldB, selB, data.data);
-   Register c(ldC, selC, data.data);
-   Register d(ldD, selD, data.data);
-   Register m1(ldM1, selM1, data.data);
-   Register m2(ldM2, selM2, data.data);
-   Register x(ldX, selX, data.data);
-   Register y(ldY, selY, data.data);
+/* Author: Jenner Hanni
+ * Project: Harry Porter Relay Computer
+ * File: Register unit 
+ * License: MIT http://opensource.org/licenses/MIT
+*/
 
-   // TODO attach the address bus to M and XY
+module register_unit ();
+
+  EightBitRegister reg_A     (ctrl_bus ctrl_bus,
+                              data_bus data_bus); 
+
+  EightBitRegister reg_B     (ctrl_bus ctrl_bus,
+                              data_bus data_bus); 
  
-  
-   
-endmodule // RegisterUnit
+  EightBitRegister reg_C     (ctrl_bus ctrl_bus,
+                              data_bus data_bus);
+
+  EightBitRegister reg_D     (ctrl_bus ctrl_bus,
+                              data_bus data_bus);
+
+  EightBitRegister reg_M     (ctrl_bus ctrl_bus,
+                              data_bus data_bus,
+                              addr_bus addr_bus);
+
+  EightBitRegister reg_XY    (ctrl_bus ctrl_bus,
+                              data_bus data_bus,
+                              addr_bus addr_bus);
+
+  EightBitRegister reg_J     (ctrl_bus ctrl_bus,
+                              data_bus data_bus,
+                              addr_bus addr_bus);
+
+  EightBitRegister reg_INST  (ctrl_bus ctrl_bus,
+                              data_bus data_bus);
+
+  EightBitRegister reg_PC    (ctrl_bus ctrl_bus,
+                              addr_bus addr_bus);
+
+  EightBitRegister reg_INC   (ctrl_bus ctrl_bus,
+                              addr_bus addr_bus);
+
+  EightBitRegister reg_16INC (addr_bus addr_bus);
+
+  EightBitRegister reg_ALU   (ctrl_bus ctrl_bus,
+                              data_bus data_bus);
+
+endmodule

@@ -4,13 +4,13 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-interface data_bus(input logic clock, inout logic [DATA_BUS_WIDTH-1:0] data);
+interface data_bus(input logic clock, inout wire logic [DATA_BUS_WIDTH-1:0] data);
 
   parameter DATA_BUS_WIDTH = 8;
 
-  wire [DATA_BUS_WIDTH-1:0] data_wire;
+  wire logic [DATA_BUS_WIDTH-1:0] data_wire;
 
-  logic [DATA_BUS_WIDTH-1:0] data;
+  wire logic [DATA_BUS_WIDTH-1:0] data;
 
   assign data_wire = data;
 
@@ -30,7 +30,7 @@ interface data_bus(input logic clock, inout logic [DATA_BUS_WIDTH-1:0] data);
 
   modport reg_INST  (input data_wire, input clock);
 
-  modport alu       (output data_wire, input clock);
+  modport reg_ALU   (output data_wire, input clock);
 
   modport mem       (inout data_wire, input clock);
 
