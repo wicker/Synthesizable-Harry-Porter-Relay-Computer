@@ -1,6 +1,12 @@
+/* Author: Brian Ledger 
+ * Project: Harry Porter Relay Computer 
+ * License: MIT http://opensource.org/licenses/MIT 
+*/
 
-module EightBitRegister(input hold, inout wire[7:0] val);
+module EightBitRegister(.*);
    
+   assign hold = !load;
+
    genvar i;
 
    generate
@@ -8,5 +14,7 @@ module EightBitRegister(input hold, inout wire[7:0] val);
 	 Register R(hold,val[i]);
       end
    endgenerate
+
+  
    
 endmodule // EightBitRegister

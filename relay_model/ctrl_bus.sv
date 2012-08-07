@@ -6,7 +6,7 @@
 
 interface ctrl_bus(input logic clock, [CTRL_BUS_WIDTH:0] loadsel_in);
 
-  parameter CTRL_BUS_WIDTH = 2999999999;
+  parameter CTRL_BUS_WIDTH = 26;
 
   assign loadsel = loadsel_in;
 

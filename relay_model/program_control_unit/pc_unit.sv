@@ -8,19 +8,19 @@
 
 module program_control_unit();
 
-  EightBitRegister reg_J     (ctrl_bus ctrl_bus,
-                              data_bus data_bus,
-                              addr_bus addr_bus);
+  EightBitRegister reg_J     (ctrl_bus.reg_J,
+                              data_bus.reg_J,
+                              addr_bus.reg_J);
 
-  EightBitRegister reg_INST  (ctrl_bus ctrl_bus,
-                              data_bus data_bus);
+  EightBitRegister reg_INST  (ctrl_bus.reg_INST,
+                              data_bus.reg_INST);
 
-  EightBitRegister reg_PC    (ctrl_bus ctrl_bus,
-                              addr_bus addr_bus);
+  EightBitRegister reg_PC    (ctrl_bus.reg_PC,
+                              addr_bus.reg_PC);
 
-  EightBitRegister reg_INC   (ctrl_bus ctrl_bus,
-                              addr_bus addr_bus);
+  EightBitRegister reg_INC   (ctrl_bus.reg_INC,
+                              addr_bus.reg_INC);
 
-  EightBitRegister reg_16INC (addr_bus addr_bus);
+  EightBitRegister reg_16INC (addr_bus.reg_16INC);
 
 endmodule

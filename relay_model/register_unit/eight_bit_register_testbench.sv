@@ -1,3 +1,7 @@
+/* Author: Brian Ledger 
+ * Project: Harry Porter Relay Computer 
+ * License: MIT http://opensource.org/licenses/MIT 
+*/
 
 module TestBench();
 
