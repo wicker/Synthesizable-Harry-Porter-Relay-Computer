@@ -4,27 +4,10 @@
  * License: MIT http://opensource.org/licenses/MIT
  */
  
- /* This module is the behavior model of the finite state machine used in the sequencer
-  * unit of Harry Porter's Relay computer. It takes four inputs from the decode logic to determine
-  * how many states are necessary to complete the instruction. It outputs one bit high per state.
-  * I.E. in the first state the first output line is high, in the second state the second output
-  * line is high, and so on...
-  */
-  
-  module Fsm_Behave(input clock, input logic [3:0] instruction_bits, output logic [23:0] outputState);
-	
-	// possible instruction classification codes
-	enum logic [3:0] { 	mov_8 		= 4'b0000,
-						alu 		= 4'b1000,
-						setab 		= 4'b0100,
-						inc_xy 		= 4'b1011,
-						load_store	= 4'b1001,
-						goto		= 4'b1100,
-						mov16_halt_return_branch = 4'b1010} instruction_class;
-						
-						
-	
-	// states and outputs of the fsm
+ // Package so state definitions can be in the unit scope so all modules
+ // can access the inumerated definitions of the states.
+ package state_definitions;
+   	// states and outputs of the fsm
 	typedef enum logic [23:0] { state_1 =	0'b000000000000000000000001,
 						state_2 = 	0'b000000000000000000000010,
 						state_3 = 	0'b000000000000000000000100,
@@ -49,6 +32,28 @@
 						state_22 =	0'b001000000000000000000000,
 						state_23 =	0'b010000000000000000000000,
 						state_24 =	0'b100000000000000000000000} stateAndOutput_t;
+		endpackage
+ 
+ 
+ /* This module is the behavior model of the finite state machine used in the sequencer
+  * unit of Harry Porter's Relay computer. It takes four inputs from the decode logic to determine
+  * how many states are necessary to complete the instruction. It outputs one bit high per state.
+  * I.E. in the first state the first output line is high, in the second state the second output
+  * line is high, and so on...
+  */
+  
+  module Fsm_Behave(input clock, input logic [3:0] instruction_bits, output logic [23:0] outputState);
+	
+	import state_definitions::*;
+	
+	// possible instruction classification codes
+	enum logic [3:0] { 	mov_8 		= 4'b0000,
+						alu 		= 4'b1000,
+						setab 		= 4'b0100,
+						inc_xy 		= 4'b1011,
+						load_store	= 4'b1001,
+						goto		= 4'b1100,
+						mov16_halt_return_branch = 4'b1010} instruction_class;
 						
 	stateAndOutput_t state, next_state;
 	
