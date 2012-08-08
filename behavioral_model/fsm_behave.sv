@@ -58,7 +58,7 @@
 	stateAndOutput_t state, next_state;
 	
 	// update state on every clock edge Note: Harry Porter's Relay Computer's fsm did not have a clear signal
-	always_ff @(posedge clock)
+	always_ff @(clock)
 	begin
 			state <= next_state;
 	end

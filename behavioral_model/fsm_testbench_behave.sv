@@ -30,25 +30,25 @@
   initial 
   begin
 	// Mov-8 classed instructions (8 clocks each)
-	repeat(8) @(posedge clock) instruction_bits <= 4'b0000; 
+	repeat(8) @(clock) instruction_bits <= 4'b0000; 
 	
 	// AlU classed instructions (8 clocks each)
-	repeat(8) @(posedge clock) instruction_bits <= 4'b1000;
+	repeat(8) @(clock) instruction_bits <= 4'b1000;
 	
 	// Setab/ Load immediate instructions (8 clocks each)
-	repeat(8) @(posedge clock) instruction_bits <= 4'b0100;
+	repeat(8) @(clock) instruction_bits <= 4'b0100;
 	
 	// Load / Store instruction (12 clocks)
-	repeat(12) @(posedge clock) instruction_bits <= 4'b1001;
+	repeat(12) @(clock) instruction_bits <= 4'b1001;
 	
 	// Mov-16 / Halt / Return / Branch (12 clocks)
-	repeat(12) @(posedge clock) instruction_bits <= 4'b1010;
+	repeat(12) @(clock) instruction_bits <= 4'b1010;
 	
 	// Inc instruction (14 clocks)
-	repeat(14) @(posedge clock) instruction_bits <= 4'b1011;
+	repeat(14) @(clock) instruction_bits <= 4'b1011;
 	
 	// GOTO classed instructions (24 clock cycles)
-	repeat(26) @(posedge clock) instruction_bits <= 4'b1100;
+	repeat(26) @(clock) instruction_bits <= 4'b1100;
 	$stop;
   end
   
