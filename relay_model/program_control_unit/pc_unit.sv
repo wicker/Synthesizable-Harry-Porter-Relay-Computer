@@ -18,14 +18,16 @@ module program_control_unit();
                                addr_bus.reg_J);
 
   EightBitRegister reg_INST    (ctrl_bus.reg_INST,
-                               data_bus.reg_INST);
+                                data_bus.reg_INST);
 
   SixteenBitRegister reg_PC    (ctrl_bus.reg_PC,
-                               addr_bus.reg_PC);
+                                addr_bus.reg_PC);
 
   SixteenBitRegister reg_INC   (ctrl_bus.reg_INC,
-                               addr_bus.reg_INC);
+                                addr_bus.reg_INC,
+                                input wire logic [15:0] inc_result);
 
-  SixteenBitRegister reg_16INC (addr_bus.reg_16INC);
+  SixteenBitIncrement 16_INC   (addr_bus.16_INC,
+                                output wire logic [15:0] inc_result);
 
 endmodule

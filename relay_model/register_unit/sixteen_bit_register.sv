@@ -5,14 +5,14 @@
 
 module SixteenBitRegister(.*);
 
-   parameter RELAYS = 16; // how many relays in this register
+   parameter REGISTERS = 16; // how many relays in this register
    
    assign hold = !load;
 
    genvar i;
 
    generate
-      for(i=0; i<RELAYS; i++) begin
+      for(i=0; i<REGISTERS; i++) begin
 	 Register R(hold,val[i]);
       end
    endgenerate

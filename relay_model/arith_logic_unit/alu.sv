@@ -6,7 +6,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module arith_logic_unit ();
+module alu (output wire logic [7:0] alu_result);
 
   
 
