@@ -20,11 +20,22 @@ module register_unit ();
   EightBitRegister reg_D     (ctrl_bus.reg_D,
                               data_bus.reg_D);
 
-  EightBitRegister reg_M     (ctrl_bus.reg_M,
-                              data_bus.reg_M,
+  EightBitRegister reg_M1    (ctrl_bus.reg_M1,
+                              data_bus.reg_M1);
+
+  EightBitRegister reg_M2    (ctrl_bus.reg_M2,
+                              data_bus.reg_M2);
+
+  SixteenBitRegister reg_M   (ctrl_bus.reg_M,
                               addr_bus.reg_M);
 
-  EightBitRegister reg_XY    (ctrl_bus.reg_XY,
-                              data_bus.reg_XY,
+  EightBitRegister reg_X     (ctrl_bus.reg_X,
+                              data_bus.reg_X);
+
+  EightBitRegister reg_Y     (ctrl_bus.reg_Y,
+                              data_bus.reg_Y);
+
+  SixteenBitRegister reg_XY   (ctrl_bus.reg_XY,
                               addr_bus.reg_XY);
+
 endmodule

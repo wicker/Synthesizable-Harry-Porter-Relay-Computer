@@ -22,31 +22,37 @@ interface ctrl_bus(input logic clock, [CTRL_BUS_WIDTH:0] loadsel_in);
   assign reg_D.load = loadsel[6];
   assign reg_D.sel  = loadsel[7];
 
-  assign reg_M.loadM1 = loadsel[8];
-  assign reg_M.loadM2 = loadsel[9];
-  assign reg_M.selM1  = loadsel[10];
-  assign reg_M.selM2  = loadsel[11];
+  assign reg_M1.load = loadsel[8];
+  assign reg_M1.sel  = loadsel[10];
 
-  assign reg_XY.loadX  = loadsel[12];
-  assign reg_XY.loadY  = loadsel[13];
-  assign reg_XY.selX   = loadsel[14];
-  assign reg_XY.selY   = loadsel[15];
-  assign reg_XY.loadXY = loadsel[16];
-  assign reg_XY.selXY  = loadsel[17];
+  assign reg_M2.load = loadsel[9];
+  assign reg_M2.sel  = loadsel[11];
 
-  assign reg_J.loadJ1 = loadsel[18];
-  assign reg_J.loadJ2 = loadsel[19];
-  assign reg_J.selJ   = loadsel[20];
+  assign reg_M.load  = 
+  assign reg_M.sel   = 
 
-  assign reg_INST.loadINST = loadsel[21];
+  assign reg_X.load  = loadsel[12];
+  assign reg_X.sel   = loadsel[14];
 
-  assign reg_PC.loadPC = loadsel[22];
-  assign reg_PC.selPC  = loadsel[23];
+  assign reg_Y.load  = loadsel[13];
+  assign reg_Y.sel   = loadsel[15];
 
-  assign reg_INC.loadINC = loadsel[24];
-  assign reg_INC.selINC  = loadsel[25];
+  assign reg_XY.load = loadsel[16];
+  assign reg_XY.sel  = loadsel[17];
 
-  modport reg_A     (input wire load, sel, clock);
+  assign reg_J1.load = loadsel[18];
+  assign reg_J2.load = loadsel[19];
+  assign reg_J.sel   = loadsel[20];
+
+  assign reg_INST.load = loadsel[21];
+
+  assign reg_PC.load = loadsel[22];
+  assign reg_PC.sel  = loadsel[23];
+
+  assign reg_INC.load = loadsel[24];
+  assign reg_INC.sel  = loadsel[25];
+
+  modport reg_A     (input wire load, sel, clock);  
 
   modport reg_B     (input wire load, sel, clock);
 
@@ -54,16 +60,28 @@ interface ctrl_bus(input logic clock, [CTRL_BUS_WIDTH:0] loadsel_in);
 
   modport reg_D     (input wire load, sel, clock);
 
-  modport reg_M     (input wire loadM1, loadM2, selM1, selM2, clock);
+  modport reg_M1    (input wire load, sel, clock);
 
-  modport reg_XY    (input wire loadX, load Y, selX, selY, clock);
+  modport reg_M2    (input wire load, sel, clock);  
 
-  modport reg_J     (input wire loadJ1, load J2, selJ, clock);
+  modport reg_M     (input wire load, sel, clock);
+ 
+  modport reg_X     (input wire load, sel, clock);
+ 
+  modport reg_Y     (input wire load, sel, clock);
 
-  modport reg_INST  (input wire loadINST, clock);
+  modport reg_XY    (input wire load, sel, clock);
 
-  modport reg_PC    (input wire loadPC, selPC, clock);
+  modport reg_J1    (input wire load, sel, clock);
 
-  modport reg_INC   (input wire loadINC, selINC, clock);
+  modport reg_J2    (input wire load, sel, clock);
+
+  modport reg_J     (input wire load, sel, clock);
+
+  modport reg_INST  (input wire load, sel, clock);
+
+  modport reg_PC    (input wire load, sel, clock);
+
+  modport reg_INC   (input wire load, sel, clock);
 
 endinterface
