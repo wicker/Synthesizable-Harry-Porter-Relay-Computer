@@ -11,7 +11,7 @@
   * line is high, and so on...
   */
   
-  module fsm_behave(input clock, input logic [3:0] instruction_bits, output logic [23:0] outputState);
+  module Fsm_Behave(input clock, input logic [3:0] instruction_bits, output logic [23:0] outputState);
 	
 	// possible instruction classification codes
 	enum logic [3:0] { 	mov_8 		= 4'b0000,
@@ -107,6 +107,7 @@
 		state_22:	next_state <= state_23;
 		state_23:	next_state <= state_24;
 		state_24:	next_state <= state_1;
+		default: next_state <= state_1;
 	endcase					
 	end
   endmodule

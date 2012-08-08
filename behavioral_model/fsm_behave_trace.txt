@@ -1,0 +1,300 @@
+/* Author: Maisee Brown
+ * Project: Harry Porter Relay Computer 
+ * File: alu_behave_trace.txt
+ * License: MIT http://opensource.org/licenses/MIT
+ */
+ 
+vsim work.Fsm_Testbench_Behave
+# vsim work.Fsm_Testbench_Behave 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.Fsm_Testbench_Behave(fast)
+# Break key hit 
+run -all
+# 4 MSB of instruction    current state    next state     output
+#                    0   xxxx        state_1    xxxxxx
+#                   20   0000    state_1    state_2    000001
+#                   60   0000    state_2    state_3    000002
+#                  100   0000    state_3    state_4    000004
+#                  140   0000    state_4    state_5    000008
+#                  180   0000    state_5    state_6    000010
+#                  220   0000    state_6    state_7    000020
+#                  260   0000    state_7    state_8    000040
+#                  300   0000    state_8    state_1    000080
+#                  340   1000    state_1    state_2    000001
+#                  380   1000    state_2    state_3    000002
+#                  420   1000    state_3    state_4    000004
+#                  460   1000    state_4    state_5    000008
+#                  500   1000    state_5    state_6    000010
+#                  540   1000    state_6    state_7    000020
+#                  580   1000    state_7    state_8    000040
+#                  620   1000    state_8    state_1    000080
+#                  660   0100    state_1    state_2    000001
+#                  700   0100    state_2    state_3    000002
+#                  740   0100    state_3    state_4    000004
+#                  780   0100    state_4    state_5    000008
+#                  820   0100    state_5    state_6    000010
+#                  860   0100    state_6    state_7    000020
+#                  900   0100    state_7    state_8    000040
+#                  940   0100    state_8    state_1    000080
+#                  980   1001    state_1    state_2    000001
+#                 1020   1001    state_2    state_3    000002
+#                 1060   1001    state_3    state_4    000004
+#                 1100   1001    state_4    state_5    000008
+#                 1140   1001    state_5    state_6    000010
+#                 1180   1001    state_6    state_7    000020
+#                 1220   1001    state_7    state_8    000040
+#                 1260   1001    state_8    state_9    000080
+#                 1300   1001    state_9    state_10    000100
+#                 1340   1001    state_10    state_11    000200
+#                 1380   1001    state_11    state_12    000400
+#                 1420   1001    state_12    state_1    000800
+#                 1460   1010    state_1    state_2    000001
+#                 1500   1010    state_2    state_3    000002
+#                 1540   1010    state_3    state_4    000004
+#                 1580   1010    state_4    state_5    000008
+#                 1620   1010    state_5    state_6    000010
+#                 1660   1010    state_6    state_7    000020
+#                 1700   1010    state_7    state_8    000040
+#                 1740   1010    state_8    state_9    000080
+#                 1780   1010    state_9    state_10    000100
+#                 1820   1010    state_10    state_11    000200
+#                 1860   1010    state_11    state_12    000400
+#                 1900   1010    state_12    state_1    000800
+#                 1940   1011    state_1    state_2    000001
+#                 1980   1011    state_2    state_3    000002
+#                 2020   1011    state_3    state_4    000004
+#                 2060   1011    state_4    state_5    000008
+#                 2100   1011    state_5    state_6    000010
+#                 2140   1011    state_6    state_7    000020
+#                 2180   1011    state_7    state_8    000040
+#                 2220   1011    state_8    state_9    000080
+#                 2260   1011    state_9    state_10    000100
+#                 2300   1011    state_10    state_11    000200
+#                 2340   1011    state_11    state_12    000400
+#                 2380   1011    state_12    state_13    000800
+#                 2420   1011    state_13    state_14    001000
+#                 2460   1011    state_14    state_1    002000
+#                 2500   1100    state_1    state_2    000001
+#                 2540   1100    state_2    state_3    000002
+#                 2580   1100    state_3    state_4    000004
+#                 2620   1100    state_4    state_5    000008
+#                 2660   1100    state_5    state_6    000010
+#                 2700   1100    state_6    state_7    000020
+#                 2740   1100    state_7    state_8    000040
+#                 2780   1100    state_8    state_9    000080
+#                 2820   1100    state_9    state_10    000100
+#                 2860   1100    state_10    state_11    000200
+#                 2900   1100    state_11    state_12    000400
+#                 2940   1100    state_12    state_13    000800
+#                 2980   1100    state_13    state_14    001000
+#                 3020   1100    state_14    state_15    002000
+#                 3060   1100    state_15    state_16    004000
+#                 3100   1100    state_16    state_17    008000
+#                 3140   1100    state_17    state_18    010000
+#                 3180   1100    state_18    state_19    020000
+#                 3220   1100    state_19    state_20    040000
+#                 3260   1100    state_20    state_21    080000
+#                 3300   1100    state_21    state_22    100000
+#                 3340   1100    state_22    state_23    200000
+#                 3380   1100    state_23    state_24    400000
+#                 3420   1100    state_24    state_1    800000
+# Break at N:/ECE 410/Final Project/fsm_behave/fsm_testbench_behave.sv line 52
+vsim work.Fsm_Testbench_Behave
+# vsim work.Fsm_Testbench_Behave 
+# Loading sv_std.std
+# Loading work.Fsm_Testbench_Behave(fast)
+run -all
+# 4 MSB of instruction    current state    next state     output
+#                    0   xxxx        state_1    xxxxxx
+#                   20   0000    state_1    state_2    000001
+#                   60   0000    state_2    state_3    000002
+#                  100   0000    state_3    state_4    000004
+#                  140   0000    state_4    state_5    000008
+#                  180   0000    state_5    state_6    000010
+#                  220   0000    state_6    state_7    000020
+#                  260   0000    state_7    state_8    000040
+#                  300   0000    state_8    state_1    000080
+#                  340   1000    state_1    state_2    000001
+#                  380   1000    state_2    state_3    000002
+#                  420   1000    state_3    state_4    000004
+#                  460   1000    state_4    state_5    000008
+#                  500   1000    state_5    state_6    000010
+#                  540   1000    state_6    state_7    000020
+#                  580   1000    state_7    state_8    000040
+#                  620   1000    state_8    state_1    000080
+#                  660   0100    state_1    state_2    000001
+#                  700   0100    state_2    state_3    000002
+#                  740   0100    state_3    state_4    000004
+#                  780   0100    state_4    state_5    000008
+#                  820   0100    state_5    state_6    000010
+#                  860   0100    state_6    state_7    000020
+#                  900   0100    state_7    state_8    000040
+#                  940   0100    state_8    state_1    000080
+#                  980   1001    state_1    state_2    000001
+#                 1020   1001    state_2    state_3    000002
+#                 1060   1001    state_3    state_4    000004
+#                 1100   1001    state_4    state_5    000008
+#                 1140   1001    state_5    state_6    000010
+#                 1180   1001    state_6    state_7    000020
+#                 1220   1001    state_7    state_8    000040
+#                 1260   1001    state_8    state_9    000080
+#                 1300   1001    state_9    state_10    000100
+#                 1340   1001    state_10    state_11    000200
+#                 1380   1001    state_11    state_12    000400
+#                 1420   1001    state_12    state_1    000800
+#                 1460   1010    state_1    state_2    000001
+#                 1500   1010    state_2    state_3    000002
+#                 1540   1010    state_3    state_4    000004
+#                 1580   1010    state_4    state_5    000008
+#                 1620   1010    state_5    state_6    000010
+#                 1660   1010    state_6    state_7    000020
+#                 1700   1010    state_7    state_8    000040
+#                 1740   1010    state_8    state_9    000080
+#                 1780   1010    state_9    state_10    000100
+#                 1820   1010    state_10    state_11    000200
+#                 1860   1010    state_11    state_12    000400
+#                 1900   1010    state_12    state_1    000800
+#                 1940   1011    state_1    state_2    000001
+#                 1980   1011    state_2    state_3    000002
+#                 2020   1011    state_3    state_4    000004
+#                 2060   1011    state_4    state_5    000008
+#                 2100   1011    state_5    state_6    000010
+#                 2140   1011    state_6    state_7    000020
+#                 2180   1011    state_7    state_8    000040
+#                 2220   1011    state_8    state_9    000080
+#                 2260   1011    state_9    state_10    000100
+#                 2300   1011    state_10    state_11    000200
+#                 2340   1011    state_11    state_12    000400
+#                 2380   1011    state_12    state_13    000800
+#                 2420   1011    state_13    state_14    001000
+#                 2460   1011    state_14    state_1    002000
+#                 2500   1100    state_1    state_2    000001
+#                 2540   1100    state_2    state_3    000002
+#                 2580   1100    state_3    state_4    000004
+#                 2620   1100    state_4    state_5    000008
+#                 2660   1100    state_5    state_6    000010
+#                 2700   1100    state_6    state_7    000020
+#                 2740   1100    state_7    state_8    000040
+#                 2780   1100    state_8    state_9    000080
+#                 2820   1100    state_9    state_10    000100
+#                 2860   1100    state_10    state_11    000200
+#                 2900   1100    state_11    state_12    000400
+#                 2940   1100    state_12    state_13    000800
+#                 2980   1100    state_13    state_14    001000
+#                 3020   1100    state_14    state_15    002000
+#                 3060   1100    state_15    state_16    004000
+#                 3100   1100    state_16    state_17    008000
+#                 3140   1100    state_17    state_18    010000
+#                 3180   1100    state_18    state_19    020000
+#                 3220   1100    state_19    state_20    040000
+#                 3260   1100    state_20    state_21    080000
+#                 3300   1100    state_21    state_22    100000
+#                 3340   1100    state_22    state_23    200000
+#                 3380   1100    state_23    state_24    400000
+#                 3420   1100    state_24    state_1    800000
+# Break at N:/ECE 410/Final Project/fsm_behave/fsm_testbench_behave.sv line 52
+# Compile of fsm_behave.sv was successful.
+# Compile of fsm_testbench_behave.sv was successful.
+# 2 compiles, 0 failed with no errors. 
+# Compile of fsm_behave.sv was successful.
+# Compile of fsm_testbench_behave.sv was successful.
+# 2 compiles, 0 failed with no errors. 
+vsim work.Fsm_Testbench_Behave
+# vsim work.Fsm_Testbench_Behave 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.Fsm_Testbench_Behave(fast)
+run -all
+# 4 MSB of instruction    current state    next state     output
+#                    0   xxxx        state_1    xxxxxx
+#                   20   0000    state_1    state_2    000001
+#                   60   0000    state_2    state_3    000002
+#                  100   0000    state_3    state_4    000004
+#                  140   0000    state_4    state_5    000008
+#                  180   0000    state_5    state_6    000010
+#                  220   0000    state_6    state_7    000020
+#                  260   0000    state_7    state_8    000040
+#                  300   0000    state_8    state_1    000080
+#                  340   1000    state_1    state_2    000001
+#                  380   1000    state_2    state_3    000002
+#                  420   1000    state_3    state_4    000004
+#                  460   1000    state_4    state_5    000008
+#                  500   1000    state_5    state_6    000010
+#                  540   1000    state_6    state_7    000020
+#                  580   1000    state_7    state_8    000040
+#                  620   1000    state_8    state_1    000080
+#                  660   0100    state_1    state_2    000001
+#                  700   0100    state_2    state_3    000002
+#                  740   0100    state_3    state_4    000004
+#                  780   0100    state_4    state_5    000008
+#                  820   0100    state_5    state_6    000010
+#                  860   0100    state_6    state_7    000020
+#                  900   0100    state_7    state_8    000040
+#                  940   0100    state_8    state_1    000080
+#                  980   1001    state_1    state_2    000001
+#                 1020   1001    state_2    state_3    000002
+#                 1060   1001    state_3    state_4    000004
+#                 1100   1001    state_4    state_5    000008
+#                 1140   1001    state_5    state_6    000010
+#                 1180   1001    state_6    state_7    000020
+#                 1220   1001    state_7    state_8    000040
+#                 1260   1001    state_8    state_9    000080
+#                 1300   1001    state_9    state_10    000100
+#                 1340   1001    state_10    state_11    000200
+#                 1380   1001    state_11    state_12    000400
+#                 1420   1001    state_12    state_1    000800
+#                 1460   1010    state_1    state_2    000001
+#                 1500   1010    state_2    state_3    000002
+#                 1540   1010    state_3    state_4    000004
+#                 1580   1010    state_4    state_5    000008
+#                 1620   1010    state_5    state_6    000010
+#                 1660   1010    state_6    state_7    000020
+#                 1700   1010    state_7    state_8    000040
+#                 1740   1010    state_8    state_9    000080
+#                 1780   1010    state_9    state_10    000100
+#                 1820   1010    state_10    state_11    000200
+#                 1860   1010    state_11    state_12    000400
+#                 1900   1010    state_12    state_1    000800
+#                 1940   1011    state_1    state_2    000001
+#                 1980   1011    state_2    state_3    000002
+#                 2020   1011    state_3    state_4    000004
+#                 2060   1011    state_4    state_5    000008
+#                 2100   1011    state_5    state_6    000010
+#                 2140   1011    state_6    state_7    000020
+#                 2180   1011    state_7    state_8    000040
+#                 2220   1011    state_8    state_9    000080
+#                 2260   1011    state_9    state_10    000100
+#                 2300   1011    state_10    state_11    000200
+#                 2340   1011    state_11    state_12    000400
+#                 2380   1011    state_12    state_13    000800
+#                 2420   1011    state_13    state_14    001000
+#                 2460   1011    state_14    state_1    002000
+#                 2500   1100    state_1    state_2    000001
+#                 2540   1100    state_2    state_3    000002
+#                 2580   1100    state_3    state_4    000004
+#                 2620   1100    state_4    state_5    000008
+#                 2660   1100    state_5    state_6    000010
+#                 2700   1100    state_6    state_7    000020
+#                 2740   1100    state_7    state_8    000040
+#                 2780   1100    state_8    state_9    000080
+#                 2820   1100    state_9    state_10    000100
+#                 2860   1100    state_10    state_11    000200
+#                 2900   1100    state_11    state_12    000400
+#                 2940   1100    state_12    state_13    000800
+#                 2980   1100    state_13    state_14    001000
+#                 3020   1100    state_14    state_15    002000
+#                 3060   1100    state_15    state_16    004000
+#                 3100   1100    state_16    state_17    008000
+#                 3140   1100    state_17    state_18    010000
+#                 3180   1100    state_18    state_19    020000
+#                 3220   1100    state_19    state_20    040000
+#                 3260   1100    state_20    state_21    080000
+#                 3300   1100    state_21    state_22    100000
+#                 3340   1100    state_22    state_23    200000
+#                 3380   1100    state_23    state_24    400000
+#                 3420   1100    state_24    state_1    800000
+#                 3460   1100    state_1    state_2    000001
+# Break at N:/ECE 410/Final Project/fsm_behave/fsm_testbench_behave.sv line 52
+
+
