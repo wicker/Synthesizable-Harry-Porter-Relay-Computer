@@ -2,11 +2,9 @@
  * Project: Harry Porter Relay Computer
  * File: Register unit
  * This module holds reg A, B, C, D, M1, M2, M, X, Y, XY
- * It is entirely structural and passes no signals. 
+ * These registers live in the same scope as alu and pc unit registers
  * License: MIT http://opensource.org/licenses/MIT
 */
-
-module register_unit ();
 
   Reg_ALU_Result reg_A (ctrl_bus.reg_A,
                         data_bus.reg_A,
@@ -42,4 +40,3 @@ module register_unit ();
   Reg_Addr reg_XY      (ctrl_bus.reg_XY,
                         addr_bus.reg_XY);
 
-endmodule

@@ -1,12 +1,10 @@
 /* Author: Jenner Hanni
  * Project: Harry Porter Relay Computer
  * File: Program Control Unit
- * This module holds reg J1, J2, J, INST, PC, INC
- * It is entirely structural and passes no signals.
+ * This file holds reg J1, J2, J, INST, PC, INC
+ * These registers and incrementer live in the same space as alu and reg_unit
  * License: MIT http://opensource.org/licenses/MIT
 */
-
-module program_control_unit();
 
   Reg_Data reg_J1    (ctrl_bus.reg_J1,
                       data_bus.reg_J1);
@@ -30,4 +28,3 @@ module program_control_unit();
   SixteenBitInc 16_INC (addr_bus.16_INC,
                         output wire logic [15:0] inc_result);
 
-endmodule
