@@ -76,7 +76,7 @@
 	assign J2pins = J2;
 	assign Jpins = {J1,J2};
 	assign Instpins = Inst;
-	assign Incpins = Inc;
+	assign Incpins = Inc + 1; // Simulates the incrementer unit
 	assign PCpins = PC;
  
  endinterface
