@@ -64,7 +64,7 @@
 					J2pins,
 					Instpins;
 	wire [15:0]		Incpins,
-					PCpins
+					PCpins,
 					Jpins;
 	logic [7:0]		J1,
 					J2,
@@ -76,7 +76,7 @@
 	assign J2pins = J2;
 	assign Jpins = {J1,J2};
 	assign Instpins = Inst;
-	assign Incpins = Inc;
+	assign Incpins = Inc + 1; // Simulates the incrementer unit
 	assign PCpins = PC;
  
  endinterface

@@ -37,7 +37,7 @@
   set_flags(b, c, result);
   end
   
-  task set_flags(input [7:0] b, c, result);
+  automatic function void set_flags(input [7:0] b, c, result);
   
     // set carry bit
     if(function_code == ADD)
@@ -62,6 +62,6 @@
       
     sign = result[7];
   
-  endtask
+  endfunction
 
  endmodule
