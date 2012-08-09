@@ -24,7 +24,7 @@ interface addr_bus(input logic clock, inout logic [ADDR_BUS_WIDTH-1:0] address);
 
   modport reg_INC   (output addr_wire, input clock);
 
-  modport reg_16INC (input addr_wire, input clock);
+  modport 16_INC    (input addr_wire, input clock);
 
   modport mem       (input addr_wire, input clock);
 
