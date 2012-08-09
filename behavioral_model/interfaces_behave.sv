@@ -64,7 +64,7 @@
 					J2pins,
 					Instpins;
 	wire [15:0]		Incpins,
-					PCpins
+					PCpins,
 					Jpins;
 	logic [7:0]		J1,
 					J2,
