@@ -10,6 +10,21 @@
   
   module registerUnit(interface buses, interface control_signals, interface registers);
   
+  logic[7:0] data;
+  logic [15:0] address;
+  
+  assign buses.dataBusPins = (	control_signals.SelA |
+									control_signals.SelB |
+									control_signals.SelC |
+									control_signals.SelD |
+									control_signals.SelX |
+									control_signals.SelY |
+									control_signals.SelM1 |
+									control_signals.SelM2	) ? data : 'z;
+									
+	assign buses.addressBusPins = (	control_signals.SelXY |
+									contorl_signals.SelM 	) ? address : 'z;
+  
   always_comb
   begin
 	if(control_signals.LdA) 
@@ -31,25 +46,25 @@
 	if(control_signals.LdXY)
 			{registers.X, register.Y} = buses.addressBusPins;
 	if(control_signals.SelA)
-			buses.dataBus = registers.Apins;
+			data = registers.Apins;
 	if(control_signals.SelB)
-			buses.dataBus = registers.Bpins;
+			data = registers.Bpins;
 	if(contol_signals.SelC)
-			buses.dataBus = registers.Cpins;
+			data = registers.Cpins;
 	if(control_signals.SelD)
-			buses.dataBus = registers.Dpins;
+			data = registers.Dpins;
 	if(control_signals.SelM1)
-			buses.dataBus = registers.M1pins;
+			data = registers.M1pins;
 	if(control_signals.SelM2)
-			buses.dataBus = registers.M2pins;
+			data = registers.M2pins;
 	if(control_signals.SelX)
-			buses.dataBus = registers.Xpins;
+			data = registers.Xpins;
 	if(control_signals.SelY)
-			buses.dataBus = registers.Ypins;
+			data = registers.Ypins;
 	if(control_signals.SelM)
-			buses.addressBus = registers.Mpins;
+			address = registers.Mpins;
 	if(control_signals.SelXY)
-			buses.addressBus = registers.XYpins;
+			address = registers.XYpins;
 			
   end  
   endmodule

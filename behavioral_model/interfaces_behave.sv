@@ -5,17 +5,12 @@
  */
 
  interface buses;
-	logic [7:0] dataBus;
 	wire [7:0] dataBusPins;
-	logic [15:0] addressBus;
 	wire [15:0] addressBusPins;
 	
-	assign dataBusPins = dataBus;
-	assign addressBusPins = addressBus;
+	modport AddressBus ( inout addressBusPins);
 	
-	modport AddressBus ( input addressBus, output addressBusPins);
-	
-	modport DataBus( input dataBus, output dataBusPins);
+	modport DataBus( inout dataBusPins);
 	
  endinterface
  
@@ -109,7 +104,9 @@
 					SelJ,
 					SelPC,
 					SelINC, 
-					MemRead;
+					MemRead,
+					MemWrite,
+					Halt;
 	logic [2:0] AluFunctionCode;
 	logic [3:0] fsmInput;
 	
@@ -140,7 +137,9 @@
 			SelJpin,
 			SelPCpin,
 			SelINCpin,
-			MemReadpin;
+			MemReadpin,
+			MemWritepin,
+			Haltpin;
 	wire [2:0] AluFunctionCodepins;
 	wire [3:0] fsmInputpins;
 	assign 	LdApin = LdA;
@@ -171,6 +170,8 @@
 	assign	AluFunctionCodepins = AluFunctionCode;
 	assign fsmInputpins = fsmInput;
 	assign MemReadpin = MemRead;
+	assign MemWritepin = MemWrite;
+	assign Haltpin = Halt;
 	
 	modport registerUnitPort { 	input LdA, output LdApin, input SelA, output SelApin,
 								input LdB, output LdBpin, input SelB, output SelBpin,

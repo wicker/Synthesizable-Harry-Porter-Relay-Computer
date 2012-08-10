@@ -7,19 +7,23 @@
  module Alu_Behave (  input logic [7:0] b, 
                       input logic [7:0] c,
                       input logic [2:0] function_code,
-                      output logic [7:0] result,
+                      output wire [7:0] send_on_data_bus,
                       output logic sign,
                       output logic carry,
                       output logic zero);
-                      
-  parameter ADD = 3'b000;
-  parameter INC = 3'b001;
-  parameter AND = 3'b010;
-  parameter OR =  3'b011;
-  parameter XOR = 3'b100;
-  parameter NOT = 3'b101;
-  parameter SHL = 3'b110;
-  parameter NOP = 3'b111;
+                    
+
+	enum logic[2:0] {	ADD = 3'b000,
+						INC = 3'b001,
+						AND = 3'b010,
+						OR =  3'b011,
+						XOR = 3'b100,
+						NOT = 3'b101,
+						SHL = 3'b110,
+						NOP = 3'b111 } ALU_FUNCTIONS;
+	logic [7:0] result;
+	
+		assign send_on_data_bus = (function_code == NOP) 'z: result;
   
   always_comb
   begin
