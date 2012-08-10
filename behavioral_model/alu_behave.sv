@@ -23,7 +23,7 @@
 						NOP = 3'b111 } ALU_FUNCTIONS;
 	logic [7:0] result;
 	
-		assign send_on_data_bus = (function_code == NOP) 'z: result;
+		assign send_on_data_bus = (function_code == NOP) ? 'z: result;
   
   always_comb
   begin

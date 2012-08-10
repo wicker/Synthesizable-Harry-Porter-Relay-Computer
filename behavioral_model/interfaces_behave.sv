@@ -16,8 +16,7 @@
  
  // Interface to hold all of the registers in Harry Porter's Relay Computer
  interface registerInterface;
-	logic zero, carry, sign;
-	wire zeropin, carrypin, signpin;
+	
 	wire [7:0]  Apins,
 				Bpins,
 				Cpins,
@@ -37,10 +36,7 @@
 				M2,
 				X,
 				Y;
-	
-	assign zeropin = zero;
-	assign carrypin = carry;
-	assign signpin = sign;
+
 	assign Apins = A;
 	assign Bpins = B;
 	assign Cpins = C;
@@ -77,6 +73,8 @@
  endinterface
  
  interface controlSignals;
+	logic zero, carry, sign;
+	wire zeropin, carrypin, signpin;
 	logic   LdA,
 					LdB,
 					LdC,
@@ -172,6 +170,9 @@
 	assign MemReadpin = MemRead;
 	assign MemWritepin = MemWrite;
 	assign Haltpin = Halt;
+	assign zeropin = zero;
+	assign carrypin = carry;
+	assign signpin = sign;
 	
 	modport registerUnitPort { 	input LdA, output LdApin, input SelA, output SelApin,
 								input LdB, output LdBpin, input SelB, output SelBpin,
