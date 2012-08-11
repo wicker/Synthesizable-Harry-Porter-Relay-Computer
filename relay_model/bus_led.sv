@@ -6,72 +6,72 @@
 
 interface led_bus();
 
-  parameter LED_BUS_WIDTH = 26;
+  assign inst0_led = inst_out[0];
+  assign inst1_led = inst_out[1];
+  assign inst2_led = inst_out[2];
+  assign inst3_led = inst_out[3];
+  assign inst4_led = inst_out[4];
+  assign inst5_led = inst_out[5];
+  assign inst6_led = inst_out[6];
+  assign inst7_led = inst_out[7];
 
-  assign inst0_led = inst0;
-  assign inst1_led = inst1;
-  assign inst2_led = inst2;
-  assign inst3_led = inst3;
-  assign inst4_led = inst4;
-  assign inst5_led = inst5;
-  assign inst6_led = inst6;
-  assign inst7_led = inst7;
+  assign pA_led = fsm_out[18];
+  assign pB_led = fsm_out[17];
+  assign pC_led = fsm_out[16];
+  assign pD_led = fsm_out[15];
+  assign pE_led = fsm_out[14];
+  assign pF_led = fsm_out[13];
+  assign pG_led = fsm_out[12];
+  assign pH_led = fsm_out[11];
+  assign pI_led = fsm_out[10];
+  assign pJ_led = fsm_out[9];
+  assign pK_led = fsm_out[8];
+  assign pL_led = fsm_out[7];
+  assign pM_led = fsm_out[6];
+  assign pN_led = fsm_out[5];
+  assign pO_led = fsm_out[4];  // he skips P
+  assign pQ_led = fsm_out[3];
+  assign pR_led = fsm_out[2];
+  assign pS_led = fsm_out[1];
+  assign pT_led = fsm_out[0];
 
-  assign pA_led = pA;
-  assign pB_led = pB;
-  assign pC_led = pC;
-  assign pD_led = pD;
-  assign pE_led = pE;
-  assign pF_led = pF;
-  assign pG_led = pG;
-  assign pH_led = pH;
-  assign pI_led = pI;
-  assign pJ_led = pJ;
-  assign pK_led = pK;
-  assign pL_led = pL;
-  assign pM_led = pM;
-  assign pN_led = pN;
-  assign pO_led = pO;  // he skips P
-  assign pQ_led = pQ;
-  assign pR_led = pR;
-  assign pS_led = pS;
-  assign pT_led = pT;
-
-  assign ld_Y_led = ld_Y;
-  assign ld_X_led = ld_X;
-  assign ld_M2_led = ld_M2;
-  assign ld_M1_led = ld_M1;
-  assign ld_D_led = ld_D;
-  assign ld_C_led = ld_C;
-  assign ld_B_led = ld_B;
-  assign ld_A_led = ld_A;
-  assign ld_XY_led = ld_XY;
-  assign ld_COND_led = ld_COND;
-  assign bus_to_mem_led = bus_to_mem;
-  assign mem_write_led = mem_write;
-  assign mem_read_led = mem_read;
-  assign ld_J1_led = ld_J1;
-  assign ld_J2_led = ld_J2;
-  assign sel_J_led = sel_J;
-  assign ld_INST_led = ld_INST;
-  assign ld_PC_led = ld_PC;
-  assign sel_PC_led = sel_PC;
-  assign sel_INC_led = sel_INC;
-  assign ld_INC_led = ld_INC;
-  assign f1_led = f1;
-  assign f2_led = f2;
-  assign f3_led = f3;
-  assign sel_M_led = sel_M;
-  assign sel_XY_led = sel_XY;
-  assign sel_A_led = sel_A;
-  assign sel_B_led = sel_B;
-  assign sel_C_led = sel_C;
-  assign sel_D_led = sel_D;
-  assign sel_M1_led = sel_M1;
-  assign sel_M2_led = sel_M2;
-  assign sel_X_led = sel_X;
-  assign sel_Y_led = sel_X;
+  assign ld_Y_led = reg_Y.load;
+  assign ld_X_led = reg_X.load;
+  assign ld_M2_led = reg_M2.load;
+  assign ld_M1_led = reg_M1.load;
+  assign ld_D_led = reg_D.load;
+  assign ld_C_led = reg_C.load;
+  assign ld_B_led = reg_B.load;
+  assign ld_A_led = reg_A.load;
+  assign ld_XY_led = reg_XY.load;
+  assign ld_CCR_led = reg_CCR.load;
+  assign bus_to_mem_led = memory.bus_to_mem;
+  assign mem_write_led = memory.mem_write;
+  assign mem_read_led = memory.mem_read;
+  assign ld_J1_led = reg_J1.load;
+  assign ld_J2_led = reg_J2.load;
+  assign sel_J_led = reg_J2.sel;
+  assign ld_INST_led = reg_INST.load;
+  assign ld_PC_led = reg_PC.load;
+  assign sel_PC_led = reg_PC.sel;
+  assign sel_INC_led = reg_INC.sel;
+  assign ld_INC_led = reg_INC.load;
+  assign f1_led = alu.f1;
+  assign f2_led = alu.f2;
+  assign f3_led = alu.f3;
+  assign sel_M_led = reg_M.sel;
+  assign sel_XY_led = reg_XY.sel;
+  assign sel_A_led = reg_A.sel;
+  assign sel_B_led = reg_B.sel;
+  assign sel_C_led = reg_C.sel;
+  assign sel_D_led = reg_D.sel;
+  assign sel_M1_led = reg_M1.sel;
+  assign sel_M2_led = reg_M2.sel;
+  assign sel_X_led = reg_X.sel;
+  assign sel_Y_led = reg_Y.sel;
   
+  modport sequencer (output wire fsm_out);
+
   modport reg_A     (output wire load, sel);  
 
   modport reg_B     (output wire load, sel);
@@ -98,10 +98,16 @@ interface led_bus();
 
   modport reg_J     (output wire load, sel);
 
-  modport reg_INST  (output wire load, sel);
+  modport reg_INST  (output wire [7:0] inst_out, load, sel);
 
   modport reg_PC    (output wire load, sel);
 
   modport reg_INC   (output wire load, sel);
+
+  modport alu       (output wire f1, f2, f3);
+
+  modport reg_CCR   (output wire ccr_out);
+
+  modport memory    (output wire bus_to_mem, mem_read, mem_write);
 
 endinterface
