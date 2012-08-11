@@ -13,11 +13,11 @@
 								input logic [7:0] inst_reg_value,
 								interface buses,
 								interface control_signals);
-	paramter ALU = 4'b1000;
+	parameter ALU = 4'b1000;
 	parameter MOV_8 = 2'b00;
 	parameter SETAB = 2'b01;
 	parameter LOAD_OR_STORE = 4'b1001;
-	parameter INC = 4'1011;
+	parameter INC = 4'b1011;
 	parameter MOV_16 = 4'b1010;
 	parameter HALT = 8'b10101110;
 	parameter RETURN_BRANCH = 8'b10101010;
@@ -43,7 +43,7 @@
 	
 	assign inst_reg_msb2 = inst_reg_value[7:6];
 	assign inst_reg_msb4 = inst_reg_value[7:4];
-	assign alu_function = instr_reg_value[2:0];
+	assign alu_function = inst_reg_value[2:0];
 	assign {movR1,movR2} = inst_reg_value[5:0];
 	assign alu_reg_to_load = inst_reg_value[3];
 	assign Immediate = inst_reg_value[4:0];
@@ -53,17 +53,16 @@
 	assign load_or_store_bit = inst_reg_value[3];
 	assign reg_to_load_or_store = inst_reg_value[1:0];
 	assign M_or_J_bit = inst_reg_value[2];
-	assign {copy, z0, z1, cy, s} = inst_reg_value[0:4];
+	assign {s, cy, z1, z0} = inst_reg_value[4:0];
 	assign GOTO_M_or_J = inst_reg_value[5];
-	assign Call_or_Goto = inst_reg_value[2:0]
-	ass
+	assign Call_or_Goto = inst_reg_value[2:0];
 	enum logic[2:0] {A, B, C, D, M1, M2, X, Y} RegisterToMove;
 	enum logic {AluLoadA, AluLoadD} AluRegToLoad;
 	enum logic {SetabLoadA, SetabLoadB} SetabRegToLoad;
 	enum logic {Load, Store} LoadOrStore;
-	enum logic [1:0] {A, B, C, D} RegToLoadOrStore;
+	//enum logic [1:0] {A, B, C, D} RegToLoadOrStore;
 	enum logic {M, J} RegFromMov_16;
-	enum logic [2:0] { Call = 3'b111, Goto = 3'b110};
+	enum logic [2:0] { Call = 3'b111, Goto = 3'b110}CallOrGoto;
 	
 	always_comb
 	begin
@@ -85,10 +84,10 @@
 					begin
 						control_signals.AluFucntionCode = '1; // nop for alu module
 					end
-				else if(inst_reg_msb2 == SETAB)
+				if(inst_reg_msb2 == SETAB)
 				begin
 					 // Sign extend the immediate and place on the data bus
-					data = {3{Immediate[4]}, Immediate};
+					data = {Immediate[4], Immediate[4], Immediate[4] , Immediate[4:0]};
 				end
 				//send control signals to the fsm to tell it which instruction we have now
 				if(inst_reg_msb2 == MOV_8 | inst_reg_msb2 == SETAB)
@@ -99,7 +98,7 @@
 		state_5:
 			begin
 				{control_signals.SelInc, control_signals.LdPC} = 2'b11;
-				if(inst_reg_msb2 == Mov_8) // Mov-8 instruction
+				if(inst_reg_msb2 == MOV_8) // Mov-8 instruction
 				begin
 					case(movR1)
 						A:	control_signals.LdA = 1;
@@ -164,6 +163,7 @@
 						control_signals.LdA = 0;
 					AluLoadD:
 						control_signals.LdD = 0;
+						endcase
 				end
 			end
 		state_7:
@@ -192,7 +192,8 @@
 					{control_signals.MemRead, control_signals.SelM} = 2'b11;
 				Store:
 					{control_signals.MemWrite, control_signals.SelM} = 2'b11;
-				end
+				endcase
+			end
 				else if (inst_reg_msb4 == INC)
 				begin
 				 { control_signals.SelXY, control_signals.LdINC} = 2'b11;
@@ -205,7 +206,7 @@
 							data = '0;
 							control_signals.LdPC = 1;
 						end
-					BRANCH:
+					RETURN_BRANCH:
 						begin
 							{control_signals.SelXY, control_signal.LdPC} = 2'b11;
 						end
@@ -257,7 +258,7 @@
 							control_signals.LdPC = 0;
 							control_signals.Halt = 1;
 						end
-					BRANCH:
+					RETURN_BRANCH:
 						begin
 							{control_signals.SelXY, control_signal.LdPC} = 2'b00;
 						end
