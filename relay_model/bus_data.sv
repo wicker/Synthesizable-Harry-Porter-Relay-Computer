@@ -22,11 +22,17 @@ interface data_bus(input logic clock, inout wire logic [DATA_BUS_WIDTH-1:0] data
 
   modport reg_D     (inout data_wire, input clock);
 
-  modport reg_M     (inout data_wire, input clock);
+  modport reg_M1    (inout data_wire, input clock);
 
-  modport reg_XY    (inout data_wire, input clock);
+  modport reg_M2    (inout data_wire, input clock);
 
-  modport reg_J     (input data_wire, input clock);
+  modport reg_X     (inout data_wire, input clock);
+
+  modport reg_Y     (inout data_wire, input clock);
+
+  modport reg_J1    (input data_wire, input clock);
+
+  modport reg_J2    (input data_wire, input clock);
 
   modport reg_INST  (input data_wire, input clock);
 
