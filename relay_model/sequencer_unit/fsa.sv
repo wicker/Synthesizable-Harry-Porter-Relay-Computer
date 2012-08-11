@@ -6,13 +6,20 @@
 
 module FSA (input logic clock, reset, output [2:0] fsm_out);
 
-  wire logic cl0, cl1, cl2, cl3, cl4, cl5;
-  wire logic s0, s1, s2, s3;
-  wire logic thing0, thing1, thing2;
-  wire logic temp0, temp1, temp2;
-  wire logic V, thingreset;
+  wire cl0,cl1,cl2,cl3,cl4,cl5,cl6,cl7,cl8,
+  wire cl9,cl10,cl12,cl13,cl14,cl15,cl16,cl17,
+  wire cl18,cl19,cl20,cl21,cl22,cl23,cl24;
+
+  logic [2:0] fsm_out_var;  // eventually 23:0
+
+  wire s0, s1, s2, s3;
+  wire thing0, thing1, thing2;
+  wire temp0, temp1, temp2;
+  wire V, thingreset;
   logic V_var, fsm;
   wire s0_not, s1_not, s2_not;
+
+  wire pA,pB,pC,pD,pE,pF,pG,pH,pI,pJ,pK,pL,pM,pN,pO,pQ,pR,pS,pT;
 
   assign s0_not = !s0;
   assign s1_not = !s1;
@@ -69,7 +76,7 @@ module FSA (input logic clock, reset, output [2:0] fsm_out);
   Relay relay_rst (.control(reset),
                    .in_0(V),
                    .in_1(cl0),
-                   .in_2(s0_not),
+                   .in_2(pA_not),
                    .in_3(reset),
                    .out_lo_0(reset_not),
                    .out_hi_1(thingreset),
@@ -79,10 +86,10 @@ module FSA (input logic clock, reset, output [2:0] fsm_out);
   Relay relay_s0  (.control(reset),
                    .in_0(V),
                    .in_1(cl1),
-                   .in_2(s1_not),
+                   .in_2(pB_not),
                    .in_3(thingreset),
-                   .out_lo_0(s0_not),
-                   .out_hi_0(s0),
+                   .out_lo_0(pA_not),
+                   .out_hi_0(pA),
                    .out_hi_1(thing0),
                    .out_hi_2(thing0),
                    .out_hi_3(temp1));
@@ -90,10 +97,10 @@ module FSA (input logic clock, reset, output [2:0] fsm_out);
   Relay relay_s1  (.control(reset),
                    .in_0(V),
                    .in_1(cl2),
-                   .in_2(s2_not),
+                   .in_2(pC_not),
                    .in_3(thing0),
                    .out_lo_0(temp1),
-                   .out_hi_0(s1),
+                   .out_hi_0(pB),
                    .out_hi_1(thing1),
                    .out_hi_2(thing1),
                    .out_hi_3(temp2));
@@ -101,10 +108,10 @@ module FSA (input logic clock, reset, output [2:0] fsm_out);
   Relay relay_s2  (.control(reset),
                    .in_0(V),
                    .in_1(cl3),
-                   .in_2(s3_not),
+                   .in_2(pD_not),
                    .in_3(thing1),
                    .out_lo_0(temp1),
-                   .out_hi_0(s2),
+                   .out_hi_0(pC),
                    .out_hi_1(thing2),
                    .out_hi_2(thing2),
                    .out_hi_3(temp3));
@@ -113,7 +120,7 @@ module FSA (input logic clock, reset, output [2:0] fsm_out);
 // temp jumps every other relay
 
   always @(negedge clock) begin
-    fsm = {s2,s1,s0};
+    fsm = {pC,pB,pA};
   end
 
 endmodule
