@@ -40,7 +40,7 @@ module top; // top dut
 // - The DUT is nothing but pipeline of registers that is 1024 deep
 //   and 8 bit wide.
 //
-	logic loadMem;
+	logic loadMem = 0;
 	logic loadMemComplete = 0;
 	logic [14:0][7:0] initial_memory; // filled by transaction
 	Harry_Porter_Comp Relay_Comp(clock, loadMem, initial_memory, from_comp, loadMemComplete);
@@ -48,8 +48,9 @@ module top; // top dut
 	// give stimulus to DUT and start computer
 	@(posedge transaction_complete)
 	begin
-		
-	
+		loadMem = 1; 
+		// when the memory is loaded into the computer loadMemComplete will be asserted and 
+		// the clock that drives the Dut will be activated until a Halt command is reached
 	end
 	
 	//receive output data into output_struct array 
@@ -62,7 +63,7 @@ module top; // top dut
 	
     scemi_input_pipe #( .BYTES_PER_ELEMENT(1),
                         .PAYLOAD_MAX_ELEMENTS(1),
-                        .BUFFER_MAX_ELEMENTS(200)
+                        .BUFFER_MAX_ELEMENTS(35000)
                       )  inputpipe();
    
 //

@@ -5,8 +5,8 @@
  */
 
  interface buses();
-	wire [7:0] dataBusPins ;
-	wire [15:0] addressBusPins ;
+	wire [7:0] dataBusPins = 0;
+	wire [15:0] addressBusPins = 0;
 	
 	modport AddressBus (input addressBusPins);
 	
@@ -27,14 +27,14 @@
 	wire[15:0]	Mpins,
 				XYpins;
 	
-	logic [7:0]	A,
-				B,
-				C,
-				D,
-				M1,
-				M2,
-				X,
-				Y;
+	logic [7:0]	A = 0,
+				B = 0,
+				C = 0,
+				D = 0,
+				M1 = 0,
+				M2 = 0,
+				X = 0,
+				Y = 0;
 	
 	assign Apins = A;
 	assign Bpins = B;
@@ -56,11 +56,11 @@
 	wire [15:0]		Incpins,
 					PCpins,
 					Jpins;
-	logic [7:0]		J1,
-					J2,
-					Inst;			
-	logic [15:0]	Inc,
-					PC;
+	logic [7:0]		J1 = 0,
+					J2 = 0,
+					Inst = 0;			
+	logic [15:0]	Inc = 0,
+					PC = 0;
 					
 	assign J1pins = J1;
 	assign J2pins = J2;
@@ -72,7 +72,7 @@
  endinterface
  
  interface controlSignals();
-  logic zero, carry, sign;
+  logic zero, carry, sign = 0;
 	wire zeropin, carrypin, signpin;
   
 	logic   LdA,
@@ -105,9 +105,9 @@
 					SelINC, 
 					MemRead,
 					MemWrite,
-					Halt;
-	logic [2:0] AluFunctionCode;
-	logic [3:0] fsmInput;
+					Halt = 0;
+	logic [2:0] AluFunctionCode = '1;
+	logic [3:0] fsmInput = 0;
 	
 	wire 	LdApin,
 			LdBpin,
