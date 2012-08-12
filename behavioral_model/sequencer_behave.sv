@@ -19,7 +19,7 @@
 	logic [23:0] fsmOutput;
 			
 	// instantiate the fsm and the decode logic units
-	Fsm_Behave(clock, control_signals.AluFunctionCodePins, FsmOutput);
-	Decode_Logic_Behave decoder(FsmOuput, instruction_reg, buses, control_signals);
+	Fsm_Behave fsm(clock, control_signals.fsmInputpins, fsmOutput);
+	Decode_Logic_Behave decoder(fsmOutput, instruction_reg, buses, control_signals);
 			
  endmodule

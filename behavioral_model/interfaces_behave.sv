@@ -4,20 +4,18 @@
  * License: MIT http://opensource.org/licenses/MIT
  */
 
- interface buses;
-	wire [7:0] dataBusPins;
-	wire [15:0] addressBusPins;
+ interface buses();
+	wire [7:0] dataBusPins ='1;
+	wire [15:0] addressBusPins = '1;
 	
-	modport AddressBus ( output addressBusPins );
+	modport AddressBus (input addressBusPins);
 	
-	modport DataBus( output dataBusPins );
+	modport DataBus( input dataBusPins);
 	
  endinterface
  
  // Interface to hold all of the registers in Harry Porter's Relay Computer
- interface registerInterface;
-	logic zero, carry, sign;
-	wire zeropin, carrypin, signpin;
+ interface registerInterface();
 	wire [7:0]  Apins,
 				Bpins,
 				Cpins,
@@ -38,9 +36,6 @@
 				X,
 				Y;
 	
-	assign zeropin = zero;
-	assign carrypin = carry;
-	assign signpin = sign;
 	assign Apins = A;
 	assign Bpins = B;
 	assign Cpins = C;
@@ -54,7 +49,7 @@
  endinterface
  
  // Interface to hold all of the registers in the program control unit Harry Porter's Relay Computer
- interface programControlInterface;
+ interface programControlInterface();
 	wire [7:0]  	J1pins,
 					J2pins,
 					Instpins;
@@ -76,7 +71,10 @@
  
  endinterface
  
- interface controlSignals;
+ interface controlSignals();
+  logic zero, carry, sign;
+	wire zeropin, carrypin, signpin;
+  
 	logic   LdA,
 					LdB,
 					LdC,
@@ -163,6 +161,8 @@
 	assign 	SelM1pin = SelM1;
 	assign 	SelM2pin = SelM2;
 	assign 	SelMpin = SelM;
+	assign  SelXpin = SelX;
+	assign  SelYpin = SelY;
 	assign 	SelXYpin = SelXY;
 	assign 	SelJpin = SelJ;
 	assign 	SelPCpin = SelPC;
@@ -171,21 +171,24 @@
 	assign fsmInputpins = fsmInput;
 	assign MemReadpin = MemRead;
 	assign MemWritepin = MemWrite;
+	assign zeropin = zero;
+	assign carrypin = carry;
+	assign signpin = sign;
 	assign Haltpin = Halt;
 	
-	modport registerUnitPort ( 	input LdApin, output LdA, input SelApin, output SelA,
-								input LdBpin, output LdB, input SelBpin, output SelB,
-								input LdCpin, output LdC, input SelCpin, output SelC,
-								input LdDpin, output LdD, input SelDpin, output SelD,
-								input LdM1pin, output LdM1, input SelM1pin, output SelM1,
-								input LdM2pin, output LdM2, input SelM2pin, output SelM2,
-								input LdXpin, output LdX, input SelXpin, output SelX,
-								input LdYpin, output LdY, input SelYpin, output SelY,
-								input LdXYpin, output LdXY, input SelXYpin, output SelXY );
-	modport progromControlPort (input LdJ1pin, output LdJ1, 
-								input LdJ2pin, output LdJ2, input SelJpin, output SelJ,
-								input LdInstpin, output LdInst,
-								input LdPCpin, output LdPC, input SelPCpin, output SelPC,
-								input LdINCpin, output LdINC, input SelINCpin, output SelINC);
-	modport memoryControlPort (input MemReadpin, input MemWritepin);
+	modport registerUnitPort ( input LdApin, input SelApin,
+								input LdBpin, input SelBpin,
+								input LdCpin, input SelCpin,
+								input LdDpin, input SelDpin,
+								input LdM1pin, input SelM1pin,
+								input LdM2pin, input SelM2pin,
+								input LdXpin, input SelXpin,
+								input LdYpin, input SelYpin,
+								input LdXYpin, input SelXYpin );
+	modport progromControlPort (input LdJ1pin, 
+								input LdJ2pin, input SelJpin,
+								input LdInstpin,
+								input LdPCpin, input SelPCpin,
+								input LdINCpin, input SelINCpin);
+	modport memoryPort (input MemReadpin, input MemWritepin);
  endinterface	

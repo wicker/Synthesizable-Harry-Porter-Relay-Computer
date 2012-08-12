@@ -6,27 +6,22 @@
  
  module programControlUnit(Interface buses, Interface control_signals, Interface PCsigs);
 	
-	logic [15:0] address;
-	
-	assign buses.addressBus = (	control_signals.SelPC |
-								control_signals.SelInc	) ? address : 'z;
-	
 	always_comb
 	begin
-		if(control_signals.LdJ1)
+		if(control_signals.LdJ1pin)
 				PCsigs.J1 = buses.dataBusPins;
-		if(control_signals.LdJ2)
+		if(control_signals.LdJ2pin)
 				PCsigs.J2 = buses.dataBusPins;
-		if(control_signals.LdInst)
+		if(control_signals.LdInstpin)
 				PCsigs.Inst = buses.dataBusPins;
-		if(control_signals.LdINC)
+		if(control_signals.LdINCpin)
 				PCsigs.Inc = buses.addressBusPins;
-		if(control_signals.LdPC)
+		if(control_signals.LdPCpin)
 				PCsigs.PC = buses.addressBusPins;
-		if(control_signals.SelPC)
-				address = PCsigs.PCpins;
-		if(control_signals.SelInc)
-				address = PCsigs.SelInc;
+		if(control_signals.SelPCpin)
+				buses.addressBus = PCsigs.PCpins;
+		if(control_signals.SelINCpin)
+				buses.addressBus = PCsigs.SelInc;
 				
 	end
  

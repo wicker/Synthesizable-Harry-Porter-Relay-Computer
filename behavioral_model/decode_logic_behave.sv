@@ -36,6 +36,7 @@
 	wire copy, z0, z1, cy, s;
 	wire GOTO_M_or_J;
 	wire Call_or_Goto;
+	wire PC_or_XY;
 	
 	logic [7:0] data;
 	
@@ -48,7 +49,7 @@
 	assign alu_reg_to_load = inst_reg_value[3];
 	assign Immediate = inst_reg_value[4:0];
 	assign setab_reg_to_load = inst_reg_value[5];
-	assign buses.dataBus = (((inst_reg_msb2 == SETAB) && (state_4 | state_5 | state_6)) ||
+	assign buses.dataBusPins = (((inst_reg_msb2 == SETAB) && (state_4 | state_5 | state_6)) ||
 							((inst_reg_value == HALT) && (state_8)))? data : 'z;
 	assign load_or_store_bit = inst_reg_value[3];
 	assign reg_to_load_or_store = inst_reg_value[1:0];
@@ -56,13 +57,18 @@
 	assign {s, cy, z1, z0} = inst_reg_value[4:0];
 	assign GOTO_M_or_J = inst_reg_value[5];
 	assign Call_or_Goto = inst_reg_value[2:0];
+	assign PC_or_XY = inst_reg_value[3];
+	
+	
 	enum logic[2:0] {A, B, C, D, M1, M2, X, Y} RegisterToMove;
 	enum logic {AluLoadA, AluLoadD} AluRegToLoad;
 	enum logic {SetabLoadA, SetabLoadB} SetabRegToLoad;
 	enum logic {Load, Store} LoadOrStore;
 	//enum logic [1:0] {A, B, C, D} RegToLoadOrStore;
 	enum logic {M, J} RegFromMov_16;
+	enum logic {Mbit, Jbit} M_or_J;
 	enum logic [2:0] { Call = 3'b111, Goto = 3'b110}CallOrGoto;
+	enum logic {PC, XY}PC_OR_XY_SEL;
 	
 	always_comb
 	begin
@@ -71,18 +77,19 @@
 		state_1:
 			{control_signals.SelPC, control_signals.MemRead} = 2'b11;
 		state_2:
-			{control_signals.LdInst, control_signal.LdINC} = 2'b11;
+			{control_signals.LdInst, control_signals.LdINC} = 2'b11;
 		state_3:
-			{control_signals.LdInst, control_signal.LdINC} = 2'b00;
+			{control_signals.LdInst, control_signals.LdINC} = 2'b00;
 		state_4: // instruction decode logic begins here
 			begin
+			  {control_signals.SelPC, control_signals.MemRead} = 2'b00;
 				if(inst_reg_msb4 == ALU) // ALU 
 					begin
 						control_signals.AluFunctionCode = alu_function;
 					end
 				else
 					begin
-						control_signals.AluFucntionCode = '1; // nop for alu module
+						control_signals.AluFunctionCode = '1; // nop for alu module
 					end
 				if(inst_reg_msb2 == SETAB)
 				begin
@@ -97,7 +104,7 @@
 			end
 		state_5:
 			begin
-				{control_signals.SelInc, control_signals.LdPC} = 2'b11;
+				{control_signals.SelINC, control_signals.LdPC} = 2'b11;
 				if(inst_reg_msb2 == MOV_8) // Mov-8 instruction
 				begin
 					case(movR1)
@@ -165,10 +172,18 @@
 						control_signals.LdD = 0;
 						endcase
 				end
+				else if(inst_reg_msb2 == SETAB)
+				  case(setab_reg_to_load)
+				  SetabLoadA:
+						control_signals.LdA = 0;
+					SetabLoadB:
+						control_signals.LdB = 0;
+				  endcase
 			end
 		state_7:
 			begin
 				control_signals.AluFunctionCode = '1;
+				control_signals.SelINC = 0;
 				if(inst_reg_msb2 == '0) // Mov-8 instruction
 				begin
 					case(movR2)
@@ -191,7 +206,15 @@
 				Load:
 					{control_signals.MemRead, control_signals.SelM} = 2'b11;
 				Store:
-					{control_signals.MemWrite, control_signals.SelM} = 2'b11;
+				begin
+					control_signals.SelM = 1;
+					case(reg_to_load_or_store)
+							A: control_signals.SelA = 1;
+							B: control_signals.SelB = 1;
+							C: control_signals.SelC = 1;
+							D: control_signals.SelD = 1;
+					endcase
+				end
 				endcase
 			end
 				else if (inst_reg_msb4 == INC)
@@ -208,15 +231,31 @@
 						end
 					RETURN_BRANCH:
 						begin
-							{control_signals.SelXY, control_signal.LdPC} = 2'b11;
+							{control_signals.SelXY, control_signals.LdPC} = 2'b11;
 						end
 					default: // regular mov_16
 						begin
 							case (M_or_J_bit)
-							M:
-							{control_signals.SelM, control_signals.LdXY} = 2'b11;
-							J:
-							{control_signals.SelJ, control_signals.LdXY} = 2'b11;
+							Mbit:
+							begin
+							control_signals.SelM = 1;
+							  case(PC_or_XY)
+							   PC:
+							     control_signals.LdPC = 1;
+							   XY:
+							     control_signals.LdXY = 1;
+							  endcase
+							end
+							Jbit:
+							begin
+							control_signals.SelJ = 1;
+								case(PC_or_XY)
+							   PC:
+							     control_signals.LdPC = 1;
+							   XY:
+							     control_signals.LdXY = 1;
+							  endcase
+							end
 							endcase
 						end
 					endcase
@@ -233,16 +272,11 @@
 						case(reg_to_load_or_store)
 							A: control_signals.LdA = 1;
 							B: control_signals.LdB = 1;
-							C: contorl_signals.LdC = 1;
+							C: control_signals.LdC = 1;
 							D: control_signals.LdD = 1;
 						endcase
 					Store:
-						case(reg_to_load_or_store)
-							A: control_signals.SelA = 1;
-							B: control_signals.SelB = 1;
-							C: control_signals.SelC = 1;
-							D: control_signals.SelD = 1;
-						endcase
+					   control_signals.MemWrite = 1;
 					endcase
 				end
 				else if (inst_reg_msb4 == INC)
@@ -260,15 +294,29 @@
 						end
 					RETURN_BRANCH:
 						begin
-							{control_signals.SelXY, control_signal.LdPC} = 2'b00;
+							control_signals.LdPC = 0;
 						end
 					default: // regular mov_16
 						begin
 							case (M_or_J_bit)
-							M:
-							{control_signals.SelM, control_signals.LdXY} = 2'b00;
-							J:
-							{control_signals.SelJ, control_signals.LdXY} = 2'b00;
+							Mbit:
+							begin
+								case(PC_or_XY)
+							   PC:
+							     control_signals.LdPC = 0;
+							   XY:
+							     control_signals.LdXY = 0;
+							  endcase
+							end
+							Jbit:
+							begin
+								case(PC_or_XY)
+							   PC:
+							     control_signals.LdPC = 0;
+							   XY:
+							     control_signals.LdXY = 0;
+							  endcase
+							end
 							endcase
 						end
 					endcase
@@ -288,26 +336,22 @@
 		begin
 			if(inst_reg_msb4 == LOAD_OR_STORE)
 				begin
-					case (load_or_store_bit)
-					Load:
+					case(load_or_store_bit)
+					 Load:
 						case(reg_to_load_or_store)
 							A: control_signals.LdA = 0;
 							B: control_signals.LdB = 0;
-							C: contorl_signals.LdC = 0;
+							C: control_signals.LdC = 0;
 							D: control_signals.LdD = 0;
 						endcase
 					Store:
-						case(reg_to_load_or_store)
-							A: control_signals.SelA = 0;
-							B: control_signals.SelB = 0;
-							C: control_signals.SelC = 0;
-							D: control_signals.SelD = 0;
-						endcase
-					
-					endcase
+					 control_signals.MemWrite = 0;
+					endcase 
 				end
 			else if (inst_reg_msb4 == INC)
 				 control_signals.SelXY = 0;
+			else if (inst_reg_msb4 == MOV_16)
+			  {control_signals.SelM, control_signals.SelJ, control_signals.SelXY} = 3'b000;
 			else if (inst_reg_msb2 == GOTO)
 			begin
 					case (GOTO_M_or_J)
@@ -327,12 +371,20 @@
 					Load:
 						{control_signals.MemRead, control_signals.SelM} = 2'b00;
 					Store:
-						{control_signals.MemWrite, control_signals.SelM} = 2'b00;
+					begin
+						control_signals.SelM = 0;
+						case(reg_to_load_or_store)
+							A: control_signals.SelA = 0;
+							B: control_signals.SelB = 0;
+							C: control_signals.SelC = 0;
+							D: control_signals.SelD = 0;
+						endcase
+					end
 					endcase
 				end
 			else if (inst_reg_msb4 == INC)
 				begin
-					{control_signals.SelInc, control_signals.LdXY} = 2'b11;
+					{control_signals.SelINC, control_signals.LdXY} = 2'b11;
 				end
 			else if (inst_reg_msb2 == GOTO)
 				{control_signals.SelPC, control_signals.MemRead} = 2'b00;
@@ -340,8 +392,9 @@
 		state_12:
 		begin
 			if (inst_reg_msb4 == INC)
+			begin
 				control_signals.LdXY = 0;
-		
+		  end
 			else if (inst_reg_msb2 == GOTO)
 				{control_signals.SelINC, control_signals.LdPC} = 2'b11;
 		end
@@ -381,7 +434,9 @@
 		state_19:
 		begin
 			if(Call_or_Goto == Call)
-				control_signals.LdXY;
+			  begin
+				//control_signals.LdXY;
+				end
 			{control_signals.SelINC, control_signals.LdPC} = 2'b11;
 		end
 		state_20:

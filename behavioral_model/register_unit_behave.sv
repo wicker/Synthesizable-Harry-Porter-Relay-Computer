@@ -10,61 +10,46 @@
   
   module registerUnit(interface buses, interface control_signals, interface registers);
   
-  logic[7:0] data;
-  logic [15:0] address;
-  
-  assign buses.dataBusPins = (	control_signals.SelA |
-									control_signals.SelB |
-									control_signals.SelC |
-									control_signals.SelD |
-									control_signals.SelX |
-									control_signals.SelY |
-									control_signals.SelM1 |
-									control_signals.SelM2	) ? data : 'z;
-									
-	assign buses.addressBusPins = (	control_signals.SelXY |
-									contorl_signals.SelM 	) ? address : 'z;
-  
   always_comb
   begin
-	if(control_signals.LdA) 
+	if(control_signals.LdApin) 
 			registers.A = buses.dataBusPins;
-	if(control_signals.LdB)
+	if(control_signals.LdBpin)
 			registers.B = buses.dataBusPins;
-	if(control_signals.LdC)
+	if(control_signals.LdCpin)
 			registers.C = buses.dataBusPins;
-	if(control_signals.LdD)
+	if(control_signals.LdDpin)
 			registers.D = buses.dataBusPins;
-	if(control_signals.LdM1)
+	if(control_signals.LdM1pin)
 			registers.M1 = buses.dataBusPins;
-	if(control_signals.LdM2)
+	if(control_signals.LdM2pin)
 			registers.M2 = buses.dataBusPins;
-	if(control_signals.LdX)
+	if(control_signals.LdXpin)
 			registers.X = buses.dataBusPins;
-	if(control_signals.LdY)
+	if(control_signals.LdYpin)
 			registers.Y = busses.dataBusPins;
-	if(control_signals.LdXY)
+	if(control_signals.LdXYpin)
 			{registers.X, register.Y} = buses.addressBusPins;
-	if(control_signals.SelA)
-			data = registers.Apins;
-	if(control_signals.SelB)
-			data = registers.Bpins;
-	if(contol_signals.SelC)
-			data = registers.Cpins;
-	if(control_signals.SelD)
-			data = registers.Dpins;
-	if(control_signals.SelM1)
-			data = registers.M1pins;
-	if(control_signals.SelM2)
-			data = registers.M2pins;
-	if(control_signals.SelX)
-			data = registers.Xpins;
-	if(control_signals.SelY)
-			data = registers.Ypins;
-	if(control_signals.SelM)
-			address = registers.Mpins;
-	if(control_signals.SelXY)
-			address = registers.XYpins;
+	if(control_signals.SelApin)
+			buses.dataBus = registers.Apins;
+	if(control_signals.SelBpin)
+			buses.dataBus = registers.Bpins;
+	if(contol_signals.SelCpin)
+			buses.dataBus = registers.Cpins;
+	if(control_signals.SelDpin)
+			buses.dataBus = registers.Dpins;
+	if(control_signals.SelM1pin)
+			buses.dataBus = registers.M1pins;
+	if(control_signals.SelM2pin)
+			buses.dataBus = registers.M2pins;
+	if(control_signals.SelXpin)
+			buses.dataBus = registers.Xpins;
+	if(control_signals.SelYpin)
+			buses.dataBus = registers.Ypins;
+	if(control_signals.SelMpin)
+			buses.addressBus = registers.Mpins;
+	if(control_signals.SelXYpin)
+			buses.addressBus = registers.XYpins;
 			
   end  
   endmodule
