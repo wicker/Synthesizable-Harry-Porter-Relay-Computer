@@ -21,7 +21,7 @@
 	logic clock;
 	logic initialize;
 	logic [7:0] instruction_reg;
-	controlSignals control_signals(initialize);
+	controlSignals control_signals();
 	buses buses();
 	
 	parameter CLOCK_WIDTH = 20;
