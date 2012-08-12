@@ -4,7 +4,9 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [2:0] ccr,);
+module InstructionDecoder (input logic clock, [7:0] inst_reg, 
+                                       [23:0] fsa_out, fsa_out_prime, [2:0] ccr,
+                                       ctrl_bus control, led_bus led);
 
 // this module contains fifty relays broken up into eight blocks
 // cond code register, fetch-incr, derived pulses, mov8/mov16, goto, 
@@ -26,31 +28,28 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
 
   wire pA,pB,pC,pD,pE,pF,pG,pH,pI,pJ,pK,pL,pM,pN,pO,pQ,pR,pS,pT;
 
-  assign pA = fsm_out[1];
-  assign pB = fsm_out[2];
-  assign pC = fsm_out[3];
-  assign pD = fsm_out[4];
-  assign pE = fsm_out[5];
-  assign pF = fsm_out[6];
-  assign pG = fsm_out[7];
-  assign pH = fsm_out[8];
-  assign pI = fsm_out[9];
-  assign pJ = fsm_out[10];
-  assign pK = fsm_out[11];
-  assign pL = fsm_out[12];
-  assign pM = fsm_out[13];
-  assign pN = fsm_out[14];
-  assign pO = fsm_out[15];
-  assign pQ = fsm_out[16];
-  assign pR = fsm_out[17];
-  assign pS = fsm_out[18];
-  assign pT = fsm_out[19];
+  assign pA = fsa_out[1] || fsa_out[2];  // pA = A || B
+  assign pB = fsa_out_prime[2];          // pB = B'
+  assign pC = fsa_out[5];                // pC = E
+  assign pD = fsa_out_prime[5];          // pD = E'
+  assign pF = fsa_out[8];                // pF = H
+  assign pG = fsa_out_prime[8];          // pG = H'
+  assign pH = fsa_out[11];               // pH = K
+  assign pI = fsa_out_prime[11];         // pI = K'
+  assign pK = fsa_out_prime[12];         // pK = I'
+  assign pL = fsa_out[13];               // pL = L
+  assign pM = fsa_out_prime[13];         // pM = L'
+  assign pO = fsa_out_prime[16];         // pO = P'
+  assign pQ = fsa_out[19];               // pR = S
+  assign pR = fsa_out_prime[19];         // pR = S'
+  assign pS = fsa_out[22];               // pS = V
+  assign pT = fsa_out_prime[22];         // pT = V'
 
   Relay relay_r1  (.control(reg_CCR.load),
                    .in_2(V),
                    .in_3(V),
                    .out_lo_2(a),
-                   .out_lo_3(b),
+                   .out_lo_3(b));
 
   Relay relay_r2  (.control(b),
                    .in_0(V),
@@ -68,43 +67,42 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
                    .in_2(V),
                    .in_3(V),
                    .out_hi_2(memory.mem_read),
-                   .out_hi_3(reg_PC.sel),
+                   .out_hi_3(reg_PC.sel));
 
   Relay relay_r5  (.control(pB),
                    .in_2(V),
                    .in_3(V),
                    .out_hi_2(reg_INC.load),
-                   .out_hi_3(reg_INST.load),
+                   .out_hi_3(reg_INST.load));
 
   Relay relay_r6  (.control(pC),
                    .in_2(V),
                    .in_3(V),
-                   .out_hi_3(reg_INC.sel),
+                   .out_hi_3(reg_INC.sel));
 
   Relay relay_r7  (.control(pD),
                    .in_2(V),
                    .in_3(V),
                    .out_hi_2(reg_PC.load),
-                   .out_hi_3(ch_abort),
-
+                   .out_hi_3(ch_abort));
 
   Relay relay_r8  (.control(pO),
                    .in_3(V),
-                   .out_hi_3(P,pN),
+                   .out_hi_3(pN));
 
   Relay relay_r9  (.control(pH),
                    .in_3(V),
-                   .out_hi_3(I,pJ),
+                   .out_hi_3(pJ));
 
-  Relay relay_r10 (.control(pE),
+  Relay relay_r10 (.control(fsa_out[5]),
                    .in_3(V),
-                   .out_hi_3(D,pE),
+                   .out_hi_3(pE));
 
   Relay relay_r11  (.control(d),
                    .in_0(d),
                    .in_1(V),
                    .out_hi_0(a),
-                   .out_lo_1(carry_low);
+                   .out_lo_1(carry_low));
 
   Relay relay_r12  (.control(e),
                    .in_0(e),
@@ -120,7 +118,7 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
                    .out_hi_1(zero_high));
 
   Relay relay_r14 (.control(store),   // done
-                   .in_0(pK_plus),
+                   .in_0(pK),
                    .in_1(pJ),
                    .in_2(pJ),
                    .in_3(ch_abort),
@@ -132,7 +130,7 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
   Relay relay_r15 (.control(load),   // done
                    .in_0(pJ),
                    .in_1(pJ),
-                   .in_2(pK_plus),
+                   .in_2(pK),
                    .in_3(ch_abort),
                    .out_hi_0(memory.mem_read),
                    .out_hi_1(reg_M.sel),
@@ -142,8 +140,8 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
   Relay relay_r16 (.control(goto),   // done
                    .in_0(pL),
                    .in_1(pQ),
-                   .in_2(pM_plus),
-                   .in_3(pR_plus),
+                   .in_2(pM),
+                   .in_3(pR),
                    .out_hi_0(reg_INC.sel),
                    .out_hi_1(reg_INC.sel),
                    .out_hi_2(reg_PC.ld),
@@ -155,13 +153,13 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
                    .in_2(z),
                    .in_3(aa),
                    .out_hi_0(pS),
-                   .out_hi_1(pT_plus),
-                   .out_hi_2(pK_plus),
-                   .out_hi_3(pO_plus));
+                   .out_hi_1(pT),
+                   .out_hi_2(pK),
+                   .out_hi_3(pO));
 
   Relay relay_r18 (.control(mov16),   // 
                    .in_0(pF),
-                   .in_1(pG_plus),
+                   .in_1(pG),
                    .in_2(ch_abort),
                    .out_hi_0(am),
                    .out_hi_1(av),
@@ -238,7 +236,7 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
                    .out_hi_3(reg_PC.load));
 
   Relay relay_r29 (.control(mov8),   // 
-                   .in_0(pD_plus),
+                   .in_0(pD),
                    .in_1(pC),
                    .in_2(ch_abort),
                    .out_hi_0(ak),
@@ -350,7 +348,7 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [
                    .in_1(ar),
                    .in_2(au),
                    .in_3(at),
-                   .out_lo_0(reg_X.sel
+                   .out_lo_0(reg_X.sel),
                    .out_hi_0(reg_Y.sel),
                    .out_lo_1(reg_M1.sel),
                    .out_hi_1(reg_M2.sel),
