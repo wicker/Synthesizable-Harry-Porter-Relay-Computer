@@ -31,6 +31,7 @@ module Reg_Data (inout [N-1:0] .data(databus), input .load, .sel);
        t_10_12, t_11_13, t_12_14, t_13_15, t_14_16, t_15_17, t_16_18, t_17_19,
        t_18_20, t_19_21, t_20_22, t_21_23, t_22_rst;
 
+  wire abort8, abort10, abort12, abort14;
 
   Relay relay_c0 (.control(clock),
                    .in_0(V),
@@ -161,6 +162,12 @@ module Reg_Data (inout [N-1:0] .data(databus), input .load, .sel);
                    .out_lo_3(t_5_7),
                    .out_hi_3(pG));
 
+  Relay relay_abort8 (.control(abort8),
+                   .in_0(abort8),
+                   .in_1(t_7_8),
+                   .out_hi_0(pA_not),
+                   .out_hi_1(reset));
+
   Relay relay_s8 (.control(t_7_8),
                    .in_0(t_7_8),
                    .in_1(pI_not),
@@ -194,6 +201,12 @@ module Reg_Data (inout [N-1:0] .data(databus), input .load, .sel);
                    .out_lo_3(t_8_10),
                    .out_hi_3(pJ));
 
+  Relay relay_abort10 (.control(abort10),
+                   .in_0(abort10),
+                   .in_1(t_9_10),
+                   .out_hi_0(pA_not),
+                   .out_hi_1(reset));
+
   Relay relay_s11 (.control(t_10_11),
                    .in_0(t_10_11),
                    .in_1(pL_not),
@@ -204,6 +217,12 @@ module Reg_Data (inout [N-1:0] .data(databus), input .load, .sel);
                    .out_hi_2(t_11_12),
                    .out_lo_3(t_9_11),
                    .out_hi_3(pK));
+
+  Relay relay_abort12 (.control(abort12),
+                   .in_0(abort12),
+                   .in_1(t_11_12),
+                   .out_hi_0(pA_not),
+                   .out_hi_1(reset));
 
   Relay relay_s12 (.control(t_11_12),
                    .in_0(t_11_12),
@@ -226,6 +245,12 @@ module Reg_Data (inout [N-1:0] .data(databus), input .load, .sel);
                    .out_hi_2(t_13_14),
                    .out_lo_3(t_11_13),
                    .out_hi_3(pM));
+
+  Relay relay_abort14 (.control(abort14),
+                   .in_0(abort14),
+                   .in_1(t_13_14),
+                   .out_hi_0(pA_not),
+                   .out_hi_1(reset));
 
   Relay relay_s14 (.control(t_13_14),
                    .in_0(t_13_14),
