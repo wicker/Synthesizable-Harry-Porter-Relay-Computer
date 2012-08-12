@@ -4,8 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in, 
-                           output [33:0] inst_decoder_out);
+module InstructionDecoder (input logic clock, [1:24] inst_reg, [18:0] fsa_out, [2:0] ccr,);
 
 // this module contains fifty relays broken up into eight blocks
 // cond code register, fetch-incr, derived pulses, mov8/mov16, goto, 
@@ -25,7 +24,29 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
 // mov8/mov16: r18, r19, r20, r29, r30, r39, r40
 // unknown: f50
 
-  Relay relay_r1  (.control(ld_cond),
+  wire pA,pB,pC,pD,pE,pF,pG,pH,pI,pJ,pK,pL,pM,pN,pO,pQ,pR,pS,pT;
+
+  assign pA = fsm_out[1];
+  assign pB = fsm_out[2];
+  assign pC = fsm_out[3];
+  assign pD = fsm_out[4];
+  assign pE = fsm_out[5];
+  assign pF = fsm_out[6];
+  assign pG = fsm_out[7];
+  assign pH = fsm_out[8];
+  assign pI = fsm_out[9];
+  assign pJ = fsm_out[10];
+  assign pK = fsm_out[11];
+  assign pL = fsm_out[12];
+  assign pM = fsm_out[13];
+  assign pN = fsm_out[14];
+  assign pO = fsm_out[15];
+  assign pQ = fsm_out[16];
+  assign pR = fsm_out[17];
+  assign pS = fsm_out[18];
+  assign pT = fsm_out[19];
+
+  Relay relay_r1  (.control(reg_CCR.load),
                    .in_2(V),
                    .in_3(V),
                    .out_lo_2(a),
@@ -46,36 +67,36 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
   Relay relay_r4  (.control(pA),
                    .in_2(V),
                    .in_3(V),
-                   .out_hi_2(mem_read),
-                   .out_hi_3(sel_pc),
+                   .out_hi_2(memory.mem_read),
+                   .out_hi_3(reg_PC.sel),
 
   Relay relay_r5  (.control(pB),
                    .in_2(V),
                    .in_3(V),
-                   .out_hi_2(ld_inc),
-                   .out_hi_3(ld_inst),
+                   .out_hi_2(reg_INC.load),
+                   .out_hi_3(reg_INST.load),
 
   Relay relay_r6  (.control(pC),
                    .in_2(V),
                    .in_3(V),
-                   .out_hi_3(sel_inc),
+                   .out_hi_3(reg_INC.sel),
 
   Relay relay_r7  (.control(pD),
                    .in_2(V),
                    .in_3(V),
-                   .out_hi_2(ld_pc),
+                   .out_hi_2(reg_PC.load),
                    .out_hi_3(ch_abort),
 
 
-  Relay relay_r8  (.control(O),
+  Relay relay_r8  (.control(pO),
                    .in_3(V),
                    .out_hi_3(P,pN),
 
-  Relay relay_r9  (.control(H),
+  Relay relay_r9  (.control(pH),
                    .in_3(V),
                    .out_hi_3(I,pJ),
 
-  Relay relay_r10 (.control(E),
+  Relay relay_r10 (.control(pE),
                    .in_3(V),
                    .out_hi_3(D,pE),
 
@@ -103,8 +124,8 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(pJ),
                    .in_2(pJ),
                    .in_3(ch_abort),
-                   .out_hi_0(mem_write),
-                   .out_hi_1(sel_M),
+                   .out_hi_0(memory.mem_write),
+                   .out_hi_1(reg_M.sel),
                    .out_hi_2(r),
                    .out_hi_3(abort12));
 
@@ -113,8 +134,8 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(pJ),
                    .in_2(pK_plus),
                    .in_3(ch_abort),
-                   .out_hi_0(mem_read),
-                   .out_hi_1(sel_M),
+                   .out_hi_0(memory.mem_read),
+                   .out_hi_1(reg_M.sel),
                    .out_hi_2(s),
                    .out_hi_3(abort12));
 
@@ -123,13 +144,13 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(pQ),
                    .in_2(pM_plus),
                    .in_3(pR_plus),
-                   .out_hi_0(sel_inc),
-                   .out_hi_1(sel_inc),
-                   .out_hi_2(ld_pc),
+                   .out_hi_0(reg_INC.sel),
+                   .out_hi_1(reg_INC.sel),
+                   .out_hi_2(reg_PC.ld),
                    .out_hi_3(x));
 
   Relay relay_r17 (.control(goto),   // done 
-                   .in_0(sel_J),
+                   .in_0(reg_J.sel),
                    .in_1(y),
                    .in_2(z),
                    .in_3(aa),
@@ -203,19 +224,18 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
 
   Relay relay_r26 (.control(x),   // 
                    .in_0(inst0),
-                   .out_lo_0(),
-                   .out_hi_0(ld_xy),
-                   .out_hi_3(ld_pc));
+                   .out_hi_0(reg_XY.load),
+                   .out_hi_3(reg_PC.load));
 
   Relay relay_r27 (.control(z),   // 
                    .in_0(V),
                    .in_1(V),
-                   .out_hi_0(ld_inc),
+                   .out_hi_0(reg_INC.load),
                    .out_hi_1(ab));
 
   Relay relay_r28 (.control(y),   // 
                    .in_3(ad),
-                   .out_hi_3(ld_pc));
+                   .out_hi_3(reg_PC.load));
 
   Relay relay_r29 (.control(mov8),   // 
                    .in_0(pD_plus),
@@ -230,14 +250,14 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(ag),
                    .in_2(aj),
                    .in_3(ai),
-                   .out_lo_0(ld_X),
-                   .out_hi_0(ld_Y),
-                   .out_lo_1(ld_M1),
-                   .out_hi_1(ld_M2),
-                   .out_lo_2(ld_C),
-                   .out_hi_2(ld_D),
-                   .out_lo_3(ld_A),
-                   .out_hi_3(ld_B));
+                   .out_lo_0(reg_X.load),
+                   .out_hi_0(reg_Y.load),
+                   .out_lo_1(reg_M1.load),
+                   .out_hi_1(reg_M2.load),
+                   .out_lo_2(reg_C.load),
+                   .out_hi_2(reg_D.load),
+                   .out_lo_3(reg_A.load),
+                   .out_hi_3(reg_B.load));
 
   Relay relay_r31 (.control(inst6),  // done
                    .in_0(h),
@@ -252,10 +272,10 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(pH),
                    .in_2(pG_high),
                    .in_3(pF),
-                   .out_hi_0(ld_XY),
-                   .out_hi_1(sel_inc),
-                   .out_hi_2(ld_inc),
-                   .out_hi_3(sel_XY));
+                   .out_hi_0(reg_XY.load),
+                   .out_hi_1(reg_INC.sel),
+                   .out_hi_2(reg_INC.load),
+                   .out_hi_3(reg_XY.sel));
 
   Relay relay_r33 (.control(inc16),  // done
                    .in_3(ch_abt),
@@ -268,7 +288,7 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_3(ch_abort),
                    .out_hi_0(m),
                    .out_hi_1(n),
-                   .out_hi_2(ld_cond),
+                   .out_hi_2(reg_CCR.load),
                    .out_hi_3(abort8));
 
   Relay relay_r35 (.control(inst0),   // done
@@ -276,29 +296,29 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(t),
                    .in_2(w),
                    .in_3(v),
-                   .out_lo_0(sel_C),
-                   .out_hi_0(sel_D),
-                   .out_lo_1(sel_A),
-                   .out_hi_1(sel_B),
-                   .out_lo_2(ld_C),
-                   .out_hi_2(ld_D),
-                   .out_lo_3(ld_A),
-                   .out_hi_3(ld_B));
+                   .out_lo_0(reg_C.sel),
+                   .out_hi_0(reg_D.sel),
+                   .out_lo_1(reg_A.sel),
+                   .out_hi_1(reg_B.sel),
+                   .out_lo_2(reg_C.load),
+                   .out_hi_2(reg_D.load),
+                   .out_lo_3(reg_A.load),
+                   .out_hi_3(reg_B.load));
 
   Relay relay_r36 (.control(goto),   // 
                    .in_0(pJ),
                    .in_1(pJ),
                    .in_2(pN),
                    .in_3(pN),
-                   .out_hi_0(sel_pc),
-                   .out_hi_1(mem_read),
-                   .out_hi_2(sel_pc),
-                   .out_hi_3(mem_read));
+                   .out_hi_0(reg_PC.sel),
+                   .out_hi_1(memory.mem_read),
+                   .out_hi_2(reg_PC.sel),
+                   .out_hi_3(memory.mem_read));
 
   Relay relay_r37 (.control(aa),   // 
                    .in_0(V),
                    .in_1(V),
-                   .out_hi_0(ld_inc),
+                   .out_hi_0(reg_INC.load),
                    .out_hi_1(ac));
 
   Relay relay_r38 (.control(inst2),   // 
@@ -316,10 +336,10 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(ap),
                    .in_2(ao),
                    .in_3(an),
-                   .out_lo_0(sel_J),
+                   .out_lo_0(reg_J.sel),
                    .out_hi_0(halt),
-                   .out_lo_1(sel_M),
-                   .out_hi_1(sel_XY),
+                   .out_lo_1(reg_M.sel),
+                   .out_hi_1(reg_XY.sel),
                    .out_lo_2(ar),
                    .out_hi_2(as),
                    .out_lo_3(at),
@@ -330,14 +350,14 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_1(ar),
                    .in_2(au),
                    .in_3(at),
-                   .out_lo_0(sel_X),
-                   .out_hi_0(sel_Y),
-                   .out_lo_1(sel_M1),
-                   .out_hi_1(sel_M2),
-                   .out_lo_2(sel_C),
-                   .out_hi_2(sel_D),
-                   .out_lo_3(sel_A),
-                   .out_hi_3(sel_B));
+                   .out_lo_0(reg_X.sel
+                   .out_hi_0(reg_Y.sel),
+                   .out_lo_1(reg_M1.sel),
+                   .out_hi_1(reg_M2.sel),
+                   .out_lo_2(reg_C.sel),
+                   .out_hi_2(reg_D.sel),
+                   .out_lo_3(reg_A.sel),
+                   .out_hi_3(reg_B.sel));
 
   Relay relay_r41 (.control(inst5),  //  done
                    .in_0(k),
@@ -346,12 +366,12 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_3(ac),
                    .out_lo_0(l),
                    .out_hi_0(o),
-                   .out_lo_1(ld_a),
-                   .out_hi_1(ld_b),
-                   .out_lo_2(ld_M1),
-                   .out_hi_2(ld_J1),
-                   .out_lo_3(ld_M2),
-                   .out_hi_3(ld_J2));
+                   .out_lo_1(reg_a.load),
+                   .out_hi_1(reg_b.load),
+                   .out_lo_2(reg_M1.load),
+                   .out_hi_2(reg_J1.load),
+                   .out_lo_3(reg_M2.load),
+                   .out_hi_3(reg_J2.load));
 
   Relay relay_r42 (.control(inst4),  // done
                    .in_0(o),
@@ -370,11 +390,11 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
                    .in_3(av),
                    .out_lo_0(load),
                    .out_hi_0(store),
-                   .out_lo_1(ld_a),
-                   .out_hi_1(ld_b),
+                   .out_lo_1(reg_A.load),
+                   .out_hi_1(reg_B.load),
                    .out_hi_2(carry_high),
-                   .out_lo_3(ld_XY),
-                   .out_hi_3(ld_pc));
+                   .out_lo_3(reg_XY.load),
+                   .out_hi_3(reg_PC.load));
 
   Relay relay_r44 (.control(m),   // done
                    .in_1(f3),
@@ -389,12 +409,12 @@ module InstructionDecoder (input logic clock, [1:24] inst_reg, [23:0] fsa_in,
 
   Relay relay_r45 (.control(store),   // done 
                    .in_0(pJ),
-                   .out_lo_0(bus_to_mem));
+                   .out_lo_0(memory.bus_to_mem));
 
   Relay relay_r49 (.control(mem_read),   // done 
                    .in_0(V),
                    .in_1(V),
-                   .out_hi_0(sel_m),
-                   .out_hi_1(mem_read));
+                   .out_hi_0(reg_M.sel),
+                   .out_hi_1(memory.mem_read));
 
 endmodule

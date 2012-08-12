@@ -70,44 +70,44 @@ interface led_bus();
   assign sel_X_led = reg_X.sel;
   assign sel_Y_led = reg_Y.sel;
   
-  modport sequencer (output wire fsm_out);
+  modport sequencer (input wire fsm_out);
 
-  modport reg_A     (output wire load, sel);  
+  modport reg_A     (input wire load, sel);  
 
-  modport reg_B     (output wire load, sel);
+  modport reg_B     (input wire load, sel);
 
-  modport reg_C     (output wire load, sel);
+  modport reg_C     (input wire load, sel);
 
-  modport reg_D     (output wire load, sel);
+  modport reg_D     (input wire load, sel);
 
-  modport reg_M1    (output wire load, sel);
+  modport reg_M1    (input wire load, sel);
 
-  modport reg_M2    (output wire load, sel);  
+  modport reg_M2    (input wire load, sel);  
 
-  modport reg_M     (output wire load, sel);
+  modport reg_M     (input wire load, sel);
  
-  modport reg_X     (output wire load, sel);
+  modport reg_X     (input wire load, sel);
  
-  modport reg_Y     (output wire load, sel);
+  modport reg_Y     (input wire load, sel);
 
-  modport reg_XY    (output wire load, sel);
+  modport reg_XY    (input wire load, sel);
 
-  modport reg_J1    (output wire load, sel);
+  modport reg_J1    (input wire load, sel);
 
-  modport reg_J2    (output wire load, sel);
+  modport reg_J2    (input wire load, sel);
 
-  modport reg_J     (output wire load, sel);
+  modport reg_J     (input wire load, sel);
 
-  modport reg_INST  (output wire [7:0] inst_out, load, sel);
+  modport reg_INST  (input wire [7:0] inst_out, load, sel);
 
-  modport reg_PC    (output wire load, sel);
+  modport reg_PC    (input wire load, sel);
 
-  modport reg_INC   (output wire load, sel);
+  modport reg_INC   (input wire load, sel);
 
-  modport alu       (output wire f1, f2, f3);
+  modport alu       (input wire f1, f2, f3);
 
-  modport reg_CCR   (output wire ccr_out);
+  modport reg_CCR   (input wire ccr_out);
 
-  modport memory    (output wire bus_to_mem, mem_read, mem_write);
+  modport memory    (input wire bus_to_mem, mem_read, mem_write);
 
 endinterface

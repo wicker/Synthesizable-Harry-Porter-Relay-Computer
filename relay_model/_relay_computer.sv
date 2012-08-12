@@ -4,7 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module RelayComputer (clock);
+module RelayComputer (clock, V);
 
   //
   // Register Unit
@@ -108,7 +108,7 @@ module RelayComputer (clock);
   // Sequencer Unit
   //
 
-  FSA sequencer (led_bus.sequencer, clock, reset, fsm_out);
+  FSA sequencer (led_bus.sequencer, clock, V, reset, fsm_out);
 
   InstructionDecoder decoder (fsm_out, ccr_out, inst_out, ctrl_bus.decoder, led_bus.decoder);
 
