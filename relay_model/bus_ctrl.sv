@@ -4,9 +4,9 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-interface ctrl_bus(input logic clock, [CTRL_BUS_WIDTH:0] loadsel_in);
+interface ctrl_bus();
 
-  parameter CTRL_BUS_WIDTH = 26;
+  parameter CTRL_BUS_WIDTH = 34;
 
   assign loadsel = loadsel_in;
 
