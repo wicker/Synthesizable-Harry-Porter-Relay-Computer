@@ -7,17 +7,19 @@
 module FSATestBench ();
 
   logic clock, reset;
-  wire logic [2:0] fsm_out;
+  wire logic [22:0] fsm_out, fsm_out_prime;
 
-  FSA sequencer (led_bus.sequencer, clock, reset, fsm_out);
+  FSA sequencer (clock, V, reset, fsm_out, fsm_out_prime);
 
   initial begin
+    clock = 0;
     forever #1ms clock = ~clock;
   end
 
-  initial begin
-    $display("fsm = %b",fsm_out);
-  $stop;
+  always @(posedge clock) begin
+    $display("fsm       = %b\nfsm_prime = %b",fsm_out,fsm_out_prime);
+    $stop;
   end
+
 
 endmodule
