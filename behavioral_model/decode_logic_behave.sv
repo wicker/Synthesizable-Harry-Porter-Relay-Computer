@@ -139,6 +139,7 @@
 				end
 				else if(inst_reg_msb2 == SETAB)
 				begin
+				control_signals.LdCond = 1;
 					case(setab_reg_to_load)
 					SetabLoadA:
 						control_signals.LdA = 1;
@@ -165,6 +166,7 @@
 				end
 				else if(inst_reg_msb4 == ALU) // ALU instruction
 				begin
+				control_signals.LdCond = 0;
 					case(alu_reg_to_load)
 					AluLoadA:
 						control_signals.LdA = 0;

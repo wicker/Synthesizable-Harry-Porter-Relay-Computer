@@ -5,8 +5,8 @@
  */
 
  interface buses();
-	wire [7:0] dataBusPins ='1;
-	wire [15:0] addressBusPins = '1;
+	wire [7:0] dataBusPins ;
+	wire [15:0] addressBusPins ;
 	
 	modport AddressBus (input addressBusPins);
 	
@@ -88,6 +88,8 @@
 					LdInst,
 					LdPC,
 					LdINC,
+					LdXY,
+					LdCond,
 					SelA,
 					SelB,
 					SelC,
@@ -96,7 +98,6 @@
 					SelM2,
 					SelX,
 					SelY,
-					LdXY,
 					SelM,
 					SelXY,
 					SelJ,
@@ -121,6 +122,7 @@
 			LdInstpin,
 			LdPCpin,
 			LdINCpin,
+			LdCondpin,
 			SelApin,
 			SelBpin,
 			SelCpin,
@@ -154,6 +156,7 @@
 	assign 	LdInstpin = LdInst;
 	assign 	LdPCpin = LdPC;
 	assign 	LdINCpin = LdINC;
+	assign	LdCondpin = LdCond;
 	assign 	SelApin = SelA;
 	assign 	SelBpin = SelB;
 	assign 	SelCpin = SelC;
