@@ -4,11 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module FSA (input logic clock, V, reset, 
-            output [18:0] .fsm_out(fsm_out), fsm_out);
-
-module Reg_Data (inout [N-1:0] .data(databus), input .load, .sel);
-
+module FSA (input logic clock, V, reset, output [18:0] fsm_out);
 
   wire cl0,cl1,cl2,cl3,cl4,cl5,cl6,cl7,cl8,
   wire cl9,cl10,cl12,cl13,cl14,cl15,cl16,cl17,
@@ -360,7 +356,9 @@ module Reg_Data (inout [N-1:0] .data(databus), input .load, .sel);
                    .out_hi_3(pW));
 
   always @(negedge clock) begin
-    fsm_out_var = {pC,pB,pA};
+    fsm_out_var = {pT,pS,pR,pQ,pO,pN,pM,pL,pK,pJ,pI,pH,pG,pF,pE,pD,pC,pB,pA};
+
+
   end
 
 endmodule
