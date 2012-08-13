@@ -1,4 +1,5 @@
 /* Author: Brian Ledger 
+ * Modified by Jenner Hanni
  * Project: Harry Porter Relay Computer 
  * License: MIT http://opensource.org/licenses/MIT 
 */

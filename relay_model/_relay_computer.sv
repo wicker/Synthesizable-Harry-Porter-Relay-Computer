@@ -6,14 +6,25 @@
 
 module RelayComputer (clock, V);
 
+  // 
+  // Interfaces
+  //
+
+  Ctrl_Bus control     ();
+
+  Data_Bus control     ();
+
+  Addr_Bus control     ();
+
+  LED_Bus control      ();
+
   //
   // Register Unit
   //
 
-  Reg_ALU_Result reg_A (ctrl_bus.reg_A,
-                        data_bus.reg_A,
-                        led_bus.reg_A,
-                        input wire logic [7:0] alu_result);
+  Reg_ALU_Result reg_A (input wire logic [7:0] alu_result,
+                        ctrl_bus.ldA, ctrl_bus.selA,
+                        data_bus.data, led_bus.ldA, led_bus.selA);
 
   Reg_ALU_BC reg_B     (ctrl_bus.reg_B,
                         data_bus.reg_B,
