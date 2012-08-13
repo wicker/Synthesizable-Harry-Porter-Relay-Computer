@@ -10,18 +10,18 @@ interface Addr_Bus();
 
   wire [ADDR_BUS_WIDTH-1:0] addr;
 
-  modport reg_M     (output addr_wire, input clock);
+  modport reg_M     (output addr, input clock);
 
-  modport reg_XY    (inout addr_wire, input clock);
+  modport reg_XY    (inout addr, input clock);
 
-  modport reg_J     (output addr_wire, input clock);
+  modport reg_J     (output addr, input clock);
 
-  modport reg_PC    (inout addr_wire, input clock);
+  modport reg_PC    (inout addr, input clock);
 
-  modport reg_INC   (output addr_wire, input clock);
+  modport reg_INC   (output addr, input clock);
 
-  modport 16_INC    (input addr_wire, input clock);
+  modport INC16     (input addr, input clock);
 
-  modport mem       (input addr_wire, input clock);
+  modport mem       (input addr, input clock);
 
 endinterface

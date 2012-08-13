@@ -4,12 +4,12 @@
  * License: MIT http://opensource.org/licenses/MIT 
 */
 
-module nBitRegister(input N, load, sel, inout .content(data));
+module nBitRegister(input N, load, sel, [N-1:0] content);
 
    parameter NUM_REG = N;
    
    assign hold = !load;
-   assign val = data;
+   assign val = content;
 
    genvar i;
 
