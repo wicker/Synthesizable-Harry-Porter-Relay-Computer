@@ -42,7 +42,7 @@ module test_system ();
 
   InstructionDecoder decoder (control, testbitA, testbitB);
 
-  RegA reg_A (control);
+  RegA reg_A (control.reg_A);
   RegB reg_B (control);
 
 endmodule
