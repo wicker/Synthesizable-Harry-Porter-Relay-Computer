@@ -4,15 +4,11 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-interface addr_bus(input logic clock, inout logic [ADDR_BUS_WIDTH-1:0] address);
+interface Addr_Bus();
 
   parameter ADDR_BUS_WIDTH = 8;
 
-  wire [ADDR_BUS_WIDTH-1:0] addr_wire;
-
-  logic [ADDR_BUS_WIDTH-1:0] addr;
-
-  assign addr_wire = address;
+  wire [ADDR_BUS_WIDTH-1:0] addr;
 
   modport reg_M     (output addr_wire, input clock);
 
