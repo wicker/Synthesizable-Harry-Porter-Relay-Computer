@@ -6,23 +6,26 @@
 */
 
 module Reg_B (Ctrl_Bus control,
-                   LED_Bus led,
-                   Data_Bus data_bus);
+              LED_Bus led,
+              Data_Bus data_bus);
 
   parameter N = 8;
 
-  wire logic [N-1:0] content;
+  logic [N-1:0] content;
+  logic load, sel;
 
   assign load = control.ldB;
   assign sel = control.selB;
 
-  assign led.load_led = load;
-  assign led.sel = sel;
+  assign led.ldB = load;
+  assign led.selB = sel;
 
-  if (load)
-     content = data_bus.data;
-  else if (sel) 
-     alu_input = content;
+  always begin
+    if (load)
+      content = data_bus.data;
+    else if (sel) 
+      alu_input = content;
+  end
 
   nBitRegister nBitsRegB (N, load, sel, content);
 
