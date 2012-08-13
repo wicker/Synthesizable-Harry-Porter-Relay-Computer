@@ -9,7 +9,7 @@ interface LED_Bus();
   wire inst0_led, inst1_led, inst2_led, inst3_led,
        inst4_led, inst5_led, inst6_led, inst7_led;
 
-  wire fsm_out;
+  wire fsm_out, inst_out;
 
   wire pA_led, pB_led, pC_led, pD_led, pE_led, pF_led, pG_led,
        pH_led, pI_led, pJ_led, pK_led, pL_led, pM_led, pN_led,

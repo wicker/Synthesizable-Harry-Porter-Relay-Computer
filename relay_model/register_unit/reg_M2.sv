@@ -10,9 +10,8 @@ module Reg_M2 (Ctrl_Bus control,
                Data_Bus data_bus,
                output logic [8-1:0] M2_content);
 
-  parameter N = 16;
+  parameter N = 8;
 
-  logic [N-1:0] M2_content;
   logic load, sel;
 
   assign load = control.ldM2;
@@ -23,9 +22,9 @@ module Reg_M2 (Ctrl_Bus control,
 
   always begin
     if (load) 
-      content_M2 = data_bus.data;
+      M2_content = data_bus.data;
     else if (sel)
-      data_bus.address = content_M2;
+      data_bus.address = M2_content;
   end
 
   nBitRegister nBitsReg_M2 (N, load, sel, content_M2);

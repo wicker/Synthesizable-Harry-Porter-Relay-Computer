@@ -10,28 +10,28 @@ interface Data_Bus();
 
   wire [DATA_BUS_WIDTH-1:0] data;
 
-  modport reg_A     (inout data_wire);
+  modport reg_A     (inout data);
 
-  modport reg_B     (inout data_wire);
+  modport reg_B     (inout data);
 
-  modport reg_C     (inout data_wire);
+  modport reg_C     (inout data);
 
-  modport reg_D     (inout data_wire);
+  modport reg_D     (inout data);
 
-  modport reg_M1    (inout data_wire);
+  modport reg_M1    (inout data);
 
-  modport reg_M2    (inout data_wire);
+  modport reg_M2    (inout data);
 
-  modport reg_X     (inout data_wire);
+  modport reg_X     (inout data);
 
-  modport reg_Y     (inout data_wire);
+  modport reg_Y     (inout data);
 
-  modport reg_J1    (input data_wire);
+  modport reg_J1    (input data);
 
-  modport reg_J2    (input data_wire);
+  modport reg_J2    (input data);
 
-  modport reg_INST  (input data_wire);
+  modport reg_INST  (input data);
 
-  modport memory    (inout data_wire);
+  modport memory    (inout data);
 
 endinterface

@@ -10,13 +10,13 @@ module RelayComputer (clock, V);
   // Interfaces
   //
 
-  Ctrl_Bus control     ();
+  Ctrl_Bus control   ();
 
-  Data_Bus control     ();
+  Data_Bus data_bus  ();
 
-  Addr_Bus control     ();
+  Addr_Bus addr_bus  ();
 
-  LED_Bus control      ();
+  LED_Bus led        ();
 
   //
   // Register Unit

@@ -10,9 +10,8 @@ module Reg_Y (Ctrl_Bus control,
                Data_Bus data_bus,
                output logic [8-1:0] Y_content);
 
-  parameter N = 16;
+  parameter N = 8;
 
-  logic [N-1:0] Y_content;
   logic load, sel;
 
   assign load = control.ldY;

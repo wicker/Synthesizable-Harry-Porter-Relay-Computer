@@ -24,7 +24,7 @@ module Reg_PC (Ctrl_Bus control,
     if (load)
       content = addr_bus;
     else if (sel) 
-      addrbus = content;
+      addr_bus = content;
   end
 
   nBitRegister nBitsReg_PC (N, load, sel, content);
