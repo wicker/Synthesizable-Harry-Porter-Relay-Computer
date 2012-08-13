@@ -15,20 +15,23 @@
 
 module test_system ();
 
-  logic clock, testbit;
+  logic clock, testbitA, testbitB;
   logic load, sel;
   int count;
 
   initial begin
-    testbit = 0;
+    testbitA = 0;
+    testbitB = 1;
     clock = 0;
     forever #1 clock = ~clock;
   end
 
   always @(posedge clock) begin
     if (count < 10) begin
-      $display("bit: %b, decoder.testbit: %b, control.ldA: %b,reg_A.load: %b",testbit,decoder.testbit,control.ldA,reg_A.load);
-      testbit = ~testbit;
+      $display("bitA: %b, bitB: %b, decoder.testbitA: %b, decoder.testbitB: %b",testbitA, testbitB, decoder.testbitA, decoder.testbitB);
+      $display("reg_A.load: %b,reg_B.load: %b, control.ldA: %b, control.ldB: %b",reg_A.load,reg_B.load,control.ldA,control.ldB);
+      testbitA = ~testbitA;
+      testbitB = ~testbitB;
       count++;
     end
     else 
@@ -37,28 +40,39 @@ module test_system ();
 
   ControlBus control ();
 
-  InstructionDecoder decoder (control, testbit);
+  InstructionDecoder decoder (control, testbitA, testbitB);
 
-  Reg_Type_ALU_Result reg_A (control);
+  RegA reg_A (control);
+  RegB reg_B (control);
 
 endmodule
 
 interface ControlBus();
 
-  wire ldA, selA;
+  wire ldA, selA, ldB, selB;
 
 endinterface
 
-module InstructionDecoder (ControlBus control, input logic testbit);
+module InstructionDecoder (ControlBus control, input logic testbitA, testbitB);
 
-  assign control.ldA = testbit;
+  assign control.ldA = testbitA;
+  assign control.ldB = testbitB;
 
 endmodule
 
-module Reg_Type_ALU_Result (ControlBus control);
+module RegA (ControlBus control);
 
   logic load, sel;
   assign load = control.ldA;
   assign sel = control.selA;
 
 endmodule
+
+module RegB (ControlBus control);
+
+  logic load, sel;
+  assign load = control.ldB;
+  assign sel = control.selB;
+
+endmodule
+
