@@ -16,27 +16,24 @@
 	logic [14:0][7:0] memory;
 	logic [14:0] address;
 	logic [7:0] data;
-	logic loadMemComplete = 0;
 		
-		assign buses.dataBusPins = (control_signals.WriteMempin) ? data : 'z;
-	
-	always@(posedge loadMem)
-	begin
-		memory = initial_memory;
-		loadMemComplete = 1;
-	end
+		assign buses.dataBusPins = (control_signals.MemWritepin) ? data : 'z;
 	
 	always_comb
 	begin
 		address = buses.addressBusPins[14:0];
-		if(control_signals.ReadMempin)
-		begin
-			data = memory[address][7:0];
-		end
-		else if(control_signals.WriteMempin)
-		begin
-			memory[address][7:0] = data;
-		end
+	if(loadMem)
+	begin
+		memory = initial_memory;
+	end
+	else if(control_signals.MemReadpin)
+	begin
+		data = memory[address][7:0];
+	end
+	else if(control_signals.MemWritepin)
+	begin
+		memory[address][7:0] = data;
+	end
 	end
  
  endmodule

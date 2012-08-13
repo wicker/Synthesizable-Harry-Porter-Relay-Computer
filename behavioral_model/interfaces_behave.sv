@@ -72,7 +72,7 @@
  endinterface
  
  interface controlSignals();
-  logic zero, carry, sign = 0;
+  logic zero, carry, sign;
 	wire zeropin, carrypin, signpin;
   
 	logic   LdA,
@@ -185,10 +185,11 @@
 								input LdDpin, input SelDpin,
 								input LdM1pin, input SelM1pin,
 								input LdM2pin, input SelM2pin,
+								input SelMpin,
 								input LdXpin, input SelXpin,
 								input LdYpin, input SelYpin,
 								input LdXYpin, input SelXYpin );
-	modport progromControlPort (input LdJ1pin, 
+	modport programControlPort (input LdJ1pin, 
 								input LdJ2pin, input SelJpin,
 								input LdInstpin,
 								input LdPCpin, input SelPCpin,

@@ -5,9 +5,8 @@ MODE ?= puresim
 #MODE ?= veloce
 
 VLOG = \
-       hdl/top.sv \
-       hdl/Harry_Porters_relay_comp_behave.sv \
 	   hdl/interfaces_behave.sv \
+	   hdl/state_definitions_behave.sv \
 	   hdl/sequencer_behave.sv \
 	   hdl/output_struct_package.sv \
 	   hdl/fsm_behave.sv \
@@ -15,7 +14,9 @@ VLOG = \
 	   hdl/register_unit_behave.sv \
 	   hdl/alu_behave.sv \
 	   hdl/program_control_unit_behave.sv \
-	   hdl/decode_logic_behave.sv
+	   hdl/decode_logic_behave.sv \
+	   hdl/top.sv \
+       hdl/Harry_Porters_relay_comp_behave.sv 
        
 SVLOG = \
         hvl/testbench.sv
