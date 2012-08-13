@@ -17,7 +17,6 @@ module Reg_J (Ctrl_Bus control,
 
   assign sel = control.selJ;
 
-  assign led.ldJ = load;
   assign led.selJ = sel;
 
   assign content = {J1_content,J2_content};
@@ -25,6 +24,8 @@ module Reg_J (Ctrl_Bus control,
   always begin
     if (sel) 
       addr_bus.address = content;
+    if (load)
+      $warning("J already has continuous assign from J1 and J2");
   end
 
   nBitRegister nBitsReg_J (N, load, sel, content);

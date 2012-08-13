@@ -25,7 +25,7 @@ module Reg_M2 (Ctrl_Bus control,
     if (load) 
       content_M2 = data_bus.data;
     else if (sel)
-      addr_bus.address = content_M2;
+      data_bus.address = content_M2;
   end
 
   nBitRegister nBitsReg_M2 (N, load, sel, content_M2);

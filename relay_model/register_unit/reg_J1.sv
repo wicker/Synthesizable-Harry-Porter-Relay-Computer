@@ -16,16 +16,12 @@ module Reg_J1 (Ctrl_Bus control,
   logic load, sel;
 
   assign load = control.ldJ1;
-  assign sel = control.selJ1;
 
   assign led.ldJ1 = load;
-  assign led.selJ1 = sel;
 
   always begin
     if (load) 
       J1_content = data.
-    else if (sel)
-      addr_bus.address = J1_content;
   end
 
   nBitRegister nBitsReg_J1 (N, load, sel, J1_content);
