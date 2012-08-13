@@ -3,14 +3,15 @@ module top; // top dut
 
 	import output_struct_package::*;
 	
-	output_struct from_comp;
 	
-	output_struct all_output[];
+	output_struct all_output[5000];
 
 //
 // clock for module
 //
 
+    logic loadMemComplete;
+    reg transaction_complete = 0;
     reg clock = 1;
     // tbx clkgen
     initial begin
@@ -25,7 +26,6 @@ module top; // top dut
 //
 //	clock for transactions
 //	
-	reg transaction_complete = 0;
 	reg transaction_clock =1;
 	initial begin
 		transaction_clock = 0;
@@ -40,13 +40,16 @@ module top; // top dut
 // - The DUT is nothing but pipeline of registers that is 1024 deep
 //   and 8 bit wide.
 //
+	output_struct from_comp;
+	wire [($bits(output_struct)-1):0] returned_from_comp;
 	logic loadMem = 0;
-	logic loadMemComplete = 0;
 	logic [14:0][7:0] initial_memory; // filled by transaction
-	Harry_Porter_Comp Relay_Comp(clock, loadMem, initial_memory, from_comp, loadMemComplete);
+	Harry_Porter_Comp #($bits(output_struct)) Relay_Comp(clock, loadMem, initial_memory, returned_from_comp, loadMemComplete);
+	
+	assign from_comp = returned_from_comp;
 
 	// give stimulus to DUT and start computer
-	@(posedge transaction_complete)
+	always @(posedge transaction_complete)
 	begin
 		loadMem = 1; 
 		// when the memory is loaded into the computer loadMemComplete will be asserted and 
@@ -58,7 +61,7 @@ module top; // top dut
 	always_comb
 	begin
 		all_output[i] = from_comp;
-		i = i+1;
+		i <= i+1;
 	end
 	
     scemi_input_pipe #( .BYTES_PER_ELEMENT(1),
@@ -72,16 +75,16 @@ module top; // top dut
 // It stops once it receives end of message(eom) .
 //
 
-    bit eom = 0;
     bit [7:0] data;
 	int input_count = 0;
 
     always @(posedge transaction_clock)
     begin
-        if(!eom)
+	static bit eom = 0;
+	if(eom != 0)
         begin
           inputpipe.receive(1,data,eom);
-          initial_memory[i] <= data; 
+          initial_memory[input_count] <= data; 
         end
 		else
 		begin
@@ -105,18 +108,19 @@ module top; // top dut
                        )  outputpipe();
 
     output_struct tosend;
-
     always @(posedge transaction_clock) 
     begin
+	int output_returned;
         if(from_comp.Halt && transaction_complete)
         begin
-		foreach(output_returned in all_ouput)
+		foreach(all_output[output_returned])
 		begin
 			tosend = output_returned;
-            outputpipe.send(1,to_send);
+            outputpipe.send(1,tosend);
+                end
         end
         outputpipe.flush();
-        end
+        
     end
         
     
