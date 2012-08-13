@@ -20,7 +20,7 @@ module Reg_J1 (Ctrl_Bus control,
 
   always begin
     if (load) 
-      J1_content = data.
+      J1_content = data_bus.data;
   end
 
   nBitRegister nBitsReg_J1 (N, load, sel, J1_content);
