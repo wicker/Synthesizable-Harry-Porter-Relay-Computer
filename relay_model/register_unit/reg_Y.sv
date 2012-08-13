@@ -1,18 +1,18 @@
 /* Author: Jenner Hanni
  * Project: Harry Porter Relay Computer
  * File: Register type for address bus access
- * Address bus inout, ctrl bus in, J1 and J2 in
+ * Address bus inout, ctrl bus in, Y out
  * License: MIT http://opensource.org/licenses/MIT
 */
 
 module Reg_Y (Ctrl_Bus control, 
                LED_Bus led, 
                Data_Bus data_bus,
-               output logic [8-1:0] content);
+               output logic [8-1:0] Y_content);
 
   parameter N = 16;
 
-  logic [N-1:0] content;
+  logic [N-1:0] Y_content;
   logic load, sel;
 
   assign load = control.ldY;
@@ -23,11 +23,11 @@ module Reg_Y (Ctrl_Bus control,
 
   always begin
     if (load) 
-      content = data_bus.data;
+      Y_content = data_bus.data;
     else if (sel)
-      addr_bus.address = content;
+      addr_bus.address = Y_content;
   end
 
-  nBitRegister nBitsReg_Y (N, load, sel, content);
+  nBitRegister nBitsReg_Y (N, load, sel, Y_content);
 
 endmodule
