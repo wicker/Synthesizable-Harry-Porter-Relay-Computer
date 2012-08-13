@@ -23,7 +23,7 @@ interface Ctrl_Bus();
 
   modport reg_D (input ldD, selD);
 
-  modport reg_INST (input ldINST, selINST);
+  modport reg_INST (input ldINST);
 
   modport reg_M1 (input ldM1, selM1);
 

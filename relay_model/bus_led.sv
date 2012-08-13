@@ -4,7 +4,25 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-interface led_bus();
+interface LED_Bus();
+
+  wire inst0_led, inst1_led, inst2_led, inst3_led,
+       inst4_led, inst5_led, inst6_led, inst7_led;
+
+  wire fsm_out;
+
+  wire pA_led, pB_led, pC_led, pD_led, pE_led, pF_led, pG_led,
+       pH_led, pI_led, pJ_led, pK_led, pL_led, pM_led, pN_led,
+       pO_led, pQ_led, pR_led, pS_led, pT_led;
+
+  wire ldY, ldX, ldM2, ldM1, ldD, ldC,ldB, ldA, ldXY, 
+       ldCCR, ldJ1, ldJ2, ldINST, ldPC, ldINC,
+       selPC, sel_J, selINC, selM, selXY, selA, selB, 
+       selC, selD, selM1, selM2, selX, selY;
+
+  wire bus_to_mem, mem_write, mem_read; 
+
+  wire f1,f2,f3;
 
   assign inst0_led = inst_out[0];
   assign inst1_led = inst_out[1];
@@ -35,79 +53,38 @@ interface led_bus();
   assign pS_led = fsm_out[1];
   assign pT_led = fsm_out[0];
 
-  assign ld_Y_led = reg_Y.load;
-  assign ld_X_led = reg_X.load;
-  assign ld_M2_led = reg_M2.load;
-  assign ld_M1_led = reg_M1.load;
-  assign ld_D_led = reg_D.load;
-  assign ld_C_led = reg_C.load;
-  assign ld_B_led = reg_B.load;
-  assign ld_A_led = reg_A.load;
-  assign ld_XY_led = reg_XY.load;
-  assign ld_CCR_led = reg_CCR.load;
-  assign bus_to_mem_led = memory.bus_to_mem;
-  assign mem_write_led = memory.mem_write;
-  assign mem_read_led = memory.mem_read;
-  assign ld_J1_led = reg_J1.load;
-  assign ld_J2_led = reg_J2.load;
-  assign sel_J_led = reg_J2.sel;
-  assign ld_INST_led = reg_INST.load;
-  assign ld_PC_led = reg_PC.load;
-  assign sel_PC_led = reg_PC.sel;
-  assign sel_INC_led = reg_INC.sel;
-  assign ld_INC_led = reg_INC.load;
-  assign f1_led = alu.f1;
-  assign f2_led = alu.f2;
-  assign f3_led = alu.f3;
-  assign sel_M_led = reg_M.sel;
-  assign sel_XY_led = reg_XY.sel;
-  assign sel_A_led = reg_A.sel;
-  assign sel_B_led = reg_B.sel;
-  assign sel_C_led = reg_C.sel;
-  assign sel_D_led = reg_D.sel;
-  assign sel_M1_led = reg_M1.sel;
-  assign sel_M2_led = reg_M2.sel;
-  assign sel_X_led = reg_X.sel;
-  assign sel_Y_led = reg_Y.sel;
-  
-  modport sequencer (input wire fsm_out);
+  modport reg_A (output ldA, selA);
 
-  modport reg_A     (input wire load, sel);  
+  modport reg_B (output ldB, selB);
 
-  modport reg_B     (input wire load, sel);
+  modport reg_C (output ldC, selC);
 
-  modport reg_C     (input wire load, sel);
+  modport reg_D (output ldD, selD);
 
-  modport reg_D     (input wire load, sel);
+  modport reg_INST (output ldINST);
 
-  modport reg_M1    (input wire load, sel);
+  modport reg_M1 (output ldM1, selM1);
 
-  modport reg_M2    (input wire load, sel);  
+  modport reg_M2 (output ldM2, selM2);
 
-  modport reg_M     (input wire load, sel);
+  modport reg_M (output ldM, selM);
+
+  modport reg_X (output ldX, selX);
+
+  modport reg_Y (output ldY, selY);
+
+  modport reg_XY (output ldXY, selXY);
+
+  modport reg_J1 (output ldJ1);
+
+  modport reg_J2 (output ldJ2);
+
+  modport reg_J (output selJ);
+
+  modport reg_PC (output ldPC, selPC);
+
+  modport reg_INC (output ldINC, selINC);
+
+  modport reg_CCR (output ldCCR);
  
-  modport reg_X     (input wire load, sel);
- 
-  modport reg_Y     (input wire load, sel);
-
-  modport reg_XY    (input wire load, sel);
-
-  modport reg_J1    (input wire load, sel);
-
-  modport reg_J2    (input wire load, sel);
-
-  modport reg_J     (input wire load, sel);
-
-  modport reg_INST  (input wire [7:0] inst_out, load, sel);
-
-  modport reg_PC    (input wire load, sel);
-
-  modport reg_INC   (input wire load, sel);
-
-  modport alu       (input wire f1, f2, f3);
-
-  modport reg_CCR   (input wire ccr_out);
-
-  modport memory    (input wire bus_to_mem, mem_read, mem_write);
-
 endinterface
