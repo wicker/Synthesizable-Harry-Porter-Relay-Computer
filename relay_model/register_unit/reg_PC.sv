@@ -22,9 +22,9 @@ module Reg_PC (Ctrl_Bus control,
 
   always begin
     if (load)
-      content = addr_bus;
+      content = addr_bus.address;
     else if (sel) 
-      addr_bus = content;
+      addr_bus.address = content;
   end
 
   nBitRegister nBitsReg_PC (N, load, sel, content);

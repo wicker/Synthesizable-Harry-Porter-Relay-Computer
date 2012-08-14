@@ -7,9 +7,13 @@
 
 module Reg_B (Ctrl_Bus control,
               LED_Bus led,
-              Data_Bus data_bus);
+              Data_Bus data_bus,
+              output wire [7:0] b);
 
   parameter N = 8;
+
+  logic [7:0] b_var;
+  assign b = b_var;
 
   logic [N-1:0] content;
   logic load, sel;
@@ -24,7 +28,7 @@ module Reg_B (Ctrl_Bus control,
     if (load)
       content = data_bus.data;
     else if (sel) 
-      alu_input = content;
+      b_var = content;
   end
 
   nBitRegister nBitsRegB (N, load, sel, content);
