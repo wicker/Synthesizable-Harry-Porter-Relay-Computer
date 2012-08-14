@@ -12,7 +12,7 @@
   */
   
  module Sequencer_Behave(	input clock, 
-							input logic [7:0] instruction_reg,
+							interface program_control, //input logic [7:0] instruction_reg,
 							interface buses,
 							interface control_signals);
 						
@@ -20,6 +20,6 @@
 			
 	// instantiate the fsm and the decode logic units
 	Fsm_Behave fsm(clock, control_signals.fsmInputpins, fsmOutput);
-	Decode_Logic_Behave decoder(fsmOutput, instruction_reg, buses, control_signals);
+	Decode_Logic_Behave decoder(fsmOutput, program_control, buses, control_signals);
 			
  endmodule

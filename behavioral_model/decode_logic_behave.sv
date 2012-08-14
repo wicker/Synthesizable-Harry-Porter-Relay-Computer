@@ -10,7 +10,7 @@
   */
   
 	module Decode_Logic_Behave (input logic [23:0] input_from_fsm,
-								input logic [7:0] inst_reg_value,
+								interface program_control, //input logic [7:0] inst_reg_value,
 								interface buses,
 								interface control_signals);
 
@@ -25,6 +25,8 @@
 	parameter HALT = 8'b10101110;
 	parameter RETURN_BRANCH = 8'b10101010;
 	parameter GOTO = 2'b11;
+	
+	logic [7:0] inst_reg_value = program_control.Instpins;
 	
 	logic [1:0] inst_reg_msb2;
 	logic [3:0] inst_reg_msb4;
@@ -47,8 +49,8 @@
 	
 	logic [7:0] data;	
 	
-	assign buses.dataBusPins = (((inst_reg_msb2 == SETAB) && (state_4 | state_5 | state_6)) ||
-					((inst_reg_value == HALT) && (state_8)))? data : 'z;
+	assign buses.dataBusPins = (((inst_reg_msb2 === SETAB) && (state_4 | state_5 | state_6)) ||
+					((inst_reg_value === HALT) && (state_8)))? data : 'z;
 	
 	
 	enum logic[2:0] {A, B, C, D, M1, M2, X, Y} RegisterToMove;
@@ -88,11 +90,20 @@
 	unique case(input_from_fsm)
 		// First 3 states are always the same set of control signals
 		state_1:
+		begin
+		  $display("in decode state 1: inst = %h", inst_reg_value);
 			{control_signals.SelPC, control_signals.MemRead} = 2'b11;
+		end
 		state_2:
-			{control_signals.LdInst, control_signals.LdINC} = 2'b11;
+		begin
+			control_signals.LdInst = 1'b1;
+			control_signals.LdINC = 1'b1;
+		end
 		state_3:
-			{control_signals.LdInst, control_signals.LdINC} = 2'b00;
+		begin
+			control_signals.LdInst = 1'b0;
+			control_signals.LdINC = 1'b0;
+		end
 		state_4: // instruction decode logic begins here
 			begin
 			  {control_signals.SelPC, control_signals.MemRead} = 2'b00;
@@ -114,6 +125,7 @@
 					control_signals.fsmInput = {inst_reg_msb2, 2'b00};
 				else
 					control_signals.fsmInput = inst_reg_msb4;
+				$display("state 4 triggered inst reg %h", inst_reg_value);
 			end
 		state_5:
 			begin
@@ -254,23 +266,17 @@
 							Mbit:
 							begin
 							control_signals.SelM = 1;
-							  case(PC_or_XY)
-							   PC:
-							     control_signals.LdPC = 1;
-							   XY:
-							     control_signals.LdXY = 1;
-							  endcase
 							end
 							Jbit:
 							begin
 							control_signals.SelJ = 1;
-								case(PC_or_XY)
+							end
+							endcase
+							case(PC_or_XY)
 							   PC:
 							     control_signals.LdPC = 1;
 							   XY:
 							     control_signals.LdXY = 1;
-							  endcase
-							end
 							endcase
 						end
 					endcase
@@ -313,26 +319,12 @@
 						end
 					default: // regular mov_16
 						begin
-							case (M_or_J_bit)
-							Mbit:
-							begin
 								case(PC_or_XY)
 							   PC:
 							     control_signals.LdPC = 0;
 							   XY:
 							     control_signals.LdXY = 0;
 							  endcase
-							end
-							Jbit:
-							begin
-								case(PC_or_XY)
-							   PC:
-							     control_signals.LdPC = 0;
-							   XY:
-							     control_signals.LdXY = 0;
-							  endcase
-							end
-							endcase
 						end
 					endcase
 				end 
@@ -469,6 +461,8 @@
 			control_signals.LdPC = 0;
 		state_24:
 			control_signals.SelJ = 0;
+		default:
+		  $display("In initialization Run");
 		
 	endcase
 	end

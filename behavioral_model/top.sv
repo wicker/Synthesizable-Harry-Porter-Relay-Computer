@@ -11,19 +11,18 @@ module top; // top dut
 //
 
     logic loadMemComplete;
-    reg transaction_complete = 0;
+    reg transaction_complete = 1;
     reg clock = 1;
     // tbx clkgen
     initial begin
       clock = 0;
       forever #5
-	  begin
-	  if(from_comp.Halt !== 1 && transaction_complete && loadMemComplete)
+	    if(loadMemComplete == 1)
         clock = ~clock;
-	  end
     end
+      
 
-//
+/*
 //	clock for transactions
 //	
 	reg transaction_clock =1;
@@ -34,7 +33,7 @@ module top; // top dut
 		if(!transaction_complete)
 			transaction_clock = ~transaction_clock;
 		end
-	end
+	end*/
 // 
 // DUT instantiation
 // - The DUT is nothing but pipeline of registers that is 1024 deep
@@ -48,23 +47,46 @@ module top; // top dut
 	
 	assign from_comp = returned_from_comp;
 
-	// give stimulus to DUT and start computer
+	/* give stimulus to DUT and start computer
 	always @(posedge transaction_complete)
 	begin
 		loadMem = 1; 
 		// when the memory is loaded into the computer loadMemComplete will be asserted and 
 		// the clock that drives the Dut will be activated until a Halt command is reached
+	end */
+	initial begin
+	  $monitor($time, " %b" ,clock);
+	  end
+	initial begin
+	  initial_memory[0] = 8'b01000010; // Load 2 into A
+		initial_memory[1] = 8'b01100011; // Load 3 into B
+		initial_memory[2] = 8'b00000010; // Mov A to C
+		initial_memory[3] = 8'b10000000; // ALU ADD into A
+		initial_memory[4] = 8'b10101110; // Halt execution
+		
+		loadMem = 1;
+		
+		#2 $display( " %p ", initial_memory);
+		#2 $display(" %p ", Relay_Comp.mem.memory);
+		#1 loadMem = 0;
+		
+//		#5000 $display("%p", all_output);
+
+#500		$stop;
+		
 	end
+	
 	
 	//receive output data into output_struct array 
 	int i = 0;
-	always_comb
+	always @(from_comp)
 	begin
 		all_output[i] = from_comp;
+		$display(" %p" , all_output[i]);
 		i <= i+1;
 	end
 	
-    scemi_input_pipe #( .BYTES_PER_ELEMENT(1),
+ /*   scemi_input_pipe #( .BYTES_PER_ELEMENT(1),
                         .PAYLOAD_MAX_ELEMENTS(1),
                         .BUFFER_MAX_ELEMENTS(35000)
                       )  inputpipe();
@@ -76,6 +98,7 @@ module top; // top dut
 //
 
     bit [7:0] data;
+    reg [7:0] ne_valid = 0;
 	int input_count = 0;
 
     always @(posedge transaction_clock)
@@ -83,7 +106,7 @@ module top; // top dut
 	static bit eom = 0;
 	if(eom != 0)
         begin
-          inputpipe.receive(1,data,eom);
+          inputpipe.receive(1,ne_valid,data,eom);
           initial_memory[input_count] <= data; 
         end
 		else
@@ -116,12 +139,12 @@ module top; // top dut
 		foreach(all_output[output_returned])
 		begin
 			tosend = output_returned;
-            outputpipe.send(1,tosend);
+            outputpipe.send(1,tosend,1);
                 end
         end
         outputpipe.flush();
         
     end
         
-    
+    */
 endmodule

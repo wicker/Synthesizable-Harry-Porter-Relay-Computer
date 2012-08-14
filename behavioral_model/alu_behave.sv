@@ -7,7 +7,7 @@
  module Alu_Behave (  input logic [7:0] b, 
                       input logic [7:0] c,
                       input logic [2:0] function_code,
-                      output wire [7:0] send_on_data_bus,
+                      interface bus,
                       output logic sign,
                       output logic carry,
                       output logic zero);
@@ -23,9 +23,9 @@
 						NOP = 3'b111 } ALU_FUNCTIONS;
 	logic [7:0] result;
 	
-		assign send_on_data_bus = (function_code == NOP) ? 'z: result;
+		assign bus.dataBusPins = (function_code === NOP || function_code === 'x) ? 'z : result;
   
-  always_comb
+  always @(function_code)
   begin
     unique case(function_code)
       ADD: result = b + c;

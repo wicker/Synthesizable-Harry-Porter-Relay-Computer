@@ -11,7 +11,7 @@
   * line is high, and so on...
   */
  `ifndef INCLUDE_STATE_DEF
-	`include "hdl/state_definitions_behave.sv"
+	`include "state_definitions_behave.sv"
 	`define INCLUDE_STATE_DEF
 `endif 
   module Fsm_Behave(input clock, input logic [3:0] instruction_bits, output logic [23:0] outputState);

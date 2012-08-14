@@ -19,18 +19,25 @@
 	assign outcome = output_signals;
 	
 	//instantiate modules
-	Sequencer_Behave sequenceUnit(clock, PCI.Instpins, Buses, control_signals);
-	memory mem(initial_memory, loadMem, control_signals.memoryPort, Buses, loadMemComplete);
-	Alu_Behave alu(registers.Bpins, registers.Cpins, control_signals.AluFunctionCode, Buses.dataBusPins, 
+	Sequencer_Behave sequenceUnit(.clock(clock), 
+	                             .program_control(PCI.decoder_inst_port), 
+	                             .buses(Buses.Buses), 
+	                             .control_signals(control_signals.sequencerPort));
+	memory mem(.initial_memory(initial_memory), 
+	           .loadMem(loadMem), 
+	           .control_signals(control_signals.memoryPort),
+	           .buses(Buses.Memory),
+	            .loadMemComplete(loadMemComplete));
+	Alu_Behave alu(registers.Bpins, registers.Cpins, control_signals.AluFunctionCode, Buses.DataBus, 
 					control_signals.sign, control_signals.carry, control_signals.zero);
-	registerUnit regUnit(Buses, control_signals.registerUnitPort, registers);
-	programControlUnit PCU(.buses(Buses), .control_signals(control_signals), .PCsigs(PCI));	
+	registerUnit regUnit(.buses(Buses.Buses), .control_signals(control_signals.registerUnitPort), .registers(registers));
+	programControlUnit PCU(.buses(Buses.Buses), .control_signals(control_signals.programControlPort), .PCsigs(PCI));	
 				
 	always_comb
 	begin	
 		output_signals.addressBus = Buses.addressBusPins;
 		output_signals.dataBus = Buses.dataBusPins;
-		output_signals.fsm_state = sequenceUnit.fsm.fsmOutput;
+		output_signals.fsm_state = sequenceUnit.fsm.outputState;
 		output_signals.instruction_reg = PCI.Instpins;
 		output_signals.LdA = control_signals.LdApin;
 		output_signals.LdB = control_signals.LdBpin;
