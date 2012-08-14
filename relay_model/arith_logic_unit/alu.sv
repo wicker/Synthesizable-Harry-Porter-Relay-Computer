@@ -6,33 +6,34 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module alu (output wire logic zero, sign, carry, [7:0] alu_result,
-            input logic [7:0] b, c, [2:0] fctn_code);
+module ALU (input wire V, input logic [7:0] b, c, [2:0] fctn_code,
+            output wire zero, sign, carry, [7:0] alu_result);
 
-  logic [7:0] result, // result is for the internal result bus
-              adder_out, logic_out;  // 8-bit operation results
+  logic [7:0] result, op_code;
+  logic [7:0] adder_out, AND_out, OR_out, XOR_out, NOT_out, SHL_out;
 
-  logic enAdd, enINC, enAND, enOR, enXOR, enNOT, enSHL;
-  logic [7:0] op_code;
+  //
+  // Modules
+  // 
 
-  ThreeToEightDecoder op_decoder (fctn_code, op_code);
+  ThreeToEightDecoder op_decoder (V, fctn_code, op_code);
 
-  EightBitAdderUnit adder_unit (b, c, adder_out, carry);
+  EightBitAdderUnit adder_unit (V, b, c, adder_out, carry);
 
-  EightBitLogicUnit logic_unit (b, c, logic_out);
+  EightBitLogicUnit logic_unit (V, b, c, AND_out, OR_out, XOR_out, NOT_out);
 
-  ShiftLeft shift_left (b, shl);
+  ShiftLeft shift_left (b, SHL_out);
 
-  Enable enable_add (op_code[0], line, bus);
-  Enable enable_inc (op_code[1], line, bus);
-  Enable enable_and (op_code[2], line, bus);
-  Enable enable_or  (op_code[3], line, bus);
-  Enable enable_xor (op_code[4], line, bus); 
-  Enable enable_not (op_code[5], line, bus); 
-  Enable enable_shl (op_code[6], line, bus); 
+  Enable enable_add (V, op_code[0], adder_out, result);
+  Enable enable_inc (V, op_code[1], adder_out, result);
+  Enable enable_and (V, op_code[2], AND_out, result);
+  Enable enable_or  (V, op_code[3], OR_out, result);
+  Enable enable_xor (V, op_code[4], XOR_out, result); 
+  Enable enable_not (V, op_code[5], NOT_out, result); 
+  Enable enable_shl (V, op_code[6], SHL_out, result); 
 
-  ResultBus result_bus (result, alu_result);
+  assign alu_result = result; 
 
-  ZeroDetect zero_detector (result, zero);
+  ZeroDetect zero_detector (V, result, zero);
 
 endmodule

@@ -1,6 +1,7 @@
 /* Author: Maisee Brown
+ * Modified for relay model by Jenner Hanni
  * Project: Harry Porter Relay Computer 
- * File: memory_behave.sv
+ * File: memory_relay.sv
  * License: MIT http://opensource.org/licenses/MIT
  */
  
@@ -8,35 +9,37 @@
  
  module memory(	input logic [14:0][7:0] initial_memory, 
 				input logic loadMem,
-				interface control_signals,
-				interface buses,
-				output logic loadMemComplete);
+				Ctrl_Bus control,
+				Data_Bus data_bus,
+				Addr_Bus addr_buss,
+                                output logic loadMemComplete);
  
-	// Although there are 16 bits of address the top bit is ignored because only 15 bits are used to access 32k
+	// Although there are 16 bits of address the top bit is ignored 
+        // because only 15 bits are used to access 32k
 	logic [14:0][7:0] memory;
 	logic [14:0] address;
 	logic [7:0] data;
 
-//	logic loadMemComplete = 0;
+ 	// logic loadMemComplete = 0;
 		
-		assign buses.dataBusPins = (control_signals.WriteMempin) ? data : 'z;
-	
-	always@(posedge loadMem)
-	begin
-		memory = initial_memory;
-		loadMemComplete = 1;
-	end
+ 	assign buses.dataBusPins = (control_signals.WriteMempin) ? data : 'z;
 	
 	always_comb
 	begin
-		address = buses.addressBusPins[14:0];
-		if(control_signals.ReadMempin)
-		begin
-			data = memory[address][7:0];
+                if (loadMem) begin
+			memory = initial_memory;
+			loadMemComplete = 1;
 		end
-		else if(control_signals.WriteMempin)
-		begin
-			memory[address][7:0] = data;
+                else begin 
+			address = addr.address[14:0];
+			if(control.read_mem)
+			begin
+				data = memory[address][7:0];
+			end
+			else if(control.writemem)
+			begin
+				memory[address][7:0] = data;
+			end
 		end
 	end
  
