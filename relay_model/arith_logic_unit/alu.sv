@@ -12,6 +12,9 @@ module alu (output wire logic zero, sign, carry, [7:0] alu_result,
   logic [7:0] result, // result is for the internal result bus
               adder_out, logic_out;  // 8-bit operation results
 
+  logic enAdd, enINC, enAND, enOR, enXOR, enNOT, enSHL;
+  logic [7:0] op_code;
+
   ThreeToEightDecoder op_decoder (fctn_code, op_code);
 
   EightBitAdderUnit adder_unit (b, c, adder_out, carry);
@@ -20,13 +23,13 @@ module alu (output wire logic zero, sign, carry, [7:0] alu_result,
 
   ShiftLeft shift_left (b, shl);
 
-  Enable enable_add (control, line, bus);
-  Enable enable_inc (control, line, bus);
-  Enable enable_and (control, line, bus);
-  Enable enable_or  (control, line, bus);
-  Enable enable_xor (control, line, bus); 
-  Enable enable_not (control, line, bus); 
-  Enable enable_shl (control, line, bus); 
+  Enable enable_add (op_code[0], line, bus);
+  Enable enable_inc (op_code[1], line, bus);
+  Enable enable_and (op_code[2], line, bus);
+  Enable enable_or  (op_code[3], line, bus);
+  Enable enable_xor (op_code[4], line, bus); 
+  Enable enable_not (op_code[5], line, bus); 
+  Enable enable_shl (op_code[6], line, bus); 
 
   ResultBus result_bus (result, alu_result);
 
