@@ -28,6 +28,6 @@ module Reg_D (input logic [8-1:0] alu_result,
      data_bus.data = content;
   end
 
-  nBitRegister nBitsRegD (N, load, sel, content);
+  EightBitRegister EightBitsRegB (load, sel, content);
 
 endmodule

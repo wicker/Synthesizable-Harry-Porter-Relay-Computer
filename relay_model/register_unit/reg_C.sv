@@ -31,6 +31,6 @@ module Reg_C (Ctrl_Bus control,
       c_var = content;
   end
 
-  nBitRegister nBitsRegC (N, load, sel, content);
+  EightBitRegister EightBitsRegB (load, sel, content);
 
 endmodule

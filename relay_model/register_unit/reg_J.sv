@@ -28,6 +28,6 @@ module Reg_J (Ctrl_Bus control,
       $warning("J already has continuous assign from J1 and J2");
   end
 
-  nBitRegister nBitsReg_J (N, load, sel, content);
+  SixteenBitRegister SixteenBitsRegB (load, sel, content);
 
 endmodule

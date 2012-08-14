@@ -27,6 +27,6 @@ module Reg_X (Ctrl_Bus control,
       addr_bus.address = X_content;
   end
 
-  nBitRegister nBitsReg_X (N, load, sel, X_content);
+  EightBitRegister EightBitsRegB (load, sel, content);
 
 endmodule

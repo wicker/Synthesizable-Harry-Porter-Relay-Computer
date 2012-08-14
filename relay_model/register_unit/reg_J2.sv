@@ -23,6 +23,6 @@ module Reg_J2 (Ctrl_Bus control,
       J2_content = data_bus.data;
   end
 
-  nBitRegister nBitsReg_J2 (N, load, sel, J2_content);
+  EightBitRegister EightBitsRegB (load, sel, content);
 
 endmodule

@@ -27,6 +27,6 @@ module Reg_PC (Ctrl_Bus control,
       addr_bus.address = content;
   end
 
-  nBitRegister nBitsReg_PC (N, load, sel, content);
+  SixteenBitRegister SixteenBitsRegB (load, sel, content);
 
 endmodule

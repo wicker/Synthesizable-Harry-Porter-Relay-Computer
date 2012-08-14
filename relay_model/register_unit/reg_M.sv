@@ -30,6 +30,6 @@ module Reg_M (Ctrl_Bus control,
       addr_bus.address = content;
   end
 
-  nBitRegister nBitsReg_M (N, load, sel, content);
+  SixteenBitRegister SixteenBitsRegB (load, sel, content);
 
 endmodule

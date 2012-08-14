@@ -23,6 +23,6 @@ module Reg_INST (Ctrl_Bus control,
       content = data_bus.data;
   end
 
-  nBitRegister nBitsReg_INST (N, load, sel, content);
+  EightBitRegister EightBitsRegB (load, sel, content);
 
 endmodule
