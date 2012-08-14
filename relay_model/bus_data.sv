@@ -34,4 +34,6 @@ interface Data_Bus();
 
   modport memory    (inout data);
 
+  modport reg_CCR   (input data);
+
 endinterface

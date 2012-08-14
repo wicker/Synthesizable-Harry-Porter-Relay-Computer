@@ -5,29 +5,29 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module Reg_A (Ctrl_Bus control,
-              Data_Bus data_bus,
-              LED_Bus led,
-              input logic [8-1:0] alu_result);
+module Reg_CCR (Data_Bus data_bus,
+                Ctrl_Bus control,
+                LED_Bus led,
+                input logic carry, zero,
+                output wire ccr);
 
-  parameter N = 8;
+  parameter N = 3;
 
   logic [N-1:0] content;
   logic load, sel;
 
   assign load = control.ldA;
-  assign sel = control.selA;
 
   assign led.ldA = load;
   assign led.selA = sel;
 
+  assign ccr = content;
+
   always begin
     if (load)
-     content = alu_result;
-    else if (sel) 
-     data_bus.data = content;
+     content = {carry, data_bus.data[7], zero};
   end
 
-  EightBitRegister EightBitsRegA (load, sel, content);
+  ThreeBitRegister ThreeBitsCCR (load, sel, content);
 
 endmodule

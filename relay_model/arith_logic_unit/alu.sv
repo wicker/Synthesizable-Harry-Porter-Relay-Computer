@@ -7,7 +7,7 @@
 */
 
 module ALU (input wire V, input logic [7:0] b, c, [2:0] fctn_code,
-            output wire zero, sign, carry, [7:0] alu_result);
+            output wire zero, carry, [7:0] alu_result);
 
   logic [7:0] result, op_code;
   logic [7:0] adder_out, AND_out, OR_out, XOR_out, NOT_out, SHL_out;

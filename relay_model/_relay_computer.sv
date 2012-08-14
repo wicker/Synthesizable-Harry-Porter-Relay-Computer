@@ -4,6 +4,43 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
+`include "arith_logic_unit/3to8.sv"
+`include "arith_logic_unit/adder_block.sv"
+`include "arith_logic_unit/adder_unit.sv"
+`include "arith_logic_unit/alu.sv"
+`include "arith_logic_unit/logic_unit.sv"
+`include "arith_logic_unit/shleft.sv"
+`include "arith_logic_unit/zero_detect.sv"
+`include "bus_ctrl.sv"
+`include "bus_addr.sv"
+`include "bus_led.sv"
+`include "bus_data.sv"
+`include "enable.sv"
+`include "program_control_unit/sixteen-increment.sv"
+`include "register_unit/reg_A.sv"
+`include "register_unit/reg_B.sv"
+`include "register_unit/reg_C.sv"
+`include "register_unit/reg_D.sv"
+`include "register_unit/reg_M1.sv"
+`include "register_unit/reg_M2.sv"
+`include "register_unit/reg_M.sv"
+`include "register_unit/reg_J1.sv"
+`include "register_unit/reg_J2.sv"
+`include "register_unit/reg_J.sv"
+`include "register_unit/reg_X.sv"
+`include "register_unit/reg_Y.sv"
+`include "register_unit/reg_XY.sv"
+`include "register_unit/reg_PC.sv"
+`include "register_unit/reg_INC.sv"
+`include "register_unit/reg_INST.sv"
+`include "register_unit/eight_bit_register.sv" 
+`include "register_unit/sixteen_bit_register.sv"
+`include "register_unit/three_bit_register.sv"
+`include "sequencer_unit/fsa.sv"
+`include "sequencer_unit/instruction_decoder.sv"
+`include "memory.sv"
+`include "register_unit/reg_CCR.sv"
+ 
 module RelayComputer (input logic clock, V);
 
   // 
@@ -18,9 +55,9 @@ module RelayComputer (input logic clock, V);
 
   Ctrl_Bus control   ();
 
-  Data_Bus data_bus  ();
+  Data_Bus Data_Bus  ();
 
-  Addr_Bus addr_bus  ();
+  Addr_Bus Addr_Bus  ();
 
   LED_Bus led        ();
 
@@ -28,107 +65,106 @@ module RelayComputer (input logic clock, V);
   // Register Unit
   //
 
-  Reg_ALU_Result reg_A (alu_result,
-                        ctrl_bus.ldA, ctrl_bus.selA,
-                        data_bus.data, led_bus.ldA, led_bus.selA);
+  Reg_A reg_A          (Ctrl_Bus.reg_A,
+                        Data_Bus.reg_A, LED_Bus.reg_A, alu_result);
 
-  Reg_ALU_BC reg_B     (ctrl_bus.reg_B,
-                        data_bus.reg_B,
-                        led_bus.reg_B,
+  Reg_B reg_B          (Ctrl_Bus.reg_B,
+                        Data_Bus.reg_B,
+                        LED_Bus.reg_B,
                         b);
 
-  Reg_ALU_BC reg_C     (ctrl_bus.reg_C,
-                        data_bus.reg_C,
-                        led_bus.reg_C,
+  Reg_C reg_C          (Ctrl_Bus.reg_C,
+                        Data_Bus.reg_C,
+                        LED_Bus.reg_C,
                         c);
 
-  Reg_ALU_Result reg_D (ctrl_bus.reg_D,
-                        data_bus.reg_D,
-                        led_bus.reg_D,
+  Reg_D reg_D          (Ctrl_Bus.reg_D,
+                        Data_Bus.reg_D,
+                        LED_Bus.reg_D,
                         alu_result);
 
-  Reg_Data reg_M1      (ctrl_bus.reg_M1,
-                        led_bus.reg_M1,
-                        data_bus.reg_M1,
+  Reg_M1 reg_M1      (Ctrl_Bus.reg_M1,
+                        LED_Bus.reg_M1,
+                        Data_Bus.reg_M1,
                         M1_content);
 
-  Reg_Data reg_M2      (ctrl_bus.reg_M2,
-                        led_bus.reg_M2,
-                        data_bus.reg_M2,
+  Reg_M2 reg_M2      (Ctrl_Bus.reg_M2,
+                        LED_Bus.reg_M2,
+                        Data_Bus.reg_M2,
                         M2_content);
 
-  Reg_Addr reg_M       (ctrl_bus.reg_M,
-                        led_bus.reg_M,
-                        addr_bus.reg_M,
+  Reg_M reg_M       (Ctrl_Bus.reg_M,
+                        LED_Bus.reg_M,
+                        Addr_Bus.reg_M,
                         M1_content, M2_content);
 
-  Reg_Data reg_X       (ctrl_bus.reg_X,
-                        led_bus.reg_X,
-                        data_bus.reg_X,
+  Reg_X reg_X       (Ctrl_Bus.reg_X,
+                        LED_Bus.reg_X,
+                        Data_Bus.reg_X,
                         X_content);
 
-  Reg_Data reg_Y       (ctrl_bus.reg_Y,
-                        led_bus.reg_Y,
-                        data_bus.reg_Y,
+  Reg_Y reg_Y       (Ctrl_Bus.reg_Y,
+                        LED_Bus.reg_Y,
+                        Data_Bus.reg_Y,
                         Y_content);
 
-  Reg_Addr reg_XY      (ctrl_bus.reg_XY,
-                        led_bus.reg_XY,
-                        addr_bus.reg_XY,
+  Reg_XY reg_XY      (Ctrl_Bus.reg_XY,
+                        LED_Bus.reg_XY,
+                        Addr_Bus.reg_XY,
                         X_content, Y_content);
 
   //
   // Program Control Unit
   //
 
-  Reg_Data reg_J1    (ctrl_bus.reg_J1,
-                      led_bus.reg_J1,
-                      data_bus.reg_J1,
+  Reg_J1 reg_J1    (Ctrl_Bus.reg_J1,
+                      LED_Bus.reg_J1,
+                      Data_Bus.reg_J1,
                       J1_reg);
 
-  Reg_Data reg_J2    (ctrl_bus.reg_J1,
-                      led_bus.reg_J2,
-                      data_bus.reg_J2,
+  Reg_J2 reg_J2    (Ctrl_Bus.reg_J1,
+                      LED_Bus.reg_J2,
+                      Data_Bus.reg_J2,
                       J2_reg);
 
-  Reg_Addr reg_J     (ctrl_bus.reg_J,
-                      led_bus.reg_J,
-                      addr_bus.reg_J,
+  Reg_J reg_J     (Ctrl_Bus.reg_J,
+                      LED_Bus.reg_J,
+                      Addr_Bus.reg_J,
                       J_reg);
 
-  Reg_Data reg_INST  (ctrl_bus.reg_INST,
-                      led_bus.reg_INST,
-                      data_bus.reg_INST,
+  Reg_INST reg_INST  (Ctrl_Bus.reg_INST,
+                      LED_Bus.reg_INST,
+                      Data_Bus.reg_INST,
                       inst_out);
 
-  Reg_Addr reg_PC    (ctrl_bus.reg_PC,
-                      led_bus.reg_PC,
-                      addr_bus.reg_PC);
+  Reg_PC reg_PC    (Ctrl_Bus.reg_PC,
+                      LED_Bus.reg_PC,
+                      Addr_Bus.reg_PC);
 
   Reg_CCR reg_CCR    (zero, carry, sign, ccr_out);
 
-  Reg_INC_Result reg_INC (ctrl_bus.reg_INC,
-                          led_bus.reg_INC,
-                          addr_bus.reg_INC,
+  Reg_INC reg_INC (Ctrl_Bus.reg_INC,
+                          LED_Bus.reg_INC,
+                          Addr_Bus.reg_INC,
                           inc_result);
 
-  SixteenBitInc INC16 (addr_bus.INC16,
-                        led_bus.INC16,
+  SixteenBitInc INC16 (Addr_Bus.INC16,
+                        LED_Bus.INC16,
                         inc_result);
   //
   // ALU 
   //
 
-  ALU alu (led_bus.alu, data_bus.alu);
+  ALU alu (LED_Bus.alu, Data_Bus.alu);
 
   //
   // Sequencer Unit
   //
 
-  FSA sequencer (led_bus.sequencer, clock, V, reset, fsm_out);
+  FSA sequencer (LED_Bus.sequencer, clock, V, reset, fsm_out);
 
-  InstructionDecoder decoder (fsm_out, ccr_out, inst_out, ctrl_bus.decoder, led_bus.decoder);
+  InstructionDecoder decoder (fsm_out, ccr_out, inst_out, Ctrl_Bus.decoder, LED_Bus.decoder);
 
-  Memory mem_unit (addr_bus.memory, data_bus.memory, led_bus.memory);
+  Memory mem_unit (Addr_Bus.memory, data_bus.memory, LED_Bus.memory);
 
 endmodule

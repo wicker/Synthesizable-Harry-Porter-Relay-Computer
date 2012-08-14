@@ -5,10 +5,10 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module Reg_D (input logic [8-1:0] alu_result, 
-              Ctrl_Bus control,
+module Reg_D (Ctrl_Bus control,
+              Data_Bus data_bus,
               LED_Bus led,
-              Data_Bus data_bus);
+              input logic [8-1:0] alu_result);
 
   parameter N = 8;
 

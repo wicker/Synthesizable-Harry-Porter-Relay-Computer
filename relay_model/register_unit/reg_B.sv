@@ -6,8 +6,8 @@
 */
 
 module Reg_B (Ctrl_Bus control,
-              LED_Bus led,
               Data_Bus data_bus,
+              LED_Bus led,
               output wire [7:0] b);
 
   parameter N = 8;

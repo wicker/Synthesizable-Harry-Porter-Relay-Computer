@@ -7,7 +7,7 @@
  
  // Model of the 32kbyte memory used in Harry Porter's Relay Computer
  
- module memory(	input logic [14:0][7:0] initial_memory, 
+ module Memory (input logic [14:0][7:0] initial_memory, 
 				input logic loadMem,
 				Ctrl_Bus control,
 				Data_Bus data_bus,
