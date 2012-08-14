@@ -16,7 +16,8 @@
 	logic [14:0][7:0] memory;
 	logic [14:0] address;
 	logic [7:0] data;
-	logic loadMemComplete = 0;
+
+//	logic loadMemComplete = 0;
 		
 		assign buses.dataBusPins = (control_signals.WriteMempin) ? data : 'z;
 	

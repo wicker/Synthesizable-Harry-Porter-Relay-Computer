@@ -6,9 +6,8 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module alu (output wire logic [7:0] alu_result);
-
-  
+module alu (output wire logic zero, sign, carry, [7:0] alu_result,
+            input logic [7:0] b, c, [2:0] fctn_code);
 
   logic [7:0] result, // result is for the internal result bus
               adder_out, logic_out;  // 8-bit operation results

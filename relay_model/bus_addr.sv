@@ -8,20 +8,20 @@ interface Addr_Bus();
 
   parameter ADDR_BUS_WIDTH = 8;
 
-  wire [ADDR_BUS_WIDTH-1:0] addr;
+  wire [ADDR_BUS_WIDTH-1:0] address;
 
-  modport reg_M     (output addr, input clock);
+  modport reg_M     (output address);
 
-  modport reg_XY    (inout addr, input clock);
+  modport reg_XY    (inout address);
 
-  modport reg_J     (output addr, input clock);
+  modport reg_J     (output address);
 
-  modport reg_PC    (inout addr, input clock);
+  modport reg_PC    (inout address);
 
-  modport reg_INC   (output addr, input clock);
+  modport reg_INC   (output address);
 
-  modport INC16     (input addr, input clock);
+  modport INC16     (input address);
 
-  modport mem       (input addr, input clock);
+  modport mem       (input address);
 
 endinterface

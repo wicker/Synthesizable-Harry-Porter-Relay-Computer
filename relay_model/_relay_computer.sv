@@ -4,7 +4,13 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module RelayComputer (clock, V);
+module RelayComputer (input logic clock, V);
+
+  // 
+  // Clock Block 
+  // 
+
+  
 
   // 
   // Interfaces
@@ -125,3 +131,4 @@ module RelayComputer (clock, V);
 
   Memory mem_unit (addr_bus.memory, data_bus.memory, led_bus.memory);
 
+endmodule

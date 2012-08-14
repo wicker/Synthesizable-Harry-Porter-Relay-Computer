@@ -15,6 +15,11 @@ interface Ctrl_Bus();
 
   wire  bus_to_mem;
 
+  modport decoder (output ldA, ldB, ldC, ldD, ldINST, ldM1, ldM2, ldM,
+        ldX, ldY, ldXY, ldJ1, ldJ2, ldPC, ldINC, ldCCR, mem_write,
+        selA, selB, selC, selD, selM1, selM2, selM, bus_to_mem,
+        selX, selY, selXY, selJ, selPC, selINC, mem_read);
+
   modport reg_A (input ldA, selA);
 
   modport reg_B (input ldB, selB);

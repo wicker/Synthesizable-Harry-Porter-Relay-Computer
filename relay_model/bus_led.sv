@@ -9,15 +9,18 @@ interface LED_Bus();
   wire inst0_led, inst1_led, inst2_led, inst3_led,
        inst4_led, inst5_led, inst6_led, inst7_led;
 
-  wire fsm_out, inst_out;
+  wire [18:0] fsm_out;
+  wire [7:0] inst_out;
+
+  assign fsm_out_var = fsm_out;
 
   wire pA_led, pB_led, pC_led, pD_led, pE_led, pF_led, pG_led,
        pH_led, pI_led, pJ_led, pK_led, pL_led, pM_led, pN_led,
        pO_led, pQ_led, pR_led, pS_led, pT_led;
 
-  wire ldY, ldX, ldM2, ldM1, ldD, ldC,ldB, ldA, ldXY, 
+  wire ldY, ldX, ldM, ldM2, ldM1, ldD, ldC,ldB, ldA, ldXY, 
        ldCCR, ldJ1, ldJ2, ldINST, ldPC, ldINC,
-       selPC, sel_J, selINC, selM, selXY, selA, selB, 
+       selPC, selJ, selINC, selM, selXY, selA, selB, 
        selC, selD, selM1, selM2, selX, selY;
 
   wire bus_to_mem, mem_write, mem_read; 
@@ -61,7 +64,7 @@ interface LED_Bus();
 
   modport reg_D (output ldD, selD);
 
-  modport reg_INST (output ldINST);
+  modport reg_INST (output ldINST, inst_out);
 
   modport reg_M1 (output ldM1, selM1);
 

@@ -4,7 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module EightBitAdderUnit (input logic clock,logic [7:0] b, c, 
+module EightBitAdderUnit (input wire V, input logic [7:0] b, c, 
                           output logic [7:0] adder_out,
                           output logic carry);
 
@@ -43,36 +43,27 @@ module EightBitAdderUnit (input logic clock,logic [7:0] b, c,
   assign sum6_var = sum6;
   assign sum7_var = sum7;
 
-  wire c_in0;
-  wire c_in_n0;
+  wire c_in0, c_in_n0;
   wire c_out0, c_out1, c_out2, c_out3, c_out4, c_out5, c_out6, c_out7;
   wire c_out_n0, c_out_n1, c_out_n2, c_out_n3, c_out_n4, c_out_n5, c_out_n6, c_out_n7;
 
-  AdderBlock adderblock0 (.b_bit(b0), .c_bit(c0), .carry_in(c_in0), .carry_in_n(c_in_n0),
-                          .sum_bit(sum0), .carry_out(c_out0), .carry_out_n(c_out_n0));
+  AdderBlock adderblock0 (V, b0, c0, c_in0, c_in_n0, sum0, c_out0, c_out_n0);
 
-  AdderBlock adderblock1 (.b_bit(b1), .c_bit(c1), .carry_in(c_out0), .carry_in_n(c_out_n0),
-                          .sum_bit(sum1), .carry_out(c_out1), .carry_out_n(c_out_n1));
+  AdderBlock adderblock1 (V, b1, c1, c_out0, c_out_n0, sum1, c_out1, c_out_n1);
 
-  AdderBlock adderblock2 (.b_bit(b2), .c_bit(c2), .carry_in(c_out1), .carry_in_n(c_out_n1),
-                          .sum_bit(sum2), .carry_out(c_out2), .carry_out_n(c_out_n2));
+  AdderBlock adderblock2 (V, b2, c2, c_out1, c_out_n1, sum2, c_out2, c_out_n2);
 
-  AdderBlock adderblock3 (.b_bit(b3), .c_bit(c3), .carry_in(c_out2), .carry_in_n(c_out_n2),
-                          .sum_bit(sum3), .carry_out(c_out3), .carry_out_n(c_out_n3));
+  AdderBlock adderblock3 (V, b3, c3, c_out2, c_out_n2, sum3, c_out3, c_out_n3);
 
-  AdderBlock adderblock4 (.b_bit(b4), .c_bit(c4), .carry_in(c_out3), .carry_in_n(c_out_n3),
-                          .sum_bit(sum4), .carry_out(c_out4), .carry_out_n(c_out_n4));
+  AdderBlock adderblock4 (V, b4, c4, c_out3, c_out_n3, sum4, c_out4, c_out_n4);
 
-  AdderBlock adderblock5 (.b_bit(b5), .c_bit(c5), .carry_in(c_out4), .carry_in_n(c_out_n4),
-                          .sum_bit(sum5), .carry_out(c_out5), .carry_out_n(c_out_n5));
+  AdderBlock adderblock5 (V, b5, c5, c_out4, c_out_n4, sum5, c_out5, c_out_n5);
 
-  AdderBlock adderblock6 (.b_bit(b6), .c_bit(c6), .carry_in(c_out5), .carry_in_n(c_out_n5),
-                          .sum_bit(sum6), .carry_out(c_out6), .carry_out_n(c_out_n6));
+  AdderBlock adderblock6 (V, b6, c6, c_out5, c_out_n5, sum6, c_out6, c_out_n6);
 
-  AdderBlock adderblock7 (.b_bit(b7), .c_bit(c7), .carry_in(c_out6), .carry_in_n(c_out_n6),
-                          .sum_bit(sum7), .carry_out(c_out7), .carry_out_n(c_out_n7));
+  AdderBlock adderblock7 (V, b7, c7, c_out6, c_out_n6, sum7, c_out7, c_out_n7);
 
-  always @(clock) begin
+  always begin
     #1
     $display("b: %b, c: %b",b,c);
     $display("sum0: %b",sum0_var);

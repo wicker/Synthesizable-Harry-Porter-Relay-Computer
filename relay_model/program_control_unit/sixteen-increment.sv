@@ -7,7 +7,7 @@
 module SixteenBitIncrement (Addr_Bus address, 
                             output wire [16-1:0] INC16_out);
 
-  assign INC16_out = addr.address;
+  assign INC16_out = addr.address + 1;
 
 endmodule
 
