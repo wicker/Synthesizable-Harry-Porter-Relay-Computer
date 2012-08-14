@@ -23,7 +23,7 @@
 				PCsigs.Inst = buses.dataBusPins;
 			end
 		else if(control_signals.LdINCpin)
-				PCsigs.Inc = buses.addressBusPins + 1;
+				PCsigs.Inc = buses.addressBusPins;
 		else if(control_signals.LdPCpin)
 		  begin
 		    PCsigs.PC = buses.addressBusPins;

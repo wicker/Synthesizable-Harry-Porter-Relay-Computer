@@ -4,44 +4,16 @@
  * License: MIT http://opensource.org/licenses/MIT
  */
  
- // Package so state definitions can be in the unit scope so all modules
- // can access the inumerated definitions of the states.
- package state_definitions;
-   	// states and outputs of the fsm
-	typedef enum logic [23:0] { state_1 =	0'b000000000000000000000001,
-						state_2 = 	0'b000000000000000000000010,
-						state_3 = 	0'b000000000000000000000100,
-						state_4 = 	0'b000000000000000000001000,
-						state_5 = 	0'b000000000000000000010000,
-						state_6 = 	0'b000000000000000000100000,
-						state_7 = 	0'b000000000000000001000000,
-						state_8 = 	0'b000000000000000010000000,
-						state_9 = 	0'b000000000000000100000000,
-						state_10 = 	0'b000000000000001000000000,
-						state_11 =	0'b000000000000010000000000,
-						state_12 =	0'b000000000000100000000000,
-						state_13 =	0'b000000000001000000000000,
-						state_14 =	0'b000000000010000000000000,
-						state_15 =	0'b000000000100000000000000,
-						state_16 =	0'b000000001000000000000000,
-						state_17 =	0'b000000010000000000000000,
-						state_18 =	0'b000000100000000000000000,
-						state_19 =	0'b000001000000000000000000,
-						state_20 =	0'b000010000000000000000000,
-						state_21 =	0'b000100000000000000000000,
-						state_22 =	0'b001000000000000000000000,
-						state_23 =	0'b010000000000000000000000,
-						state_24 =	0'b100000000000000000000000} stateAndOutput_t;
-		endpackage
- 
- 
  /* This module is the behavior model of the finite state machine used in the sequencer
   * unit of Harry Porter's Relay computer. It takes four inputs from the decode logic to determine
   * how many states are necessary to complete the instruction. It outputs one bit high per state.
   * I.E. in the first state the first output line is high, in the second state the second output
   * line is high, and so on...
   */
-  
+ `ifndef INCLUDE_STATE_DEF
+	`include "state_definitions_behave.sv"
+	`define INCLUDE_STATE_DEF
+`endif 
   module Fsm_Behave(input clock, input logic [3:0] instruction_bits, output logic [23:0] outputState);
 	
 	import state_definitions::*;

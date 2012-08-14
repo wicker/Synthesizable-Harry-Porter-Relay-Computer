@@ -10,9 +10,12 @@
   */
   
 	module Decode_Logic_Behave (input logic [23:0] input_from_fsm,
-								input logic [7:0] inst_reg_value,
+								interface program_control, //input logic [7:0] inst_reg_value,
 								interface buses,
 								interface control_signals);
+
+	import state_definitions::*;
+	
 	parameter ALU = 4'b1000;
 	parameter MOV_8 = 2'b00;
 	parameter SETAB = 2'b01;
@@ -23,41 +26,31 @@
 	parameter RETURN_BRANCH = 8'b10101010;
 	parameter GOTO = 2'b11;
 	
-	wire [1:0] inst_reg_msb2;
-	wire [3:0] inst_reg_msb4;
-	wire [2:0] alu_function;
-	wire [2:0] movR1, movR2;
-	wire alu_reg_to_load;
-	wire [4:0] Immediate;
-	wire setab_reg_to_load;
-	wire load_or_store_bit;
-	wire [1:0] reg_to_load_or_store;
-	wire M_or_J_bit;
-	wire copy, z0, z1, cy, s;
-	wire GOTO_M_or_J;
-	wire Call_or_Goto;
-	wire PC_or_XY;
+	logic [7:0] inst_reg_value = program_control.Instpins;
 	
-	logic [7:0] data;
+	logic [1:0] inst_reg_msb2;
+	logic [3:0] inst_reg_msb4;
+	logic [2:0] alu_function;
+	logic [2:0] movR1;
+	logic [2:0] movR2;
+	logic alu_reg_to_load;
+	logic [4:0] Immediate;
+	logic setab_reg_to_load;
+	logic load_or_store_bit;
+	logic [1:0] reg_to_load_or_store;
+	logic M_or_J_bit;
+	logic z0;
+	logic z1;
+	logic cy;
+	logic s;
+	logic GOTO_M_or_J;
+	logic [2:0] Call_or_Goto;
+	logic PC_or_XY; 
 	
-	import state_definitions::*;
+	logic [7:0] data;	
 	
-	assign inst_reg_msb2 = inst_reg_value[7:6];
-	assign inst_reg_msb4 = inst_reg_value[7:4];
-	assign alu_function = inst_reg_value[2:0];
-	assign {movR1,movR2} = inst_reg_value[5:0];
-	assign alu_reg_to_load = inst_reg_value[3];
-	assign Immediate = inst_reg_value[4:0];
-	assign setab_reg_to_load = inst_reg_value[5];
-	assign buses.dataBusPins = (((inst_reg_msb2 == SETAB) && (state_4 | state_5 | state_6)) ||
-							((inst_reg_value == HALT) && (state_8)))? data : 'z;
-	assign load_or_store_bit = inst_reg_value[3];
-	assign reg_to_load_or_store = inst_reg_value[1:0];
-	assign M_or_J_bit = inst_reg_value[2];
-	assign {s, cy, z1, z0} = inst_reg_value[4:0];
-	assign GOTO_M_or_J = inst_reg_value[5];
-	assign Call_or_Goto = inst_reg_value[2:0];
-	assign PC_or_XY = inst_reg_value[3];
+	assign buses.dataBusPins = (((inst_reg_msb2 === SETAB) && (state_4 | state_5 | state_6)) ||
+					((inst_reg_value === HALT) && (state_8)))? data : 'z;
 	
 	
 	enum logic[2:0] {A, B, C, D, M1, M2, X, Y} RegisterToMove;
@@ -70,16 +63,47 @@
 	enum logic [2:0] { Call = 3'b111, Goto = 3'b110}CallOrGoto;
 	enum logic {PC, XY}PC_OR_XY_SEL;
 	
+	always @(inst_reg_value)
+	begin
+	inst_reg_msb2 = inst_reg_value[7:6];
+	inst_reg_msb4 = inst_reg_value[7:4];
+	alu_function = inst_reg_value[2:0];
+	movR1 = inst_reg_value[5:3];
+	movR2 = inst_reg_value[2:0];
+	alu_reg_to_load = inst_reg_value[3];
+	Immediate = inst_reg_value[4:0];
+	setab_reg_to_load = inst_reg_value[5];
+	load_or_store_bit = inst_reg_value[3];
+	reg_to_load_or_store = inst_reg_value[1:0];
+	M_or_J_bit = inst_reg_value[2];
+	z0 = inst_reg_value[0];
+	z1 = inst_reg_value[1];
+	cy = inst_reg_value[2];
+	s = inst_reg_value[3];
+	GOTO_M_or_J = inst_reg_value[5];
+	Call_or_Goto = inst_reg_value[2:0];
+	PC_or_XY = inst_reg_value[3];
+	end
+	
 	always_comb
 	begin
 	unique case(input_from_fsm)
 		// First 3 states are always the same set of control signals
 		state_1:
+		begin
+		  $display("in decode state 1: inst = %h", inst_reg_value);
 			{control_signals.SelPC, control_signals.MemRead} = 2'b11;
+		end
 		state_2:
-			{control_signals.LdInst, control_signals.LdINC} = 2'b11;
+		begin
+			control_signals.LdInst = 1'b1;
+			control_signals.LdINC = 1'b1;
+		end
 		state_3:
-			{control_signals.LdInst, control_signals.LdINC} = 2'b00;
+		begin
+			control_signals.LdInst = 1'b0;
+			control_signals.LdINC = 1'b0;
+		end
 		state_4: // instruction decode logic begins here
 			begin
 			  {control_signals.SelPC, control_signals.MemRead} = 2'b00;
@@ -101,6 +125,7 @@
 					control_signals.fsmInput = {inst_reg_msb2, 2'b00};
 				else
 					control_signals.fsmInput = inst_reg_msb4;
+				$display("state 4 triggered inst reg %h", inst_reg_value);
 			end
 		state_5:
 			begin
@@ -241,23 +266,17 @@
 							Mbit:
 							begin
 							control_signals.SelM = 1;
-							  case(PC_or_XY)
-							   PC:
-							     control_signals.LdPC = 1;
-							   XY:
-							     control_signals.LdXY = 1;
-							  endcase
 							end
 							Jbit:
 							begin
 							control_signals.SelJ = 1;
-								case(PC_or_XY)
+							end
+							endcase
+							case(PC_or_XY)
 							   PC:
 							     control_signals.LdPC = 1;
 							   XY:
 							     control_signals.LdXY = 1;
-							  endcase
-							end
 							endcase
 						end
 					endcase
@@ -300,26 +319,12 @@
 						end
 					default: // regular mov_16
 						begin
-							case (M_or_J_bit)
-							Mbit:
-							begin
 								case(PC_or_XY)
 							   PC:
 							     control_signals.LdPC = 0;
 							   XY:
 							     control_signals.LdXY = 0;
 							  endcase
-							end
-							Jbit:
-							begin
-								case(PC_or_XY)
-							   PC:
-							     control_signals.LdPC = 0;
-							   XY:
-							     control_signals.LdXY = 0;
-							  endcase
-							end
-							endcase
 						end
 					endcase
 				end 
@@ -456,6 +461,8 @@
 			control_signals.LdPC = 0;
 		state_24:
 			control_signals.SelJ = 0;
+		default:
+		  $display("In initialization Run");
 		
 	endcase
 	end

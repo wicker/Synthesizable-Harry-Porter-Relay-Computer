@@ -7,7 +7,7 @@
  module Alu_Behave (  input logic [7:0] b, 
                       input logic [7:0] c,
                       input logic [2:0] function_code,
-                      output wire [7:0] send_on_data_bus,
+                      interface bus,
                       output logic sign,
                       output logic carry,
                       output logic zero);
@@ -23,9 +23,9 @@
 						NOP = 3'b111 } ALU_FUNCTIONS;
 	logic [7:0] result;
 	
-		assign send_on_data_bus = (function_code == NOP) ? 'z: result;
+		assign bus.dataBusPins = (function_code === NOP || function_code === 'x) ? 'z : result;
   
-  always_comb
+  always @(function_code)
   begin
     unique case(function_code)
       ADD: result = b + c;
@@ -38,31 +38,32 @@
       NOP: ; // do nothing
     endcase
   
-  set_flags(b, c, result);
+  set_flags(b, c, result, carry, zero, sign);
   end
   
-  automatic function void set_flags(input [7:0] b, c, result);
-  
+  function automatic void set_flags(input logic [7:0] b, c, result, ref logic carry, zero, sign);
+    carry = 0;
+    zero = 0;
+    sign = 0;
     // set carry bit
     if(function_code == ADD)
       // carry out in add when operands have same sign and result has a different sign
      if(b[7] == c[7] && result[7] != b[7]) 
-        carry = 1;
+        carry = 1'b1;
       else
-        carry = 0;
+        carry = 1'b0;
         // carry out in inc when highest possible possitive number increments to -1 
     else if(function_code == INC)
+    begin
       if(b[7] == 0 && result[7] == 1)
-        carry = 1;
+        carry = 1'b1;
     else
-        carry = 0;
-    else
-      carry = 0;
-    
+        carry = 1'b0;
+    end
     if(result == 0)
-      zero = 1;
+      zero = 1'b1;
     else
-      zero = 0;
+      zero = 1'b0;
       
     sign = result[7];
   

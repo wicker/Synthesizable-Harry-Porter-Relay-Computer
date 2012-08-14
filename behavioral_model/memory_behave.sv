@@ -16,27 +16,27 @@
 	logic [14:0][7:0] memory;
 	logic [14:0] address;
 	logic [7:0] data;
-	logic loadMemComplete = 0;
 		
-		assign buses.dataBusPins = (control_signals.WriteMempin) ? data : 'z;
-	
-	always@(posedge loadMem)
-	begin
-		memory = initial_memory;
-		loadMemComplete = 1;
-	end
+		assign buses.dataBusPins = !(control_signals.MemReadpin === 1) ? 'z: data;
 	
 	always_comb
 	begin
 		address = buses.addressBusPins[14:0];
-		if(control_signals.ReadMempin)
-		begin
-			data = memory[address][7:0];
-		end
-		else if(control_signals.WriteMempin)
-		begin
-			memory[address][7:0] = data;
-		end
+  if(control_signals.MemReadpin === 1)
+	begin
+		data = memory[address][7:0];
+		$display( "Inside ReadMem data = %b memory[address] = %d address = %h",data, memory[address], address);
+		$display(" dataBusPins = %h" , buses.dataBusPins);
+		
 	end
- 
+	else if(control_signals.MemWritepin === 1)
+	begin
+		memory[address] = data;
+	end
+	else if(loadMem)
+	begin
+		memory = initial_memory;
+		loadMemComplete = 1;
+	end
+ end
  endmodule

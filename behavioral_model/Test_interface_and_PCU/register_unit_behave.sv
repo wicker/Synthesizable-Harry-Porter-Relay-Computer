@@ -21,43 +21,43 @@
 	
   always_comb
   begin
-	if(control_signals.LdApin === 1) 
+	if(control_signals.LdApin) 
 			registers.A = buses.dataBusPins;
-	else if(control_signals.LdBpin === 1)
+	if(control_signals.LdBpin)
 			registers.B = buses.dataBusPins;
-	else if(control_signals.LdCpin === 1)
+	if(control_signals.LdCpin)
 			registers.C = buses.dataBusPins;
-	else if(control_signals.LdDpin === 1)
+	if(control_signals.LdDpin)
 			registers.D = buses.dataBusPins;
-	else if(control_signals.LdM1pin === 1)
+	if(control_signals.LdM1pin)
 			registers.M1 = buses.dataBusPins;
-	else if(control_signals.LdM2pin === 1)
+	if(control_signals.LdM2pin)
 			registers.M2 = buses.dataBusPins;
-	else if(control_signals.LdXpin === 1)
+	if(control_signals.LdXpin)
 			registers.X = buses.dataBusPins;
-	else if(control_signals.LdYpin === 1)
+	if(control_signals.LdYpin)
 			registers.Y = buses.dataBusPins;
-	else if(control_signals.LdXYpin === 1)
+	if(control_signals.LdXYpin)
 			{registers.X, registers.Y} = buses.addressBusPins;
-	else if(control_signals.SelApin === 1)
+	if(control_signals.SelApin)
 			dataBus = registers.Apins;
-	else if(control_signals.SelBpin === 1)
+	if(control_signals.SelBpin)
 			dataBus = registers.Bpins;
-	else if(control_signals.SelCpin === 1)
+	if(control_signals.SelCpin)
 			dataBus = registers.Cpins;
-	else if(control_signals.SelDpin === 1)
+	if(control_signals.SelDpin)
 			dataBus = registers.Dpins;
-	else if(control_signals.SelM1pin === 1)
+	if(control_signals.SelM1pin)
 			dataBus = registers.M1pins;
-	else if(control_signals.SelM2pin === 1)
+	if(control_signals.SelM2pin)
 			dataBus = registers.M2pins;
-	else if(control_signals.SelXpin === 1)
+	if(control_signals.SelXpin)
 			dataBus = registers.Xpins;
-	else if(control_signals.SelYpin === 1)
+	if(control_signals.SelYpin)
 			dataBus = registers.Ypins;
-	else if(control_signals.SelMpin === 1)
+	if(control_signals.SelMpin)
 			addressBus = registers.Mpins;
-	else if(control_signals.SelXYpin === 1)
+	if(control_signals.SelXYpin)
 			addressBus = registers.XYpins;
 			
   end  

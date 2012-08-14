@@ -3,29 +3,28 @@ module top; // top dut
 
 	import output_struct_package::*;
 	
-	output_struct from_comp;
 	
-	output_struct all_output[];
+	output_struct all_output[5000];
 
 //
 // clock for module
 //
 
+    logic loadMemComplete;
+    reg transaction_complete = 1;
     reg clock = 1;
     // tbx clkgen
     initial begin
       clock = 0;
       forever #5
-	  begin
-	  if(from_comp.Halt !== 1 && transaction_complete && loadMemComplete)
+	    if(loadMemComplete == 1)
         clock = ~clock;
-	  end
     end
+      
 
-//
+/*
 //	clock for transactions
 //	
-	reg transaction_complete = 0;
 	reg transaction_clock =1;
 	initial begin
 		transaction_clock = 0;
@@ -34,34 +33,60 @@ module top; // top dut
 		if(!transaction_complete)
 			transaction_clock = ~transaction_clock;
 		end
-	end
+	end*/
 // 
 // DUT instantiation
 // - The DUT is nothing but pipeline of registers that is 1024 deep
 //   and 8 bit wide.
 //
+	output_struct from_comp;
+	wire [($bits(output_struct)-1):0] returned_from_comp;
 	logic loadMem = 0;
-	logic loadMemComplete = 0;
 	logic [14:0][7:0] initial_memory; // filled by transaction
-	Harry_Porter_Comp Relay_Comp(clock, loadMem, initial_memory, from_comp, loadMemComplete);
+	Harry_Porter_Comp #($bits(output_struct)) Relay_Comp(clock, loadMem, initial_memory, returned_from_comp, loadMemComplete);
+	
+	assign from_comp = returned_from_comp;
 
-	// give stimulus to DUT and start computer
-	@(posedge transaction_complete)
+	/* give stimulus to DUT and start computer
+	always @(posedge transaction_complete)
 	begin
 		loadMem = 1; 
 		// when the memory is loaded into the computer loadMemComplete will be asserted and 
 		// the clock that drives the Dut will be activated until a Halt command is reached
+	end */
+	initial begin
+	  $monitor($time, " %b" ,clock);
+	  end
+	initial begin
+	  initial_memory[0] = 8'b01000010; // Load 2 into A
+		initial_memory[1] = 8'b01100011; // Load 3 into B
+		initial_memory[2] = 8'b00000010; // Mov A to C
+		initial_memory[3] = 8'b10000000; // ALU ADD into A
+		initial_memory[4] = 8'b10101110; // Halt execution
+		
+		loadMem = 1;
+		
+		#2 $display( " %p ", initial_memory);
+		#2 $display(" %p ", Relay_Comp.mem.memory);
+		#1 loadMem = 0;
+		
+//		#5000 $display("%p", all_output);
+
+#500		$stop;
+		
 	end
+	
 	
 	//receive output data into output_struct array 
 	int i = 0;
-	always_comb
+	always @(from_comp)
 	begin
 		all_output[i] = from_comp;
-		i = i+1;
+		$display(" %p" , all_output[i]);
+		i <= i+1;
 	end
 	
-    scemi_input_pipe #( .BYTES_PER_ELEMENT(1),
+ /*   scemi_input_pipe #( .BYTES_PER_ELEMENT(1),
                         .PAYLOAD_MAX_ELEMENTS(1),
                         .BUFFER_MAX_ELEMENTS(35000)
                       )  inputpipe();
@@ -72,16 +97,17 @@ module top; // top dut
 // It stops once it receives end of message(eom) .
 //
 
-    bit eom = 0;
     bit [7:0] data;
+    reg [7:0] ne_valid = 0;
 	int input_count = 0;
 
     always @(posedge transaction_clock)
     begin
-        if(!eom)
+	static bit eom = 0;
+	if(eom != 0)
         begin
-          inputpipe.receive(1,data,eom);
-          initial_memory[i] <= data; 
+          inputpipe.receive(1,ne_valid,data,eom);
+          initial_memory[input_count] <= data; 
         end
 		else
 		begin
@@ -105,19 +131,20 @@ module top; // top dut
                        )  outputpipe();
 
     output_struct tosend;
-
     always @(posedge transaction_clock) 
     begin
+	int output_returned;
         if(from_comp.Halt && transaction_complete)
         begin
-		foreach(output_returned in all_ouput)
+		foreach(all_output[output_returned])
 		begin
 			tosend = output_returned;
-            outputpipe.send(1,to_send);
+            outputpipe.send(1,tosend,1);
+                end
         end
         outputpipe.flush();
-        end
+        
     end
         
-    
+    */
 endmodule

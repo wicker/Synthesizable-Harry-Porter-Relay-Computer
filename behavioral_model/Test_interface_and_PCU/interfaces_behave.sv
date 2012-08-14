@@ -8,13 +8,13 @@
 	wire [7:0] dataBusPins;
 	wire [15:0] addressBusPins;
 	
-	modport AddressBus (inout addressBusPins);
+	//modport AddressBus (inout addressBusPins);
 	
-	modport DataBus( output dataBusPins);
+	//modport DataBus( output dataBusPins);
 	
-	modport Buses( inout dataBusPins, inout addressBusPins);
+	modport Buses( input dataBusPins, inout addressBusPins);
 	
-	modport Memory(input addressBusPins, inout dataBusPins);
+	//modport Memory(input addressBusPins, inout dataBusPins);
 	
  endinterface
  

@@ -11,9 +11,9 @@
 			SelA, SelB, SelC, SelD, SelM1, SelM2, SelX, SelY, SelM, SelXY, SelJ, SelPC, 
 			SelInc, MemRead, MemWrite, Halt, carry, sign, zero;
 	logic [2:0] alu_function_code;
-	logic [23:0] fsm_state,
-	logic [7:0] instruction_reg,
-	logic [7:0] dataBus,
-	logic [15:0] addressBus} output_struct;
+	logic [23:0] fsm_state;
+	logic [7:0] instruction_reg;
+	logic [7:0] dataBus;
+	logic [15:0] addressBus;} output_struct;
  
  endpackage
