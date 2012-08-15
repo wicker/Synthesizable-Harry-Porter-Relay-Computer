@@ -24,7 +24,7 @@ module Reg_M2 (Ctrl_Bus control,
     if (load) 
       M2_content = data_bus.data;
     else if (sel)
-      data_bus.address = M2_content;
+      data_bus.data = M2_content;
   end
 
   EightBitRegister EightBitsRegB (load, sel, content);

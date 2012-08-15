@@ -22,6 +22,6 @@ interface Addr_Bus();
 
   modport INC16     (input address);
 
-  modport mem       (input address);
+  modport memory    (input address);
 
 endinterface

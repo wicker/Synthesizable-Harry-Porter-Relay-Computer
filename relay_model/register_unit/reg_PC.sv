@@ -14,7 +14,7 @@ module Reg_PC (Ctrl_Bus control,
   logic [N-1:0] content;
   logic load, sel;
 
-  assign load = control.loadPC;
+  assign load = control.ldPC;
   assign sel = control.selPC;
 
   assign led.ldPC = load;

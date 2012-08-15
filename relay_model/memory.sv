@@ -11,7 +11,8 @@
 				input logic loadMem,
 				Ctrl_Bus control,
 				Data_Bus data_bus,
-				Addr_Bus addr_buss,
+				Addr_Bus addr_bus,
+                                LED_Bus led,
                                 output logic loadMemComplete);
  
 	// Although there are 16 bits of address the top bit is ignored 
@@ -22,7 +23,7 @@
 
  	// logic loadMemComplete = 0;
 		
- 	assign buses.dataBusPins = (control_signals.WriteMempin) ? data : 'z;
+ 	assign data_bus.data = (control.mem_write) ? data : 'z;
 	
 	always_comb
 	begin
@@ -32,11 +33,11 @@
 		end
                 else begin 
 			address = addr.address[14:0];
-			if(control.read_mem)
+			if(control.mem_read)
 			begin
 				data = memory[address][7:0];
 			end
-			else if(control.writemem)
+			else if(control.mem_write)
 			begin
 				memory[address][7:0] = data;
 			end

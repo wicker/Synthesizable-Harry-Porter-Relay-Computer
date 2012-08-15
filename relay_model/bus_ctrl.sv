@@ -54,4 +54,6 @@ interface Ctrl_Bus();
 
   modport reg_CCR (input ldCCR);
 
+  modport memory (input mem_write, mem_read);
+
 endinterface

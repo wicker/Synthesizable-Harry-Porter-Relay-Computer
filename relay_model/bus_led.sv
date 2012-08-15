@@ -19,13 +19,13 @@ interface LED_Bus();
        pO_led, pQ_led, pR_led, pS_led, pT_led;
 
   wire ldY, ldX, ldM, ldM2, ldM1, ldD, ldC,ldB, ldA, ldXY, 
-       ldCCR, ldJ1, ldJ2, ldINST, ldPC, ldINC,
+       ldCCR, ldJ1, ldJ2, ldINST, ldPC, ldINC, ldINC16 ,
        selPC, selJ, selINC, selM, selXY, selA, selB, 
        selC, selD, selM1, selM2, selX, selY;
 
   wire bus_to_mem, mem_write, mem_read; 
 
-  wire f1,f2,f3;
+  wire fctn_code;
 
   assign inst0_led = inst_out[0];
   assign inst1_led = inst_out[1];
@@ -88,6 +88,14 @@ interface LED_Bus();
 
   modport reg_INC (output ldINC, selINC);
 
+  modport INC16 (output ldINC16);
+
   modport reg_CCR (output ldCCR);
+
+  modport alu (output fctn_code);
+
+  modport memory (output mem_read, mem_write);
+
+  modport decoder (output pA_led,pB_led,pC_led,pD_led,pE_led,pF_led,pG_led,pH_led,pI_led,pJ_led,pK_led,pL_led,pM_led,pN_led,pO_led,pQ_led,pR_led,pS_led,pT_led);
  
 endinterface

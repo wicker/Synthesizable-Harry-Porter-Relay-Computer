@@ -15,8 +15,8 @@ module Reg_M (Ctrl_Bus control,
   logic [N-1:0] content;
   logic load, sel;
 
-  assign load = control.loadM;
   assign sel = control.selM;
+  assign load = control.ldM;
 
   assign led.ldM = load;
   assign led.selM = sel;
