@@ -8,7 +8,7 @@
 module Reg_J (Ctrl_Bus control, 
               LED_Bus led, 
               Addr_Bus addr_bus,
-              input logic [8-1:0] J1_content, J2_content);
+              input logic [7:0] J1_content, J2_content);
 
   parameter N = 16;
 

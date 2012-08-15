@@ -5,11 +5,10 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module ZeroDetect (input logic [7:0] result, output logic zero);
+module ZeroDetect (input logic V, [7:0] result, output logic zero);
 
   wire f,g,h,i,j,k,l,m;
   wire r0,r1,r2,r3,r4,r5,r6,r7,zero_pin;
-  logic V = 1;
 
   assign r0 = result[0];
   assign r1 = result[1];
