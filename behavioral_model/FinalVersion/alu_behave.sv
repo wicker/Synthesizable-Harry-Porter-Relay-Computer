@@ -23,8 +23,8 @@
 						NOP = 3'b111 } ALU_FUNCTIONS;
 	logic [7:0] result;
 	
-		assign bus.dataBusPins = (function_code === 'z || function_code === 'x) ? 'z : result;
-  
+		assign bus.dataBusPins = (function_code === 3'bz || function_code === 3'bx) ? 'z : result;
+    //assign bus.dataBusPins = 'z;
   always @(function_code)
   begin
     unique case(function_code)
