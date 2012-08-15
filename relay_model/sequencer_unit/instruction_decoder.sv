@@ -22,9 +22,9 @@
  * unknown: f50
 */
 
-module InstructionDecoder ( Ctrl_Bus ctrl,
+module InstructionDecoder ( Ctrl_Bus ctrl, LED_Bus led,
                             input logic [7:0] inst_reg, 
-                                        [23:0] fsa_out, fsa_out_prime, [2:0] ccr);
+                                       [23:0] fsa_out, fsa_out_prime, [2:0] ccr);
 
   wire pA,pB,pC,pD,pE,pF,pG,pH,pI,pJ,pK,pL,pM,pN,pO,pQ,pR,pS,pT;
 

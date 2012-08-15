@@ -32,14 +32,14 @@
 			loadMemComplete = 1;
 		end
                 else begin 
-			address = addr.address[14:0];
+			addr_bus.address = address[14:0];
 			if(control.mem_read)
 			begin
-				data = memory[address][7:0];
+				data = memory[addr_bus.address][7:0];
 			end
 			else if(control.mem_write)
 			begin
-				memory[address][7:0] = data;
+				memory[addr_bus.address][7:0] = data;
 			end
 		end
 	end

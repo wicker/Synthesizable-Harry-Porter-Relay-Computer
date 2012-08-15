@@ -49,8 +49,6 @@ module RelayComputer (input logic clock, V, [14:0][7:0] initial_memory, loadMem,
 
   Ctrl_Bus control   ();
 
-  alias ctrl = control;
-
   Data_Bus data_bus  ();
 
   Addr_Bus addr_bus  ();
@@ -164,7 +162,7 @@ module RelayComputer (input logic clock, V, [14:0][7:0] initial_memory, loadMem,
 
   FSA sequencer (clock, V, reset, fsm_out);
 
-  InstructionDecoder decoder (fsm_out, ccr_out, inst_out, control.decoder, led.decoder);
+  InstructionDecoder decoder (control.decoder, led.decoder, inst_reg, fsa_out, fsa_out_prime, ccr);
 
   Memory memory (initial_memory, loadMem, control.memory, data_bus.memory, addr_bus.memory, led.memory, loadMemComplete);
 
