@@ -26,7 +26,7 @@
 	parameter RETURN_BRANCH = 8'b10101010;
 	parameter GOTO = 2'b11;
 	
-	logic [7:0] inst_reg_value = program_control.Instpins;
+	wire [7:0] inst_reg_value;
 	
 	logic [1:0] inst_reg_msb2;
 	logic [3:0] inst_reg_msb4;
@@ -47,10 +47,13 @@
 	logic [2:0] Call_or_Goto;
 	logic PC_or_XY; 
 	
-	logic [7:0] data;	
+	logic [7:0] data;
 	
-	assign buses.dataBusPins = (((inst_reg_msb2 === SETAB) && (state_4 | state_5 | state_6)) ||
-					((inst_reg_value === HALT) && (state_8)))? data : 'z;
+	assign inst_reg_value =  program_control.Instpins;	
+	
+	assign buses.dataBusPins = (((inst_reg_msb2 === SETAB) && (input_from_fsm == state_4 
+	 || input_from_fsm == state_5 || input_from_fsm == state_6)) ||
+					((inst_reg_value === HALT) && (input_from_fsm == state_8)))? data : 'z;
 	
 	
 	enum logic[2:0] {A, B, C, D, M1, M2, X, Y} RegisterToMove;
@@ -91,7 +94,6 @@
 		// First 3 states are always the same set of control signals
 		state_1:
 		begin
-		  $display("in decode state 1: inst = %h", inst_reg_value);
 			{control_signals.SelPC, control_signals.MemRead} = 2'b11;
 		end
 		state_2:
@@ -106,7 +108,8 @@
 		end
 		state_4: // instruction decode logic begins here
 			begin
-			  {control_signals.SelPC, control_signals.MemRead} = 2'b00;
+			  control_signals.SelPC = 1'b0;
+			  control_signals.MemRead = 1'b0;
 				if(inst_reg_msb4 == ALU) // ALU 
 					begin
 						control_signals.AluFunctionCode = alu_function;
@@ -125,7 +128,6 @@
 					control_signals.fsmInput = {inst_reg_msb2, 2'b00};
 				else
 					control_signals.fsmInput = inst_reg_msb4;
-				$display("state 4 triggered inst reg %h", inst_reg_value);
 			end
 		state_5:
 			begin
@@ -155,6 +157,7 @@
 				end
 				else if(inst_reg_msb4 == ALU) // ALU instruction
 				begin
+				  control_signals.LdCond = 1;
 					case(alu_reg_to_load)
 					AluLoadA:
 						control_signals.LdA = 1;
@@ -164,7 +167,6 @@
 				end
 				else if(inst_reg_msb2 == SETAB)
 				begin
-				control_signals.LdCond = 1;
 					case(setab_reg_to_load)
 					SetabLoadA:
 						control_signals.LdA = 1;
@@ -175,7 +177,6 @@
 			end
 		state_6:
 			begin
-				control_signals.LdPC = 0;
 				if(inst_reg_msb2 == '0) // Mov-8 instruction
 				begin
 					case(movR1)
@@ -211,6 +212,7 @@
 			begin
 				control_signals.AluFunctionCode = 'z;
 				control_signals.SelINC = 0;
+				control_signals.LdPC = 0;
 				if(inst_reg_msb2 == '0) // Mov-8 instruction
 				begin
 					case(movR2)
@@ -463,7 +465,7 @@
 			control_signals.SelJ = 0;
 		default:
 		  $display("In initialization Run");
-		
 	endcase
+	
 	end
 	endmodule
