@@ -20,9 +20,9 @@ module Reg_J2 (Ctrl_Bus control,
 
   always begin
     if (load) 
-      J2_content = data_bus.data;
+      J2_content <= data_bus.data;
   end
 
-  EightBitRegister EightBitsRegB (load, sel, content);
+  EightBitRegister EightBitsRegB (load, sel, J2_content);
 
 endmodule

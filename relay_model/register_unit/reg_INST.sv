@@ -7,7 +7,8 @@
 
 module Reg_INST (Ctrl_Bus control, 
                  LED_Bus led, 
-                 Data_Bus data_bus);
+                 Data_Bus data_bus,
+                 logic [7:0] inst_out);
 
   parameter N = 8;
 

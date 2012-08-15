@@ -8,7 +8,7 @@
 module Reg_INC (Ctrl_Bus control, 
                 LED_Bus led, 
                 Addr_Bus addr_bus,
-                input wire [16-1:0] INC16_out);
+                input wire [16-1:0] inc_result);
 
   parameter N = 16;
 
@@ -23,7 +23,7 @@ module Reg_INC (Ctrl_Bus control,
 
   always begin
     if (load)
-      content = INC16_out;
+      content = inc_result;
     if (sel) 
       addr_bus.address = content;
   end

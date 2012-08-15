@@ -8,7 +8,7 @@
 module Reg_J1 (Ctrl_Bus control, 
                LED_Bus led, 
                Data_Bus data_bus,
-               output logic [8-1:0] J1_content);
+               output logic [7:0] J1_content);
 
   parameter N = 8;
 
@@ -23,6 +23,6 @@ module Reg_J1 (Ctrl_Bus control,
       J1_content = data_bus.data;
   end
 
-  EightBitRegister EightBitsRegB (load, sel, content);
+  EightBitRegister EightBitsRegB (load, sel, J1_content);
 
 endmodule

@@ -43,6 +43,15 @@
  
 module RelayComputer (input logic clock, V, [14:0][7:0] initial_memory, loadMem, loadMemComplete);
 
+  wire [7:0] alu_result, b, c, inst_out,  
+       M1_content, M2_content, J1_content, J2_content, X_content, Y_content;
+
+  wire [23:0] fsm_out, fsm_out_prime;
+
+  wire carry, zero;
+
+  wire [15:0] inc_result, J_content, M_content, XY_content; 
+
   // 
   // Interfaces
   //
@@ -116,17 +125,18 @@ module RelayComputer (input logic clock, V, [14:0][7:0] initial_memory, loadMem,
   Reg_J1 reg_J1    (control.reg_J1,
                       led.reg_J1,
                       data_bus.reg_J1,
-                      J1_reg);
+                      J1_content);
 
   Reg_J2 reg_J2    (control.reg_J1,
                       led.reg_J2,
                       data_bus.reg_J2,
-                      J2_reg);
+                      J2_content);
 
   Reg_J reg_J     (control.reg_J,
                       led.reg_J,
                       addr_bus.reg_J,
-                      J_reg);
+                      J1_content,
+                      J2_content);
 
   Reg_INST reg_INST  (control.reg_INST,
                       led.reg_INST,
@@ -140,7 +150,7 @@ module RelayComputer (input logic clock, V, [14:0][7:0] initial_memory, loadMem,
   Reg_CCR reg_CCR    (data_bus.reg_CCR, 
                       control.reg_CCR, 
                       led.reg_CCR,
-                      carry, zero);
+                      carry, zero, ccr_out);
 
   Reg_INC reg_INC (control.reg_INC,
                           led.reg_INC,
@@ -154,13 +164,13 @@ module RelayComputer (input logic clock, V, [14:0][7:0] initial_memory, loadMem,
   // ALU 
   //
 
-  ALU alu (led.alu);
+  ALU alu (V, b, c, fctn_code, zero, carry, alu_result, led.alu);
 
   //
   // Sequencer Unit
   //
 
-  FSA sequencer (clock, V, reset, fsm_out);
+  FSA sequencer (clock, V, reset, fsm_out, fsm_out_prime);
 
   InstructionDecoder decoder (control.decoder, led.decoder, inst_reg, fsa_out, fsa_out_prime, ccr);
 

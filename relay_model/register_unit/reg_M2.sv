@@ -27,6 +27,6 @@ module Reg_M2 (Ctrl_Bus control,
       data_bus.data = M2_content;
   end
 
-  EightBitRegister EightBitsRegB (load, sel, content);
+  EightBitRegister EightBitsRegB (load, sel, M2_content);
 
 endmodule
