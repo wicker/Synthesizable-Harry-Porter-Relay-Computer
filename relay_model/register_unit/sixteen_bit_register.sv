@@ -4,9 +4,9 @@
  * License: MIT http://opensource.org/licenses/MIT 
 */
 
-module nBitRegister(input N, load, sel, [N-1:0] content);
+module SixteenBitRegister(input load, sel, [15:0] content);
 
-   parameter NUM_REG = N;
+   parameter NUM_REG = 16;
    
    assign hold = !load;
 

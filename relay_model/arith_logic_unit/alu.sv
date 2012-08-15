@@ -6,40 +6,34 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module alu (output wire logic [7:0] alu_result);
+module ALU (input wire V, input logic [7:0] b, c, [2:0] fctn_code,
+            output wire zero, carry, [7:0] alu_result, LED_Bus led);
 
-  
+  logic [7:0] result, op_code;
+  logic [7:0] adder_out, AND_out, OR_out, XOR_out, NOT_out, SHL_out;
 
-  logic [7:0] result, // result is for the internal result bus
-              adder_out, logic_out;  // 8-bit operation results
+  //
+  // Modules
+  // 
 
-  enum logic [7:0] {ADD_op = 8'b10000000,
-                    INC_op = 8'b01000000,
-                    AND_op = 8'b00100000,
-                    OR _op = 8'b00010000,
-                    XOR_op = 8'b00001000,
-                    NOT_op = 8'b00000100,
-                 SHIFTL_op = 8'b00000010,
-                   NULL_op = 8'b00000001} fctn, op_var;
+  ThreeToEightDecoder op_decoder (V, fctn_code, op_code);
 
-  ThreeToEightDecoder op_decoder (fctn_code, op);
+  EightBitAdderUnit adder_unit (V, b, c, adder_out, carry);
 
-  EightBitAdderUnit adder (b, c, adder_out, carry);
+  EightBitLogicUnit logic_unit (V, b, c, AND_out, OR_out, XOR_out, NOT_out);
 
-  EightBitLogicUnit logic (b, c, logic_out);
+  ShiftLeft shift_left (b, SHL_out);
 
-  ShiftLeft shift_left (b, shl);
+  Enable enable_add (V, op_code[0], adder_out, result);
+  Enable enable_inc (V, op_code[1], adder_out, result);
+  Enable enable_and (V, op_code[2], AND_out, result);
+  Enable enable_or  (V, op_code[3], OR_out, result);
+  Enable enable_xor (V, op_code[4], XOR_out, result); 
+  Enable enable_not (V, op_code[5], NOT_out, result); 
+  Enable enable_shl (V, op_code[6], SHL_out, result); 
 
-  Enable enable_add (control, line, bus);
-  Enable enable_inc (control, line, bus);
-  Enable enable_and (control, line, bus);
-  Enable enable_or  (control, line, bus);
-  Enable enable_xor (control, line, bus); 
-  Enable enable_not (control, line, bus); 
-  Enable enable_shl (control, line, bus); 
+  assign alu_result = result; 
 
-  ResultBus result_bus (result, alu_result);
-
-  ZeroDetect zero_detector (result, zero);
+  ZeroDetect zero_detector (V, result, zero);
 
 endmodule

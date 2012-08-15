@@ -7,19 +7,24 @@
 module AdderUnitTestBench ();
 
   logic [7:0] b, c, adder_out;
-  logic carry, clock;
+  logic carry;
+
+  wire V; logic V_var;
 
   initial begin
-    clock = 0;
-    forever #2ns clock = ~clock;
+    V_var = 1;
   end
 
-  EightBitAdderUnit adder (clock, b, c, adder_out, carry);
+  EightBitAdderUnit adder (V, b, c, adder_out, carry);
 
   initial begin
     b = 8'b0;
     c = 8'b1;
-    #20
+    #1
+    $display("sum: %b, carry: %b",adder_out,carry);
+    b = 8'b1;
+    c = 8'b1;
+    #1
     $display("sum: %b, carry: %b",adder_out,carry);
   end
 

@@ -4,30 +4,20 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-`define ADD_op    = 8'b10000000
-`define INC_op    = 8'b01000000
-`define AND_op    = 8'b00100000
-`define OR_op     = 8'b00010000
-`define XOR_op    = 8'b00001000
-`define NOT_op    = 8'b00000100
-`define SHIFTL_op = 8'b00000010
-`define NULL_op   = 8'b00000001
+module ThreeToEightDecoder (input logic V, [2:0] fctn_code, output logic [7:0] op_code);
 
-module ThreeToEightDecoder (input logic [2:0] fctn_code, output logic [7:0] op);
-
-  assign f0 = fctn_code[2];
+  assign f0 = fctn_code[0];
   assign f1 = fctn_code[1];
-  assign f2 = fctn_code[0];
+  assign f2 = fctn_code[2];
   
-  wire V, e, g, h, i, j, k,
+  wire e, g, h, i, j, k,
        ADD_pin, INC_pin, AND_pin, OR_pin,
        XOR_pin, NOT_pin, SHIFTL_pin, NULL_pin;
 
-  logic V_var;
+  assign op_code = {ADD_pin, INC_pin, AND_pin, OR_pin, XOR_pin,
+	            NOT_pin, SHIFTL_pin, NULL_pin};  
 
-  assign V = V_var;
-
-  Relay relay0 (.control(f0),
+  Relay relay0 (.control(f2),
                 .in_3(V),
                 .out_lo_3(e),
                 .out_hi_3(g));
@@ -40,7 +30,7 @@ module ThreeToEightDecoder (input logic [2:0] fctn_code, output logic [7:0] op);
                 .out_hi_2(j),
                 .out_hi_3(k) );
 
-  Relay relay2 (.control(f2),
+  Relay relay2 (.control(f0),
                 .in_0(h),
                 .in_1(i),
                 .in_2(j),
@@ -53,15 +43,5 @@ module ThreeToEightDecoder (input logic [2:0] fctn_code, output logic [7:0] op);
                 .out_hi_1(NOT_pin),
                 .out_hi_2(SHIFTL_pin),
                 .out_hi_3(NULL_pin) );
-
-    
-  initial begin
-    V_var = 1;
-   end
-
-  always_ff @(f0 || f1 || f2) begin
-    op = {ADD_pin, INC_pin, AND_pin, OR_pin, XOR_pin,
-    NOT_pin, SHIFTL_pin, NULL_pin};
-  end
 
 endmodule

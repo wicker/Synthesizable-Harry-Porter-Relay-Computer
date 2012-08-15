@@ -4,7 +4,7 @@
  * License: MIT http://opensource.org/licenses/MIT 
 */
 
-module TestBench();
+module EightBitRegTestBench();
 
    reg hold;
    wire[7:0] val;
@@ -14,7 +14,7 @@ module TestBench();
    
    assign val = enable_w ? val_reg : 'z;
    
-   EightBitRegister target(.*);
+   EightBitRegister target(hold, sel, content);
 
    task writeval(input [7:0] value);
       $display("writing %b", value);

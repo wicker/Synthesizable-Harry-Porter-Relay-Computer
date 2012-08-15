@@ -1,14 +1,14 @@
 /* Author: Jenner Hanni
  * Project: Harry Porter Relay Computer
- * File: Address Bus
+ * File: Result Bus
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-interface Addr_Bus();
+interface Result_Bus();
 
-  parameter ADDR_BUS_WIDTH = 8;
+  parameter RESULT_BUS_WIDTH = 8;
 
-  wire [ADDR_BUS_WIDTH-1:0] address;
+  wire [RESULT_BUS_WIDTH-1:0] alu_result;
 
   modport reg_M     (output address);
 
@@ -22,6 +22,6 @@ interface Addr_Bus();
 
   modport INC16     (input address);
 
-  modport memory    (input address);
+  modport mem       (input address);
 
 endinterface

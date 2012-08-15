@@ -4,9 +4,9 @@
  * License: MIT http://opensource.org/licenses/MIT 
 */
 
-module nBitRegister(input N, load, sel, [N-1:0] content);
+module ThreeBitRegister(input load, sel, [2:0] content);
 
-   parameter NUM_REG = N;
+   parameter NUM_REG = 3;
    
    assign hold = !load;
 

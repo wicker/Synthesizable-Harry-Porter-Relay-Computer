@@ -4,16 +4,17 @@
  * License: MIT http://opensource.org/licenses/MIT
 */
 
-module FSA (input logic clock, V, reset, output [22:0] fsm_out);
+module FSA (input logic clock, V, reset, output [22:0] fsm_out, fsm_out_prime);
 
   wire cl0,cl1,cl2,cl3,cl4,cl5,cl6,cl7,cl8,
-  wire cl9,cl10,cl12,cl13,cl14,cl15,cl16,cl17,
-  wire cl18,cl19,cl20,cl21,cl22,cl23,cl24;
+       cl9,cl10,cl12,cl13,cl14,cl15,cl16,cl17,
+       cl18,cl19,cl20,cl21,cl22,cl23,cl24;
 
-  logic [22:0] fsm_out_var;
+  logic [22:0] fsm_out_var, fsm_out_prime_var;
   assign fsm_out = fsm_out_var;
+  assign fsm_out_prime = fsm_out_prime_var;
 
-  wire reset,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W;
+  wire A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V_time,W;
 
   wire reset_prime, A_prime, B_prime, C_prime, D_prime, E_prime, F_prime, 
        G_prime, H_prime, I_prime, J_prime, K_prime, L_prime, M_prime, 
@@ -93,7 +94,7 @@ module FSA (input logic clock, V, reset, output [22:0] fsm_out);
                    .out_lo_3(A_prime),
                    .out_hi_3(A));
 
-  Relay relay_s2 .control(t_1_2),
+  Relay relay_s2 (.control(t_1_2),
                    .in_0(t_1_2),
                    .in_1(C_prime),
                    .in_2(cl2),
@@ -346,7 +347,7 @@ module FSA (input logic clock, V, reset, output [22:0] fsm_out);
                    .out_hi_1(t_22_23),
                    .out_hi_2(t_22_23),
                    .out_lo_3(t_20_22),
-                   .out_hi_3(V));
+                   .out_hi_3(V_time));
 
   Relay relay_s23 (.control(t_22_23),
                    .in_0(t_22_23),
@@ -358,6 +359,10 @@ module FSA (input logic clock, V, reset, output [22:0] fsm_out);
 
   always @(negedge clock) begin
     fsm_out_var = {W,V,U,T,S,R,Q,P,O,N,M,L,K,J,I,H,G,F,E,D,C,B,A};
+    fsm_out_prime_var = {W_prime,V_prime,U_prime,T_prime,S_prime,R_prime,
+                         Q_prime,P_prime,O_prime,N_prime,M_prime,L_prime,
+                         K_prime,J_prime,I_prime,H_prime,G_prime,F_prime,
+                         E_prime,D_prime,C_prime,B_prime,A_prime};
   end
 
 endmodule
