@@ -29,35 +29,35 @@ memory[6] = 8'b10101110; // HALT
 # INST coverage: MOV, ALU ops including ShiftLeft, BNEG, BNZ
 # If B = 17 and C = 13 then X = 221
 
-memory[0] = 8'b00111001   // Y = B
-memory[1] = 8'b00110110   // X = 0
-memory[2] = 8'b10000101   // check sign (Y)=1
-memory[3] = 8'b11110000   // BNEG Else
-memory[4] = 8'b00000000   // .
-memory[5] = 8'b00000111   // .
-memory[6] = 8'b00110010   // X = C
-memory[7] = 8'b01011001   // Else: A = -7
-memory[8] = 8'b0011000    // D = A
-memory[9] = 8'b00001110   // Loop: B = X
-memory[10] = 8'b10000110  // A = B << 1
-memory[11] = 8'b00110000  // X = A
-memory[12] = 8'b00001111  // B = Y
-memory[13] = 8'b10000110  // A = B << 1
-memory[14] = 8'b00111000  // Y = A
-memory[15] = 8'b00001111  // B = Y
-memory[16] = 8'b10000101  // check sign(Y)=1
-memory[17] = 8'b11110000  // BNEG Else2
-memory[18] = 8'b00000000  // .
-memory[19] = 8'b00010111  // .
-memory[20] = 8'b00001110  // B = X
-memory[21] = 8'b10000000  // A = B + C
-memory[22] = 8'b00110000  // X = A
-memory[23] = 8'b00001011  // Else2: B = D
-memory[24] = 8'b10001001  // D = B + 1
-memory[25] = 8'b10000010  // D = B + 1
-memory[26] = 8'b00000000  // BNZ Loop
-memory[27] = 8'b00001001  // .
-memory[28] = 8'b10101110  // .
+00111001   // Y = B
+00110110   // X = 0
+10000101   // check sign (Y)=1
+11110000   // BNEG Else
+00000000   // .
+00000111   // .
+00110010   // X = C
+01011001   // Else: A = -7
+0011000    // D = A
+00001110   // Loop: B = X
+10000110  // A = B << 1
+00110000  // X = A
+00001111  // B = Y
+10000110  // A = B << 1
+00111000  // Y = A
+00001111  // B = Y
+10000101  // check sign(Y)=1
+11110000  // BNEG Else2
+00000000  // .
+00010111  // .
+00001110  // B = X
+10000000  // A = B + C
+00110000  // X = A
+00001011  // Else2: B = D
+10001001  // D = B + 1
+10000010  // D = B + 1
+00000000  // BNZ Loop
+00001001  // .
+10101110  // .
 
 # Program 4
  
