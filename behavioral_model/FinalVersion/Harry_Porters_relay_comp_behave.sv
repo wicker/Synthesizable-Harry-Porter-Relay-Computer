@@ -5,7 +5,7 @@
  */
  module Harry_Porter_Comp #(parameter size_of_struct = 91) (input logic clock, loadMem, 
 				input logic [14:0][7:0] initial_memory, 
-				output wire [(size_of_struct-1):0] outcome, 
+				output logic [(size_of_struct-1):0] outcome, 
 				output logic loadMemComplete);
 
 	import output_struct_package::*;
@@ -16,7 +16,7 @@
 	controlSignals control_signals();
 	output_struct output_signals;
 
-	assign outcome = output_signals;
+	//assign outcome = output_signals;
 	
 	//instantiate modules
 	Sequencer_Behave sequenceUnit(.clock(clock), 
@@ -32,8 +32,8 @@
 					control_signals.sign, control_signals.carry, control_signals.zero);
 	registerUnit regUnit(.buses(Buses.Buses), .control_signals(control_signals.registerUnitPort), .registers(registers));
 	programControlUnit PCU(.buses(Buses.Buses), .control_signals(control_signals.programControlPort), .PCsigs(PCI));	
-				
-	always_comb
+	
+	always @(sequenceUnit.fsm.outputState)
 	begin	
 		output_signals.addressBus = Buses.addressBusPins;
 		output_signals.dataBus = Buses.dataBusPins;
@@ -80,12 +80,13 @@
 		output_signals.Y = registers.Ypins;
 		output_signals.M = registers.Mpins;
 		output_signals.XY = registers.XYpins;
-		output_signals.J1 = registers.J1pins;
-		output_signals.J2 = registers.J2pins;
-		output_signals.J = registers.Jpins;
-		output_signals.PC = registers.PCpins;
-		output_signals.INC = registers.Incpins;
+		output_signals.J1 = PCI.J1pins;
+		output_signals.J2 = PCI.J2pins;
+		output_signals.J = PCI.Jpins;
+		output_signals.PC = PCI.PCpins;
+		output_signals.INC = PCI.Incpins;
 		
+		outcome ={>>{output_signals}};
 		
 	end
 	
