@@ -10,7 +10,7 @@ module FSA (input logic clock, V, reset, output [22:0] fsm_out, fsm_out_prime);
        cl9,cl10,cl12,cl13,cl14,cl15,cl16,cl17,
        cl18,cl19,cl20,cl21,cl22,cl23,cl24;
 
-  logic [22:0] fsm_out_var, fsm_out_prime_var;
+  logic [23:0] fsm_out_var, fsm_out_prime_var;
   assign fsm_out = fsm_out_var;
   assign fsm_out_prime = fsm_out_prime_var;
 

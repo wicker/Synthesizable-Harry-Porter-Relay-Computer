@@ -30,7 +30,7 @@ module OneBitLogicBlock (input wire V, b_in, c_in,
 
 endmodule 
 
-module EightBitLogicUnit (input logic [7:0] b, c,
+module EightBitLogicUnit (input logic V, [7:0] b, c,
                           output wire [7:0] AND_out, OR_out, XOR_out, NOT_out);
 
   logic OR_pin0, OR_pin1, OR_pin2, OR_pin3, OR_pin4, OR_pin5, OR_pin6, OR_pin7;

@@ -23,9 +23,9 @@ module Reg_A (Ctrl_Bus control,
 
   always begin
     if (load)
-     content = alu_result;
-    else if (sel) 
-     data_bus.data = content;
+      content = alu_result;
+    else if (sel)
+      data_bus.data = content;
   end
 
   EightBitRegister EightBitsRegA (load, sel, content);

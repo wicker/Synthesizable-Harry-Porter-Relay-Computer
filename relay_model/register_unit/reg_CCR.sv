@@ -16,10 +16,9 @@ module Reg_CCR (Data_Bus data_bus,
   logic [N-1:0] content;
   logic load, sel;
 
-  assign load = control.ldA;
+  assign load = control.ldCCR;
 
-  assign led.ldA = load;
-  assign led.selA = sel;
+  assign led.ldCCR = load;
 
   assign ccr = content;
 
