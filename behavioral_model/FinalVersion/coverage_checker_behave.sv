@@ -14,33 +14,41 @@ package coverage_checker_class_package;
 	int registers_selected[string];
 	
 	typedef enum logic [7:0] { 	ALU_ADD_TO_A = 	8'b10000000,
+            ALU_ADD_TO_D = 8'b10001000,
+            ALU_INC_TO_A = 8'b10000001,
 						ALU_INC_TO_D =	8'b10001001,
 						ALU_AND_TO_A =	8'b10000010,
+						ALU_AND_TO_D = 8'b10001010,
+						ALU_OR_TO_A = 8'b10000011,
 						ALU_OR_TO_D =	8'b10001011,
 						ALU_XOR_TO_A = 	8'b10000100,
+						ALU_XOR_TO_D = 8'b10001100,
+						ALU_NOT_TO_A = 8'b10000101,
 						ALU_NOT_TO_D =	8'b10001101,
 						ALU_SHL_TO_A =	8'b10000110,
+            ALU_SHL_TO_D = 8'b10001110,
+            ALU_NOP_TO_A = 8'b10000111,
 						ALU_NOP_TO_D =	8'b10001111,
 						MOV_8_FROM_A =  8'b00000???,
 						MOV_8_TO_A = 	8'b00???000,
 						MOV_8_FROM_B =  8'b00001???,
 						MOV_8_TO_B = 	8'b00???001,
-						MOV_8_FROM_C =  8'b00010???,
-						MOV_8_TO_C = 	8'b00???010,
-						MOV_8_FROM_D =  8'b00011???,
-						MOV_8_TO_D = 	8'b00???011,
-						MOV_8_FROM_M1 =  8'b00100???,
-						MOV_8_TO_M1 = 	8'b00???100,
-						MOV_8_FROM_M2 =  8'b00101???,
-						MOV_8_TO_M2 = 	8'b00???101,
-						MOV_8_FROM_X =  8'b00110???,
-						MOV_8_TO_X = 	8'b00???110,
-						MOV_8_FROM_Y =  8'b00111???,
-						MOV_8_TO_Y = 	8'b00???111,
-						SETAB_TO_A_POS = 8'b0100????,
-						SETAB_TO_A_NEG = 8'b0101????,
-						SETAB_TO_B_POS = 8'b0110????,
-						SETAB_TO_B_NEG = 8'b0111????,
+						MOV_8_FROM_C =  8'b00010xxx,
+						MOV_8_TO_C = 	8'b00xxx010,
+						MOV_8_FROM_D =  8'b00011xxx,
+						MOV_8_TO_D = 	8'b00xxx011,
+						MOV_8_FROM_M1 =  8'b00100xxx,
+						MOV_8_TO_M1 = 	8'b00xxx100,
+						MOV_8_FROM_M2 =  8'b00101xxx,
+						MOV_8_TO_M2 = 	8'b00xxx101,
+						MOV_8_FROM_X =  8'b00110xxx,
+						MOV_8_TO_X = 	8'b00xxx110,
+						MOV_8_FROM_Y =  8'b00111xxx,
+						MOV_8_TO_Y = 	8'b00xxx111,
+						SETAB_TO_A_POS = 8'b0100xxxx,
+						SETAB_TO_A_NEG = 8'b0101xxxx,
+						SETAB_TO_B_POS = 8'b0110xxxx,
+						SETAB_TO_B_NEG = 8'b0111xxxx,
 						LOAD_A = 		8'b10010000,
 						LOAD_B = 		8'b10010001,
 						LOAD_C = 		8'b10010010,
@@ -78,7 +86,8 @@ package coverage_checker_class_package;
 		$display(" Counts on instructions: ");
 		foreach(instructions_encountered[inst])
 		begin
-			$write(" %s : %d \t", inst, instructions_encountered[inst]);
+		  Instructions_To_Test Test = Instructions_To_Test'(inst);
+			$write(" %s : %d \n", Test.name, instructions_encountered[inst]);
 		end
 		
 		$display("\n Counts on Registers That were loaded");
@@ -99,14 +108,8 @@ package coverage_checker_class_package;
 	
 	function void insert_results(input output_struct to_enter);
     Instructions_To_Test instruction = Instructions_To_Test'(to_enter.instruction_reg);
-//    int result = registers_loaded.exists("LdInc");
-  //  $display("result = %b",result);
   
-		
-		if(instruction != DONT_CARE)
-		begin
-		  instructions_encountered[instruction.name] = 1;
-		end
+		  instructions_encountered[instruction] = 1;
 		 
 		
 			if(to_enter.LdA === 1)begin registers_loaded["A"] = 1; end
