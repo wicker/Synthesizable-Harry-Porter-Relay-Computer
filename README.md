@@ -11,13 +11,13 @@ Behavioral and Relay Models need to be run separately. The behavioral model comp
 
 To run the behavioral model:
 
-<code>cd behave\_model
-vlog -sv -source testbench\_behave.sv
-vsim -s testbench\_behave</code>
+<code>cd behave\_model</code>
+<code>vlog -sv -source testbench\_behave.sv</code>
+<code>vsim -s testbench\_behave</code>
 
 To run the relay model, 
 
-<code>cd relay\_model
-vlog -sv -source \_relay\_computer.sv
-vsim -c RelayComputer</code>
+<code>cd relay\_model</code>
+<code>vlog -sv -source \_relay\_computer.sv</code>
+<code>vsim -c RelayComputer</code>
 
