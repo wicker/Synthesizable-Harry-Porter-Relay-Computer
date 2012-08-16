@@ -1,0 +1,63 @@
+#
+# These are sample programs made by both Jenner and Maisee
+#
+
+# PC, INC, and 16-INC are all automatically incrementing with each op, right?
+
+# Program 1 = Simple Addition
+# Modfiies A, B
+
+memory[0] = 8'b01000010; // Load 2 into A
+memory[1] = 8'b01100011; // Load 3 into B
+memory[2] = 8'b00000010; // Mov A to C
+memory[3] = 8'b10000000; // ALU ADD into A
+memory[4] = 8'b10101110; // Halt execution
+
+# Program 2 = Harry's Simple Subtraction
+# Modifies A, B, C
+
+memory[0] = 8'b01100001; // Load 1 into B
+memory[1] = 8'b10000101; // Load A with NOT B
+memory[2] = 8'b00001000; // Move A to B
+memory[3] = 8'b10000001; // Increment B, Result in A
+memory[4] = 8'b00001000; // Move A to B
+memory[5] = 8'b10000000; // Add B and C, Result in A
+memory[6] = 8'b10101110; // HALT
+
+# Program 3 = Harry's 8-bit Multiply
+# Modifies A, B, C, D, X, Y
+# INST coverage: MOV, ALU ops including ShiftLeft, BNEG, BNZ
+# If B = 17 and C = 13 then X = 221
+
+00111001   // Y = B
+00110110   // X = 0
+10000101   // check sign (Y)=1
+11110000   // BNEG Else
+00000000   // .
+00000111   // .
+00110010   // X = C
+01011001   // Else: A = -7
+0011000    // D = A
+00001110   // Loop: B = X
+10000110  // A = B << 1
+00110000  // X = A
+00001111  // B = Y
+10000110  // A = B << 1
+00111000  // Y = A
+00001111  // B = Y
+10000101  // check sign(Y)=1
+11110000  // BNEG Else2
+00000000  // .
+00010111  // .
+00001110  // B = X
+10000000  // A = B + C
+00110000  // X = A
+00001011  // Else2: B = D
+10001001  // D = B + 1
+10000010  // D = B + 1
+00000000  // BNZ Loop
+00001001  // .
+10101110  // .
+
+# Program 4
+ 

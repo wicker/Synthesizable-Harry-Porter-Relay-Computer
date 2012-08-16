@@ -3,6 +3,17 @@
  * File: testbench_behave.sv
  * License: MIT http://opensource.org/licenses/MIT
  */
+ `include sequencer_behave.sv
+ `include register_unit_behave.sv
+ `include program_control_unit_behave.sv
+ `include output_struct_package.sv
+ `include memory_behave.sv
+ `include interfaces_behave.sv
+ `include Harry_Porters_relay_comp_behave.sv
+ `include fsm_behave.sv
+ `include decode_logic_behave.sv
+ `include coverage_checker_behave.sv
+ `include alu_behave.sv
  
  // This is the testbench that will directively test just the behavioral model of
  // Harry Porter's Relay Computer

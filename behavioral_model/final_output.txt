@@ -1,0 +1,1872 @@
+# Compile of state_definitions_behave.sv was successful.
+# Compile of output_struct_package.sv was successful.
+# Compile of alu_behave.sv was successful.
+# Compile of coverage_checker_behave.sv was successful.
+# Compile of decode_logic_behave.sv was successful.
+# Compile of fsm_behave.sv was successful.
+# Compile of interfaces_behave.sv was successful.
+# Compile of memory_behave.sv was successful.
+# Compile of program_control_unit_behave.sv was successful.
+# Compile of register_unit_behave.sv was successful.
+# Compile of sequencer_behave.sv was successful.
+# Compile of Harry_Porters_relay_comp_behave.sv was successful.
+# Compile of testbench_behave.sv was successful.
+# 13 compiles, 0 failed with no errors. 
+vsim work.testbench_behave
+# vsim work.testbench_behave 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.state_definitions
+# Loading work.output_struct_package
+# Loading work.coverage_checker_class_package
+# Loading work.testbench_behave(fast)
+# Loading work.Sequencer_Behave(fast)
+# Loading work.memory(fast)
+# Loading work.Alu_Behave(fast)
+# Loading work.registerUnit(fast)
+# Loading work.programControlUnit(fast)
+run -all
+# In initialization Run
+# In initialization Run
+# In initialization Run
+#  '{174, 26, 137, 1, 133, 25, 133, 142, 133, 140, 131, 138, 2, 106, 67} 
+#  '{174, 26, 137, 1, 133, 25, 133, 142, 133, 140, 131, 138, 2, 106, 67} 
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  x    x    x    x    x     x     x     x      x      x      x        x      x    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      x       x       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  x          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     00     00000000         00000000
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  x    x    x    x    x     x     x     x      x      x      x        x      x    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       x       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0000  43 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     00     00000000         00000000
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  x    x    x    x    x     x     x     x      x      x      1        x      1    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       x       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0000  43 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     00     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  x    x    x    x    x     x     x     x      x      x      0        x      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       x       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0000  xx 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     00     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  x    x    x    x    x     x     x     x      x      x      0        x      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       x       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  03 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     00     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  1    x    x    x    x     x     x     x      x      x      0        1      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0001  03 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    x    x    x    x     x     x     x      x      x      0        1      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0001  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    x    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    x    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    x    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0001  6a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000001         01000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    x    x    x    x     x     x     x      x      x      1        0      1    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0001  6a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    x    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0001  XX 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    x    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     00     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     01     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    1    x    x    x     x     x     x      x      x      0        1      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0002  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        1      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0002  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0002  02 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000010         01101010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      1        0      1    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0002  02 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0002  02 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      x      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  03     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     02     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  1    0    x    x    x     x     x     x      x      x      0        1      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      1      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0003  00 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        1      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      1      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0003  00 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0003  8a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000011         00000010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      1        0      1    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0003  8a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0003  8a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    x    x     x     x     x      x      x      0        0      0    x     x
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  00 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     03     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    1    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0004  00 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0004  00 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0004  83 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000100         10001010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0004  83 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0004  83 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  00     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     04     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  1    0    x    0    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0005  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0005  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0005  8c 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000101         10000011
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0005  8c 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0005  8c 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     05     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    1    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0006  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0006  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0006  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000110         10001100
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0006  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0006  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     06     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  1    0    x    0    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0007  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0007  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0007  8e 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00000111         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0007  8e 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0007  8e 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  14 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     07     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    1    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0008  14 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0008  14 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0008  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001000         10001110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0008  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0008  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     08     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  1    0    x    0    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0009  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0009  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0009  19 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001001         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0009  19 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  0009  19 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      x      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     14     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     09     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    1    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      1      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000a  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      1      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000a  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000a  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001010         00011001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000a  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000a  85 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0a     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  1    0    x    0    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000b  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000b  f5 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000b  01 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001011         10000101
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000b  01 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000b  01 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  f5     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0b     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  1    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      1      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000c  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      1      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000c  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000c  89 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001100         00000001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000c  89 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000c  89 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  0b 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0a     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0c     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    1    x     x     x     x      x      x      0        1      0    x     1
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000d  0b 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000d  0b 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000d  1a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001101         10001001
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000d  1a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000d  1a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     0b     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0d     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    1    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      1      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000e  00 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      1      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000e  00 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_1          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_2          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000e  ae 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001110         00011010
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      1        0      1    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_3          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000e  ae 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001111         10101110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      1       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  1          x           x        x        x       xxx           state_4          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000e  ae 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001111         10101110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_5          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0e     00001111         10101110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_6          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000f  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0f     00001111         10101110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       1       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_7          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  000f  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0f     00001111         10101110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        0      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_8          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  0a 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     0f     00001111         10101110
+#  CONTROL SIGNALS: 
+#  LdA LdB LdC LdD LdM1 LdM2 LdX LdY LdJ1 LdJ2 LdInst LdPC LdInc LdXY LdCond
+#  0    0    x    0    x     x     x     x      x      x      0        1      0    x     0
+#  SelA SelB SelC SelD SelM1 SelM2 SelX SelY SelPC SelInc SelM SelXY
+#  x      0      0      x      x       x       x      x      0       0       x         x
+#  MemRead MemWrite carry sign zero ALUcode fsm_state Halt
+#  0          x           x        x        x       xxx           state_9          0
+#  BUSES: (in hex)
+#  Address Bus                 Data Bus
+#  zzzz  zz 
+#  REGISTERS: (in hex)
+#  A      B       C      D      M1      M2      X      Y      J1      J2
+#  0a     0a     00     00     00     00     00     00     00     00
+#  M        XY        J        PC        INC        INST
+#  00     00      00     zz     00001111         10101110
+# HALT WAS HIT
+#  Counts on instructions: 
+#   :           1 
+#  ALU_OR_TO_A :           1 
+#  ALU_NOT_TO_A :           1 
+#  ALU_INC_TO_D :           1 
+#  ALU_AND_TO_D :           1 
+#  ALU_XOR_TO_D :           1 
+#  ALU_SHL_TO_D :           1 
+#  HALT_INST :           1 
+#   :           1 
+#   :           1 
+#   :           1 
+#   :           1 
+#   :           1 
+#   :           1 
+# 
+#  Counts on Registers That were loaded
+#  A :           1 	 B :           1 	 D :           1 	 Inc :           1 	
+#  Counts on Registers That were selected
+#  B :           1 	 C :           1 	
+# Break at N:/ECE 410/Final Project/FinalVersion/testbench_behave.sv line 62
+
+
