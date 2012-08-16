@@ -5,10 +5,19 @@ Group project by Maisee Brown, Brian Ledger, and Jenner Hanni for Professor Mark
 
 The goal is to build and thoroughly verify a synthesizable model of Dr. Harry Porter's relay computer. 
 
-### Relay Model
+### Build Instructions
 
-To run the relay model, navigate to the relay\_model/ directory and run
+Behavioral and Relay Models need to be run separately. The behavioral model compiles, runs, and displays valid output for a test program that includes the current state of buses, registers, and control signals. The relay model compiles but does not run correctly. 
 
-<code>vlog -sv -source _relay_computer.sv
+To run the behavioral model:
+
+<code>cd behave\_model
+vlog -sv -source testbench\_behave.sv
+vsim -s testbench\_behave</code>
+
+To run the relay model, 
+
+<code>cd relay\_model
+vlog -sv -source \_relay\_computer.sv
 vsim -c RelayComputer</code>
 
